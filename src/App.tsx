@@ -1,15 +1,15 @@
-import type { JSX } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ScrollToTop } from './components/layout/ScrollToTop'
-import { SiteLayout } from './components/layout/SiteLayout'
-import { AcademyPage } from './pages/AcademyPage'
-import { AboutPage } from './pages/AboutPage'
-import { ContactPage } from './pages/ContactPage'
-import { HomePage } from './pages/HomePage'
-import { NotFoundPage } from './pages/NotFoundPage'
-import { PortfolioPage } from './pages/PortfolioPage'
-import { ServiceDetailPage } from './pages/ServiceDetailPage'
-import { ServicesPage } from './pages/ServicesPage'
+import type { JSX } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ScrollToTop } from "./components/layout/ScrollToTop";
+import { SiteLayout } from "./components/layout/SiteLayout";
+import { AcademyPage } from "./pages/AcademyPage";
+import { AboutPage } from "./pages/AboutPage";
+import { ContactPage } from "./pages/ContactPage";
+import { HomePage } from "./pages/HomePage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import { PortfolioPage } from "./pages/PortfolioPage";
+import { ServiceDetailPage } from "./pages/ServiceDetailPage";
+import { ServicesPage } from "./pages/ServicesPage";
 
 function App(): JSX.Element {
   return (
@@ -20,7 +20,6 @@ function App(): JSX.Element {
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
-          <Route path="/academy" element={<AcademyPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
@@ -28,7 +27,7 @@ function App(): JSX.Element {
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
