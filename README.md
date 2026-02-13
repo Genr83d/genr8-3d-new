@@ -1,75 +1,44 @@
-# React + TypeScript + Vite
+# GENR8-3D Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Production-style React + Tailwind website for GENR8-3D with a futuristic maker-lab UI.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + TypeScript
+- React Router for multi-page IA
+- Tailwind CSS (theme tokens for brand colors + typography)
+- Vite
 
-## React Compiler
+## Pages
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- `/` Home
+- `/services` Services
+- `/services/:slug` Service Detail (reusable data-driven layout)
+- `/academy` NEXT-GEN Academy
+- `/portfolio` Portfolio (filterable + modal)
+- `/about` About
+- `/contact` Contact + Quote Request
 
-Note: This will impact Vite dev & build performances.
+## Local Setup
 
-## Expanding the ESLint configuration
+1. Install dependencies:
+   - `npm install`
+2. Start development server:
+   - `npm run dev`
+3. Build production output:
+   - `npm run build`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tailwind Theme
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Theme tokens are in `tailwind.config.js`:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- `base`: `#000000`
+- `text`: `#ffffff`
+- `accent`: `#1428af`
+- `accentSoft`: `#608fff`
+- `support`: `#2e86ab`
+- `fontFamily.poppins`: Poppins
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Notes
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Forms currently implement client-side validation and UI success states. Connect them to backend endpoints for live submissions.
