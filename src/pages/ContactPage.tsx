@@ -1,6 +1,6 @@
-import type { JSX } from 'react'
-import { PageHero } from '../components/sections/PageHero'
-import { QuoteForm } from '../components/forms/QuoteForm'
+import type { JSX } from "react";
+import { PageHero } from "../components/sections/PageHero";
+import { QuoteForm } from "../components/forms/QuoteForm";
 
 export function ContactPage(): JSX.Element {
   return (
@@ -17,26 +17,30 @@ export function ContactPage(): JSX.Element {
         </div>
 
         <aside className="surface-card h-fit">
-          <h2 className="text-xl font-semibold text-white">Business Information</h2>
+          <h2 className="text-xl font-semibold text-white">
+            Business Information
+          </h2>
           <dl className="mt-4 space-y-4 text-sm text-slate-300">
             <div>
               <dt className="font-semibold text-white">Hours</dt>
-              <dd>Mon-Fri: 8:00 AM - 6:00 PM</dd>
-              <dd>Sat: 10:00 AM - 2:00 PM (By appointment)</dd>
+              <dd>Mon-Fri: 8:00 AM - 5:00 PM</dd>
+              {/* <dd>Sat: 10:00 AM - 2:00 PM (By appointment)</dd> */}
+              <dd>Weekends: Closed</dd>
             </div>
             <div>
-              <dt className="font-semibold text-white">Studio</dt>
-              <dd>Innovation District, Building C</dd>
-              <dd>Suite 404, Your City, ST 00000</dd>
+              <dt className="font-semibold text-white">Location</dt>
+              <dd>Pembrooke Commercial Complex</dd>
+              <dd>Lots 19 & 20 Fairfield</dd>
+              <dd>Montego Bay, St. James</dd>
             </div>
             <div>
               <dt className="font-semibold text-white">Direct Contact</dt>
-              <dd>hello@genr8-3d.com</dd>
-              <dd>(000) 000-0000</dd>
+              <dd>contact@genr83d.com</dd>
+              <dd>(876) 801-8972</dd>
             </div>
           </dl>
         </aside>
       </section>
     </>
-  )
+  );
 }

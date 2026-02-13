@@ -42,10 +42,6 @@ export function SiteFooter(): JSX.Element {
             Mon-Fri: 8:00 AM - 5:00 PM
           </p>
           <p className="mt-1 text-sm text-slate-300">contact@genr83d.com</p>
-          {/* <p className="mt-1 text-sm text-slate-300">
-            Pembrooke Commercial Complex, Lots 19 & 20 Fairfield, Montego Bay,
-            St. James
-          </p> */}
           <address className="mt-1 text-sm text-slate-300 not-italic">
             Pembrooke Commercial Complex
             <br />
