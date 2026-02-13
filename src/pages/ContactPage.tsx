@@ -16,7 +16,7 @@ export function ContactPage(): JSX.Element {
           <QuoteForm />
         </div>
 
-        <aside className="surface-card h-fit">
+        <aside className="surface-card">
           <h2 className="text-xl font-semibold text-white">
             Business Information
           </h2>
