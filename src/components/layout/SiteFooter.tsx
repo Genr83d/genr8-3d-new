@@ -1,6 +1,10 @@
 import type { JSX } from "react";
 import { Link } from "react-router-dom";
 import LogoWide from "../../assets/icons/logos/genr8-logo-wide.svg";
+import FacebookIcon from "../../assets/icons/social/facebook.svg";
+import LinkedInIcon from "../../assets/icons/social/linkedin.svg";
+import InstagramIcon from "../../assets/icons/social/instagram.svg";
+import WhatsAppIcon from "../../assets/icons/social/whatsapp.svg";
 
 export function SiteFooter(): JSX.Element {
   return (
@@ -12,6 +16,56 @@ export function SiteFooter(): JSX.Element {
             Precision fabrication, technical design, and digital delivery for
             teams that need production-ready output.
           </p>
+          <div className="mt-4 flex gap-3">
+            <a
+              href="https://wa.me/18768018972"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+            >
+              <img
+                src={WhatsAppIcon}
+                alt="WhatsApp"
+                className="h-5 w-5 brightness-0 invert opacity-50 transition-opacity hover:opacity-100"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/genr8-3d/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <img
+                src={LinkedInIcon}
+                alt="LinkedIn"
+                className="h-5 w-5 brightness-0 invert opacity-50 transition-opacity hover:opacity-100"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/genr8_3d/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <img
+                src={InstagramIcon}
+                alt="Instagram"
+                className="h-5 w-5 brightness-0 invert opacity-50 transition-opacity hover:opacity-100"
+              />
+            </a>
+            <a
+              href="https://www.facebook.com/Genr8-3d-111518620711772"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <img
+                src={FacebookIcon}
+                alt="Facebook"
+                className="h-5 w-5 brightness-0 invert opacity-50 transition-opacity hover:opacity-100"
+              />
+            </a>
+          </div>
         </section>
         <section>
           <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-200">
