@@ -5,11 +5,12 @@ import { CloseIcon, MenuIcon } from '../ui/icons'
 const links = [
   { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
-  { to: '/academy', label: 'NEXT-GEN Academy' },
   { to: '/portfolio', label: 'Portfolio' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
+
+const ACADEMY_URL = 'https://next-gen-academy.genr83d.com'
 
 export function SiteHeader(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,6 +38,14 @@ export function SiteHeader(): JSX.Element {
               {link.label}
             </NavLink>
           ))}
+          <a
+            href={ACADEMY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-slate-300 transition hover:text-white"
+          >
+            NEXT-GEN Academy
+          </a>
           <Link to="/contact" className="primary-button">
             Get a Quote
           </Link>
@@ -72,6 +81,15 @@ export function SiteHeader(): JSX.Element {
                 {link.label}
               </NavLink>
             ))}
+            <a
+              href={ACADEMY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md px-3 py-2 text-sm font-semibold text-slate-200 hover:bg-accent/20"
+              onClick={() => setIsOpen(false)}
+            >
+              NEXT-GEN Academy
+            </a>
             <Link to="/contact" className="primary-button mt-2" onClick={() => setIsOpen(false)}>
               Get a Quote
             </Link>
