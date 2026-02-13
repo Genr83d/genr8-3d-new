@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -22,8 +22,16 @@
   body {
     @apply m-0 bg-base font-poppins text-text antialiased;
     background-image:
-      radial-gradient(circle at 20% 0%, rgba(20, 40, 175, 0.24), transparent 34%),
-      radial-gradient(circle at 80% 0%, rgba(46, 134, 171, 0.16), transparent 34%);
+      radial-gradient(
+        circle at 20% 0%,
+        rgba(20, 40, 175, 0.24),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 80% 0%,
+        rgba(46, 134, 171, 0.16),
+        transparent 34%
+      );
   }
 
   img {
@@ -41,7 +49,7 @@
   }
 
   .site-wrap::before {
-    content: '';
+    content: "";
     @apply pointer-events-none fixed inset-0 z-[-1] bg-lab-grid bg-[size:56px_56px] opacity-30;
   }
 
@@ -66,7 +74,7 @@
   }
 
   .primary-button {
-    @apply inline-flex items-center justify-center rounded-lg border border-accentSoft/70 bg-accent px-5 py-2.5 text-sm font-semibold text-text transition duration-300 hover:-translate-y-px hover:bg-accentSoft hover:text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
+    @apply inline-flex items-center justify-center rounded-lg border border-accentSoft/70 bg-accent px-5 py-2.5 text-sm font-semibold text-text transition duration-300 hover:bg-accentSoft hover:text-base hover:text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
   }
 
   .secondary-button {
@@ -74,7 +82,7 @@
   }
 
   .field {
-    @apply mt-2 w-full rounded-lg border border-accentSoft/40 bg-black/55 px-3 py-2.5 text-sm text-text placeholder:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
+    @apply mt-2 w-full rounded-lg border border-accentSoft/40 bg-black/55 px-3 py-2.5 text-sm text-text placeholder:text-slate-400 hover:cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
   }
 
   .small-muted {

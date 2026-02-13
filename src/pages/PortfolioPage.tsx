@@ -1,21 +1,24 @@
-import { useMemo, useState, type JSX } from 'react'
-import { Link } from 'react-router-dom'
-import { CTASection } from '../components/sections/CTASection'
-import { PageHero } from '../components/sections/PageHero'
-import { ProjectCard } from '../components/ui/ProjectCard'
-import { ProjectModal } from '../components/ui/ProjectModal'
-import { SectionHeading } from '../components/ui/SectionHeading'
-import { projectCategories, type ProjectFilter, projects } from '../data/projects'
-import type { Project } from '../types/content'
+import { useMemo, useState, type JSX } from "react";
+import { Link } from "react-router-dom";
+import { PageHero } from "../components/sections/PageHero";
+import { ProjectCard } from "../components/ui/ProjectCard";
+import { ProjectModal } from "../components/ui/ProjectModal";
+import { SectionHeading } from "../components/ui/SectionHeading";
+import {
+  projectCategories,
+  type ProjectFilter,
+  projects,
+} from "../data/projects";
+import type { Project } from "../types/content";
 
 export function PortfolioPage(): JSX.Element {
-  const [activeCategory, setActiveCategory] = useState<ProjectFilter>('All')
-  const [activeProject, setActiveProject] = useState<Project | null>(null)
+  const [activeCategory, setActiveCategory] = useState<ProjectFilter>("All");
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   const filteredProjects = useMemo(() => {
-    if (activeCategory === 'All') return projects
-    return projects.filter((project) => project.category === activeCategory)
-  }, [activeCategory])
+    if (activeCategory === "All") return projects;
+    return projects.filter((project) => project.category === activeCategory);
+  }, [activeCategory]);
 
   return (
     <>
@@ -49,8 +52,8 @@ export function PortfolioPage(): JSX.Element {
               onClick={() => setActiveCategory(category)}
               className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition ${
                 category === activeCategory
-                  ? 'border-accentSoft bg-accent/35 text-accentSoft'
-                  : 'border-accentSoft/35 bg-black/60 text-slate-300 hover:border-accentSoft/60 hover:text-white'
+                  ? "border-accentSoft bg-accent/35 text-accentSoft"
+                  : "border-accentSoft/35 bg-black/60 text-slate-300 hover:border-accentSoft/60 hover:text-white"
               }`}
             >
               {category}
@@ -60,21 +63,21 @@ export function PortfolioPage(): JSX.Element {
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} onSelect={setActiveProject} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onSelect={setActiveProject}
+            />
           ))}
         </div>
       </section>
 
-      {activeProject ? <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} /> : null}
-
-      <CTASection
-        title="Need a project like this?"
-        description="Share references or requirements and we will recommend the most efficient fabrication + delivery path."
-        primaryLabel="Request Quote"
-        primaryTo="/contact"
-        secondaryLabel="Meet NEXT-GEN Academy"
-        secondaryTo="/academy"
-      />
+      {activeProject ? (
+        <ProjectModal
+          project={activeProject}
+          onClose={() => setActiveProject(null)}
+        />
+      ) : null}
     </>
-  )
+  );
 }

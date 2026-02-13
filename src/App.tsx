@@ -2,7 +2,6 @@ import type { JSX } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { SiteLayout } from "./components/layout/SiteLayout";
-import { AcademyPage } from "./pages/AcademyPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
 import { HomePage } from "./pages/HomePage";

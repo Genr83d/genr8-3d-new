@@ -1,30 +1,33 @@
-import type { JSX } from 'react'
-import { Link } from 'react-router-dom'
-import { services } from '../data/services'
-import { projects } from '../data/projects'
-import { testimonials } from '../data/testimonials'
-import { SectionHeading } from '../components/ui/SectionHeading'
-import { ServiceCard } from '../components/ui/ServiceCard'
-import { ProjectCard } from '../components/ui/ProjectCard'
-import { TestimonialCard } from '../components/ui/TestimonialCard'
-import { PageHero } from '../components/sections/PageHero'
-import { CTASection } from '../components/sections/CTASection'
-import { MetricStrip } from '../components/sections/MetricStrip'
+import type { JSX } from "react";
+import { Link } from "react-router-dom";
+import { services } from "../data/services";
+import { projects } from "../data/projects";
+import { testimonials } from "../data/testimonials";
+import { SectionHeading } from "../components/ui/SectionHeading";
+import { ServiceCard } from "../components/ui/ServiceCard";
+import { ProjectCard } from "../components/ui/ProjectCard";
+import { TestimonialCard } from "../components/ui/TestimonialCard";
+import { PageHero } from "../components/sections/PageHero";
+import { CTASection } from "../components/sections/CTASection";
+import { MetricStrip } from "../components/sections/MetricStrip";
 
 const whyItems = [
   {
-    title: 'Precision-Driven Workflow',
-    description: 'Engineering-minded process controls from design validation to final production handoff.',
+    title: "Precision-Driven Workflow",
+    description:
+      "Engineering-minded process controls from design validation to final production handoff.",
   },
   {
-    title: 'Fast Iteration Cycles',
-    description: 'Short lead times for prototypes and clear production scaling paths when volumes increase.',
+    title: "Fast Iteration Cycles",
+    description:
+      "Short lead times for prototypes and clear production scaling paths when volumes increase.",
   },
   {
-    title: 'Local Build + Modern Stack',
-    description: 'Hands-on fabrication paired with digital delivery, web presence, and technical training support.',
+    title: "Local Build + Modern Stack",
+    description:
+      "Hands-on fabrication paired with digital delivery, web presence, and technical training support.",
   },
-]
+];
 
 export function HomePage(): JSX.Element {
   return (
@@ -47,10 +50,10 @@ export function HomePage(): JSX.Element {
 
       <MetricStrip
         metrics={[
-          { label: 'Projects Delivered', value: '540+' },
-          { label: 'Average Prototype Turnaround', value: '72 hrs' },
-          { label: 'Fabrication Disciplines', value: '5 Core' },
-          { label: 'Client Satisfaction', value: '98%' },
+          { label: "Projects Delivered", value: "540+" },
+          { label: "Average Prototype Turnaround", value: "72 hrs" },
+          { label: "Fabrication Disciplines", value: "5 Core" },
+          { label: "Client Satisfaction", value: "98%" },
         ]}
       />
 
@@ -101,15 +104,6 @@ export function HomePage(): JSX.Element {
         </div>
       </section>
 
-      <CTASection
-        title="NEXT-GEN Academy"
-        description="Training that bridges classroom concepts to real fabrication workflows. Equip students and teams with production-ready skills."
-        primaryLabel="Explore Academy"
-        primaryTo="/academy"
-        secondaryLabel="Talk to an Advisor"
-        secondaryTo="/contact"
-      />
-
       <section className="section-shell">
         <SectionHeading
           eyebrow="Client Feedback"
@@ -132,5 +126,5 @@ export function HomePage(): JSX.Element {
         secondaryTo="/services"
       />
     </>
-  )
+  );
 }
