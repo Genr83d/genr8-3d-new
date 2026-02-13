@@ -1,12 +1,13 @@
 import type { JSX } from "react";
 import { Link } from "react-router-dom";
+import LogoWide from "../../assets/icons/logos/genr8-logo-wide.svg";
 
 export function SiteFooter(): JSX.Element {
   return (
     <footer className="border-t border-accentSoft/25 bg-black/80">
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-3 lg:px-10">
         <section>
-          <p className="chip">GENR8-3D</p>
+          <img src={LogoWide} alt="GENR8-3D Logo" className="w-32" />
           <p className="mt-4 text-sm text-slate-300">
             Precision fabrication, technical design, and digital delivery for
             teams that need production-ready output.
