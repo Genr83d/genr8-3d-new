@@ -23,12 +23,16 @@ const initialValues: QuoteFormValues = {
   fileName: "",
 };
 
+const FORMSPARK_ACTION_URL = "https://submit-form.com/RYHyzaTr";
+
 export function QuoteForm(): JSX.Element {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<
     Partial<Record<keyof QuoteFormValues, string>>
   >({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validate = (): Partial<Record<keyof QuoteFormValues, string>> => {
     const nextErrors: Partial<Record<keyof QuoteFormValues, string>> = {};
@@ -48,15 +52,43 @@ export function QuoteForm(): JSX.Element {
     return nextErrors;
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate();
 
     setErrors(nextErrors);
 
-    if (Object.keys(nextErrors).length === 0) {
+    if (Object.keys(nextErrors).length > 0) return;
+
+    setSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch(FORMSPARK_ACTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          service: values.service,
+          details: values.details,
+          timeline: values.timeline,
+          budget: values.budget || "Not specified",
+        }),
+      });
+
+      if (!response.ok) throw new Error("Submission failed.");
+
       setSubmitted(true);
       setValues(initialValues);
+    } catch {
+      setSubmitError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -72,8 +104,14 @@ export function QuoteForm(): JSX.Element {
 
       {submitted ? (
         <p className="mt-4 rounded-lg border border-support/50 bg-support/20 px-4 py-3 text-sm text-white">
-          Quote request draft captured. Connect this form to your backend
-          endpoint to activate live submission.
+          Your quote request has been submitted successfully. We will get back
+          to you shortly.
+        </p>
+      ) : null}
+
+      {submitError ? (
+        <p className="mt-4 rounded-lg border border-red-500/50 bg-red-500/20 px-4 py-3 text-sm text-red-300">
+          {submitError}
         </p>
       ) : null}
 
@@ -276,8 +314,12 @@ export function QuoteForm(): JSX.Element {
         </label>
 
         <div className="sm:col-span-2">
-          <button type="submit" className="primary-button">
-            Submit Quote Request
+          <button
+            type="submit"
+            className="primary-button"
+            disabled={submitting}
+          >
+            {submitting ? "Submitting..." : "Submit Quote Request"}
           </button>
         </div>
       </form>
