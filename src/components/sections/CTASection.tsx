@@ -25,7 +25,7 @@ export function CTASection({
           <h2 className="text-2xl font-semibold text-white sm:text-3xl">
             {title}
           </h2>
-          <p className="mt-3 max-w-2xl text-sm text-slate-200 sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm text-slate-200 sm:text-lg">
             {description}
           </p>
         </div>
