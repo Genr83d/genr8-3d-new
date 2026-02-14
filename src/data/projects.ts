@@ -1,4 +1,5 @@
 import type { Project } from "../types/content";
+import CncImg from "../assets/images/cnc.webp";
 
 export const projectCategories = [
   "All",
@@ -19,8 +20,7 @@ export const projects: Project[] = [
     tags: ["Signage", "Carpentry", "Acrylic"],
     description:
       "High-accuracy, repeatable cuts for flat sheet materials including wood, plastics, MDF, and composites.",
-    image:
-      "https://images.unsplash.com/photo-1711418235334-8895331a6cf9?auto=format&fit=crop&w=1000&q=80",
+    image: CncImg,
   },
   {
     id: "additive-manufacturing-02",
