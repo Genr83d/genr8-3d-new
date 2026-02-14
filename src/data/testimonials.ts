@@ -1,28 +1,36 @@
-import type { Testimonial } from '../types/content'
+import type { Testimonial } from "../types/content";
 
 export const testimonials: Testimonial[] = [
   {
-    id: 'testimonial-01',
+    id: "testimonial-01",
     quote:
-      'GENR8-3D moved our prototype cycle from weeks to days. The team speaks both design and production, which made decisions faster and cleaner.',
-    name: 'Alicia Torres',
-    role: 'Product Lead',
-    company: 'Sierra Mobility Labs',
+      "The experience has been very good. On time and efficient. Haven't had an issue with the company. Really like the output and the service. Thank you.",
+    name: "Mrs. Thomas-Reid",
+    role: "Teacher",
+    company: "Cambridge High School",
   },
   {
-    id: 'testimonial-02',
+    id: "testimonial-02",
     quote:
-      'Their CNC and laser workflow quality is consistent batch after batch. Communication is technical, direct, and easy to execute against.',
-    name: 'Marcus Bell',
-    role: 'Operations Manager',
-    company: 'Forge Retail Environments',
+      "I picked up the pins today. They look bold and give off a sense of authority which will definitely capture our target clients. Excellent job!",
+    name: "Dr. Hanson",
+    role: "Director of Operations",
+    company: "On Call Doctors And Nursing Services",
   },
   {
-    id: 'testimonial-03',
+    id: "testimonial-03",
     quote:
-      'NEXT-GEN Academy gave our students real fabrication confidence. They left with practical skills, not just theory.',
-    name: 'Danielle Kim',
-    role: 'STEM Program Director',
-    company: 'Metro Youth Innovation Hub',
+      "GENR8-3D is a customer-oriented company. They give you what you want as the customer. The end product gives you that feeling of satisfaction. I loved working with them. I am pleased. Thank you.",
+    name: "Ms. Edwards",
+    role: "IT Teacher",
+    company: "Herbert Morrison Technical High School",
   },
-]
+  {
+    id: "testimonial-04",
+    quote:
+      "Their 3D-printed products have helped me with plenty of my presentations. They are really well-made and surprisingly detailed. Thanks again!",
+    name: "Mr. Cowan",
+    role: "Computer Lab Technician",
+    company: "Herbert Morrison Technical High School",
+  },
+];
