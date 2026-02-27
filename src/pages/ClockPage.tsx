@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent, type JSX } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent, type JSX } from "react";
 import { Link } from "react-router-dom";
 import { PageHero } from "../components/sections/PageHero";
 
@@ -14,6 +14,13 @@ type WoodSpec = {
     shadow: string;
     highlight: string;
   };
+};
+
+type ClockDesignFormValues = {
+  name: string;
+  email: string;
+  phone: string;
+  notes: string;
 };
 
 const sizeOptions: ClockSize[] = [10, 12];
@@ -67,6 +74,15 @@ const numberStyleOptions: Array<{ id: NumberStyle; label: string; sample: string
   { id: "roman", label: "Roman", sample: "I II III ... XII" },
 ];
 
+const designFormInitialValues: ClockDesignFormValues = {
+  name: "",
+  email: "",
+  phone: "",
+  notes: "",
+};
+
+const FORMSPARK_ACTION_URL = "https://submit-form.com/RYHyzaTr";
+
 export function ClockPage(): JSX.Element {
   const [size, setSize] = useState<ClockSize>(10);
   const [wood, setWood] = useState<WoodType>("cedar");
@@ -74,6 +90,12 @@ export function ClockPage(): JSX.Element {
   const [previousWood, setPreviousWood] = useState<WoodType | null>(null);
   const [showWoodLayer, setShowWoodLayer] = useState(true);
   const [centerDesignSrc, setCenterDesignSrc] = useState<string | null>(null);
+  const [centerDesignFileName, setCenterDesignFileName] = useState("");
+  const [formValues, setFormValues] = useState<ClockDesignFormValues>(designFormInitialValues);
+  const [formErrors, setFormErrors] = useState<Partial<Record<keyof ClockDesignFormValues, string>>>({});
+  const [isSubmittingForm, setIsSubmittingForm] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [formSubmitError, setFormSubmitError] = useState("");
 
   const centerSize = centerBySize[size];
   const maxPreviewOuterRadius = 170;
@@ -84,6 +106,8 @@ export function ClockPage(): JSX.Element {
   const arabicNumberFontSize = Math.round(27 * sizeScale);
   const romanNumberFontSize = Math.round(22 * sizeScale);
   const sizeDifferencePercent = Math.round((1 - sizeScale) * 100);
+  const selectedNumberStyleLabel =
+    numberStyleOptions.find((option) => option.id === numberStyle)?.label ?? "Standard Arabic";
 
   const handleWoodChange = (nextWood: WoodType): void => {
     if (nextWood === wood) {
@@ -111,6 +135,7 @@ export function ClockPage(): JSX.Element {
       }
       return nextUrl;
     });
+    setCenterDesignFileName(file.name);
     event.target.value = "";
   };
 
@@ -121,6 +146,73 @@ export function ClockPage(): JSX.Element {
       }
       return null;
     });
+    setCenterDesignFileName("");
+  };
+
+  const validateForm = (): Partial<Record<keyof ClockDesignFormValues, string>> => {
+    const nextErrors: Partial<Record<keyof ClockDesignFormValues, string>> = {};
+
+    if (!formValues.name.trim()) {
+      nextErrors.name = "Name is required.";
+    }
+    if (!formValues.email.trim()) {
+      nextErrors.email = "Email is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formValues.email)) {
+      nextErrors.email = "Enter a valid email address.";
+    }
+    if (!formValues.phone.trim()) {
+      nextErrors.phone = "Phone is required.";
+    }
+
+    return nextErrors;
+  };
+
+  const onSubmitDesign = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
+
+    const nextErrors = validateForm();
+    setFormErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      return;
+    }
+
+    setIsSubmittingForm(true);
+    setFormSubmitError("");
+
+    try {
+      const response = await fetch(FORMSPARK_ACTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          requestType: "Clock Design Submission",
+          name: formValues.name,
+          email: formValues.email,
+          phone: formValues.phone,
+          notes: formValues.notes || "Not provided",
+          clockSizeInches: size,
+          woodType: woodSpecs[wood].label,
+          numberStyle: selectedNumberStyleLabel,
+          centerDesignDiameterInches: centerSize,
+          centerDesignUploaded: Boolean(centerDesignSrc),
+          centerDesignFileName: centerDesignFileName || "None",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      setIsFormSubmitted(true);
+      setFormValues(designFormInitialValues);
+    } catch {
+      setFormSubmitError("Could not send the design right now. Please try again.");
+    } finally {
+      setIsSubmittingForm(false);
+    }
   };
 
   useEffect(() => {
@@ -471,12 +563,109 @@ export function ClockPage(): JSX.Element {
               </li>
               <li>
                 Number style:{" "}
-                <span className="font-semibold text-white">
-                  {numberStyleOptions.find((option) => option.id === numberStyle)?.label}
-                </span>
+                <span className="font-semibold text-white">{selectedNumberStyleLabel}</span>
+              </li>
+              <li>
+                Center image file:{" "}
+                <span className="font-semibold text-white">{centerDesignFileName || "None selected"}</span>
               </li>
             </ul>
           </div>
+
+          {isFormSubmitted ? (
+            <p className="rounded-lg border border-support/50 bg-support/20 px-4 py-3 text-sm text-white">
+              Clock design sent successfully. We will contact you shortly.
+            </p>
+          ) : null}
+
+          {formSubmitError ? (
+            <p className="rounded-lg border border-red-500/50 bg-red-500/20 px-4 py-3 text-sm text-red-300">
+              {formSubmitError}
+            </p>
+          ) : null}
+
+          <form className="grid gap-4" onSubmit={onSubmitDesign} noValidate>
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-accentSoft">
+              Send This Design
+            </p>
+
+            <label className="block text-sm font-semibold text-slate-200" htmlFor="clock-design-name">
+              Name
+              <input
+                id="clock-design-name"
+                className="field"
+                value={formValues.name}
+                onChange={(event) =>
+                  setFormValues((previous) => ({ ...previous, name: event.target.value }))
+                }
+                aria-invalid={Boolean(formErrors.name)}
+                aria-describedby={formErrors.name ? "clock-design-name-error" : undefined}
+              />
+              {formErrors.name ? (
+                <span id="clock-design-name-error" className="mt-2 block text-xs text-red-300">
+                  {formErrors.name}
+                </span>
+              ) : null}
+            </label>
+
+            <label className="block text-sm font-semibold text-slate-200" htmlFor="clock-design-email">
+              Email
+              <input
+                id="clock-design-email"
+                type="email"
+                className="field"
+                value={formValues.email}
+                onChange={(event) =>
+                  setFormValues((previous) => ({ ...previous, email: event.target.value }))
+                }
+                aria-invalid={Boolean(formErrors.email)}
+                aria-describedby={formErrors.email ? "clock-design-email-error" : undefined}
+              />
+              {formErrors.email ? (
+                <span id="clock-design-email-error" className="mt-2 block text-xs text-red-300">
+                  {formErrors.email}
+                </span>
+              ) : null}
+            </label>
+
+            <label className="block text-sm font-semibold text-slate-200" htmlFor="clock-design-phone">
+              Phone
+              <input
+                id="clock-design-phone"
+                className="field"
+                value={formValues.phone}
+                onChange={(event) =>
+                  setFormValues((previous) => ({ ...previous, phone: event.target.value }))
+                }
+                aria-invalid={Boolean(formErrors.phone)}
+                aria-describedby={formErrors.phone ? "clock-design-phone-error" : undefined}
+              />
+              {formErrors.phone ? (
+                <span id="clock-design-phone-error" className="mt-2 block text-xs text-red-300">
+                  {formErrors.phone}
+                </span>
+              ) : null}
+            </label>
+
+            <label className="block text-sm font-semibold text-slate-200" htmlFor="clock-design-notes">
+              Additional Notes (optional)
+              <textarea
+                id="clock-design-notes"
+                rows={4}
+                className="field"
+                value={formValues.notes}
+                onChange={(event) =>
+                  setFormValues((previous) => ({ ...previous, notes: event.target.value }))
+                }
+              />
+            </label>
+
+            <div>
+              <button type="submit" className="primary-button" disabled={isSubmittingForm}>
+                {isSubmittingForm ? "Sending..." : "Send Clock Design"}
+              </button>
+            </div>
+          </form>
         </article>
       </section>
     </>
