@@ -76,9 +76,14 @@ export function ClockPage(): JSX.Element {
   const [centerDesignSrc, setCenterDesignSrc] = useState<string | null>(null);
 
   const centerSize = centerBySize[size];
-  const previewOuterRadius = 170;
+  const maxPreviewOuterRadius = 170;
+  const sizeScale = size / 12;
+  const previewOuterRadius = Math.round(maxPreviewOuterRadius * sizeScale);
   const centerRadius = previewOuterRadius * (centerSize / size);
-  const numberRadius = previewOuterRadius - 30;
+  const numberRadius = previewOuterRadius - Math.round(30 * sizeScale);
+  const arabicNumberFontSize = Math.round(27 * sizeScale);
+  const romanNumberFontSize = Math.round(22 * sizeScale);
+  const sizeDifferencePercent = Math.round((1 - sizeScale) * 100);
 
   const handleWoodChange = (nextWood: WoodType): void => {
     if (nextWood === wood) {
@@ -167,6 +172,11 @@ export function ClockPage(): JSX.Element {
               This preview matches your selected size and wood. Upload your center artwork and
               choose from your approved number styles.
             </p>
+            <p className="mt-2 text-xs text-slate-300">
+              {size === 10
+                ? `10" is shown ${sizeDifferencePercent}% smaller than a 12" clock. Dashed ring marks full 12" size.`
+                : '12" is shown at full reference size.'}
+            </p>
           </div>
 
           <div className="rounded-2xl border border-accentSoft/30 bg-black/35 p-3 sm:p-5">
@@ -212,6 +222,30 @@ export function ClockPage(): JSX.Element {
                   <circle cx="200" cy="200" r={centerRadius} />
                 </clipPath>
               </defs>
+
+              {size === 10 ? (
+                <>
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r={maxPreviewOuterRadius + 8}
+                    fill="none"
+                    stroke="#93afff77"
+                    strokeWidth="1.8"
+                    strokeDasharray="7 6"
+                  />
+                  <text
+                    x="200"
+                    y={200 - maxPreviewOuterRadius - 16}
+                    fill="#d7e3ff"
+                    fontSize="11"
+                    textAnchor="middle"
+                    style={{ letterSpacing: "0.08em" }}
+                  >
+                    12" REFERENCE SIZE
+                  </text>
+                </>
+              ) : null}
 
               <circle cx="200" cy="200" r={previewOuterRadius + 8} fill="#0b0b0d" />
               <circle
@@ -262,7 +296,7 @@ export function ClockPage(): JSX.Element {
                     x={x}
                     y={y}
                     fill="#f8f8f8"
-                    fontSize={numberStyle === "roman" ? "22" : "27"}
+                    fontSize={numberStyle === "roman" ? romanNumberFontSize : arabicNumberFontSize}
                     fontWeight="700"
                     textAnchor="middle"
                     dominantBaseline="middle"
@@ -331,12 +365,12 @@ export function ClockPage(): JSX.Element {
                     onClick={() => setSize(sizeOption)}
                     className={`rounded-xl border px-4 py-3 text-left transition ${
                       isActive
-                        ? "border-accentSoft bg-accent/30 text-white shadow-glow"
-                        : "border-accentSoft/30 bg-black/30 text-slate-300 hover:border-accentSoft/80 hover:text-white"
+                        ? "border-accentSoft bg-accent/35 text-white shadow-glow"
+                        : "border-accentSoft/30 bg-black/30 text-white hover:border-accentSoft/80"
                     }`}
                   >
-                    <span className="block text-base font-semibold">{sizeOption}" Clock</span>
-                    <span className="mt-1 block text-xs text-slate-300">
+                    <span className="block text-base font-semibold text-white">{sizeOption}" Clock</span>
+                    <span className="mt-1 block text-xs text-slate-200">
                       Center area: {centerBySize[sizeOption]}" diameter
                     </span>
                   </button>
