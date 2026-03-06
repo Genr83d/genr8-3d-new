@@ -10,6 +10,7 @@ const links = [
   { to: "/portfolio", label: "Portfolio" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
+  { to: "/admin/clocks", label: "Admin" },
 ];
 
 const ACADEMY_URL = "https://next-gen-academy.genr83d.com";

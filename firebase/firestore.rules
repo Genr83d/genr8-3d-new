@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.admin == true;
+    }
+
+    match /clockSubmissions/{submissionId} {
+      allow create: if isVerifiedUser()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.userEmail == request.auth.token.email
+        && request.resource.data.previewImageBase64 is string
+        && request.resource.data.previewImageBase64.size() <= 550000
+        && request.resource.data.centerDesignBase64 is string
+        && request.resource.data.centerDesignBase64.size() <= 250000
+        && request.resource.data.createdAt == request.time;
+
+      allow read: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
