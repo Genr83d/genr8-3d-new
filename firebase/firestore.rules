@@ -10,22 +10,96 @@ service cloud.firestore {
     }
 
     function isAdmin() {
-      return isSignedIn() && request.auth.token.admin == true;
+      return isVerifiedUser()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && (
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true
+          || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+        );
+    }
+
+    function isValidClockSubmissionCreate() {
+      return request.resource.data.keys().hasOnly([
+          'userId',
+          'userEmail',
+          'accountName',
+          'contactName',
+          'contactEmail',
+          'contactPhone',
+          'notes',
+          'clockSizeInches',
+          'woodType',
+          'numberStyle',
+          'centerDesignDiameterInches',
+          'centerDesignUploaded',
+          'centerDesignFileName',
+          'centerDesignBase64',
+          'previewImageBase64',
+          'moderationStatus',
+          'moderationFlags',
+          'createdAt',
+          'reviewedAt',
+          'reviewedBy',
+        ])
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.userEmail == request.auth.token.email
+        && request.resource.data.contactEmail == request.auth.token.email
+        && request.resource.data.accountName is string
+        && request.resource.data.contactName is string
+        && request.resource.data.contactPhone is string
+        && request.resource.data.notes is string
+        && request.resource.data.clockSizeInches in [10, 12]
+        && request.resource.data.woodType in ['cedar', 'mahogany', 'blueMahoe']
+        && request.resource.data.numberStyle in ['standardArabic', 'roman']
+        && request.resource.data.centerDesignDiameterInches in [5, 6]
+        && request.resource.data.centerDesignUploaded is bool
+        && request.resource.data.centerDesignFileName is string
+        && request.resource.data.centerDesignBase64 is string
+        && request.resource.data.centerDesignBase64.size() <= 250000
+        && request.resource.data.previewImageBase64 is string
+        && request.resource.data.previewImageBase64.size() <= 550000
+        && request.resource.data.moderationStatus in ['received', 'pending_review']
+        && request.resource.data.moderationFlags is list
+        && request.resource.data.moderationFlags.size() <= 10
+        && request.resource.data.reviewedAt == null
+        && request.resource.data.reviewedBy == null
+        && request.resource.data.createdAt == request.time;
+    }
+
+    function isValidClockSubmissionAdminUpdate() {
+      return request.resource.data.diff(resource.data).changedKeys().hasOnly([
+          'moderationStatus',
+          'reviewedAt',
+          'reviewedBy',
+        ])
+        && request.resource.data.moderationStatus in ['pending_review', 'approved', 'rejected']
+        && request.resource.data.reviewedBy == request.auth.uid
+        && request.resource.data.reviewedAt == request.time;
     }
 
     match /clockSubmissions/{submissionId} {
-      allow create: if isVerifiedUser()
-        && request.resource.data.userId == request.auth.uid
-        && request.resource.data.userEmail == request.auth.token.email
-        && request.resource.data.previewImageBase64 is string
-        && request.resource.data.previewImageBase64.size() <= 550000
-        && request.resource.data.centerDesignBase64 is string
-        && request.resource.data.centerDesignBase64.size() <= 250000
-        && request.resource.data.createdAt == request.time;
+      allow create: if isVerifiedUser() && isValidClockSubmissionCreate();
 
       allow read: if isAdmin();
-      allow update: if isAdmin();
+      allow update: if isAdmin() && isValidClockSubmissionAdminUpdate();
       allow delete: if false;
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn() && request.auth.uid == userId;
+      allow create: if isSignedIn()
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly([
+          'email',
+          'displayName',
+          'role',
+          'createdAt',
+        ])
+        && request.resource.data.email is string
+        && request.resource.data.displayName is string
+        && request.resource.data.role == 'customer'
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
     }
 
     match /{document=**} {

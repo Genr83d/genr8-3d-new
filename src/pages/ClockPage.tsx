@@ -23,6 +23,7 @@ import {
 } from "../lib/clockDesign";
 import { submitClockSubmission } from "../lib/clockSubmissions";
 import { auth } from "../lib/firebase";
+import { ensureCustomerUserRecord } from "../lib/users";
 
 type ClockDesignFormValues = {
   name: string;
@@ -111,19 +112,24 @@ export function ClockPage(): JSX.Element {
   };
 
   const ensureGoogleSignedIn = async (): Promise<User | null> => {
-    if (auth.currentUser) {
-      await auth.currentUser.reload();
-      return auth.currentUser;
-    }
-
-    setIsAuthBusy(true);
-    setAuthMessage("");
-    setFormSubmitError("");
-
     try {
-      const credential = await signInWithPopup(auth, googleProvider);
-      setAuthMessage(`Signed in as ${credential.user.email ?? "your Google account"}.`);
-      return credential.user;
+      let signedInUser = auth.currentUser;
+
+      if (signedInUser) {
+        await signedInUser.reload();
+        signedInUser = auth.currentUser;
+      } else {
+        setIsAuthBusy(true);
+        setAuthMessage("");
+        setFormSubmitError("");
+
+        const credential = await signInWithPopup(auth, googleProvider);
+        signedInUser = credential.user;
+        setAuthMessage(`Signed in as ${credential.user.email ?? "your Google account"}.`);
+      }
+
+      await ensureCustomerUserRecord(signedInUser);
+      return signedInUser;
     } catch (error) {
       setFormSubmitError(
         error instanceof Error
@@ -224,6 +230,12 @@ export function ClockPage(): JSX.Element {
     const unsubscribe = onAuthStateChanged(auth, (nextUser) => {
       setAuthUser(nextUser);
       setIsAuthLoading(false);
+
+      void ensureCustomerUserRecord(nextUser).catch((error) => {
+        setAuthMessage(
+          error instanceof Error ? error.message : "Could not create your user profile right now.",
+        );
+      });
 
       if (nextUser?.displayName) {
         setFormValues((previous) => ({

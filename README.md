@@ -25,9 +25,7 @@ Production-style React + Tailwind website for GENR8-3D with a futuristic maker-l
 
 1. Install dependencies:
    - `npm install`
-2. Copy environment template:
-   - `cp .env.example .env`
-3. Add Firebase web app values in `.env`
+2. Create a local `.env` file with your Firebase web app values.
 4. Start dev server:
    - `npm run dev`
 5. Build production output:
@@ -45,15 +43,20 @@ Example with Firebase CLI:
 firebase deploy --only firestore:rules,firestore:indexes
 ```
 
-## Admin Access
+## Admin Authorization
 
-Primary method (recommended):
+- Signed-in customers automatically get a `users/{uid}` document with `role: "customer"` the first time the app boots their session.
+- Admin access is controlled by the signed-in user's Firestore document at `users/{uid}`.
+- A user is treated as admin when that document has either `role: "admin"` or `isAdmin: true`.
+- The frontend subscribes to that user record before showing admin UI.
+- Firestore rules enforce the same user-document check for admin reads and moderation updates.
 
-- Set Firebase custom claim `admin=true` on admin users.
+## Bootstrap the First Admin
 
-Fallback method (for local/dev UI gating):
-
-- Add comma-separated emails to `VITE_ADMIN_EMAILS`.
+1. Make sure the target user already exists in **Authentication -> Users**.
+2. In **Cloud Firestore**, create or update `users/{uid}` for that auth user.
+3. Set either `role` to `admin` or `isAdmin` to `true`.
+4. Once the document is updated, the admin page will pick up the change from Firestore automatically.
 
 ## Clock Design Storage Model
 
@@ -74,6 +77,7 @@ The admin page shows both:
 
 - Firestore rules in `firebase/firestore.rules` enforce:
   - verified email for submission writes
-  - admin-only reads/updates on submissions
+  - user-document-based admin-only reads/updates on submissions
+- No frontend email allowlist or custom claim is used for authorization.
 - Base64 size caps are enforced for preview and center image fields to stay within Firestore document limits.
 - For stronger anti-bot controls, pair this with Firebase App Check and/or a callable Cloud Function gateway.

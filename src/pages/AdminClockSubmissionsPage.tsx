@@ -1,20 +1,23 @@
 import { useEffect, useMemo, useState, type FormEvent, type JSX } from "react";
 import {
-  onAuthStateChanged,
+  onIdTokenChanged,
   signInWithEmailAndPassword,
   signOut,
-  type IdTokenResult,
   type User,
 } from "firebase/auth";
 import { ClockPreviewSvg } from "../components/clocks/ClockPreviewSvg";
 import { PageHero } from "../components/sections/PageHero";
-import { isAdminUser } from "../lib/admin";
+import {
+  getUserAdminAccess,
+  subscribeToUserAdminAccess,
+} from "../lib/admin";
 import {
   subscribeToClockSubmissions,
   updateClockSubmissionStatus,
   type ClockSubmissionRecord,
 } from "../lib/clockSubmissions";
 import { auth } from "../lib/firebase";
+import { ensureCustomerUserRecord } from "../lib/users";
 
 type StatusFilter = "all" | "received" | "pending_review" | "approved" | "rejected";
 
@@ -30,36 +33,32 @@ function formatDate(value: Date | null): string {
 export function AdminClockSubmissionsPage(): JSX.Element {
   const [authLoading, setAuthLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
-  const [tokenResult, setTokenResult] = useState<IdTokenResult | null>(null);
+  const [hasAdminRecord, setHasAdminRecord] = useState(false);
   const [authError, setAuthError] = useState("");
   const [authInfo, setAuthInfo] = useState("");
   const [authValues, setAuthValues] = useState({ email: "", password: "" });
   const [isAuthBusy, setIsAuthBusy] = useState(false);
+  const [isRefreshingAccess, setIsRefreshingAccess] = useState(false);
 
   const [submissions, setSubmissions] = useState<ClockSubmissionRecord[]>([]);
   const [loadingSubmissions, setLoadingSubmissions] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
 
-  const isAdmin = isAdminUser(user, tokenResult);
+  const isEmailVerified = user?.emailVerified ?? false;
+  const isAdmin = isEmailVerified && hasAdminRecord;
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (nextUser) => {
+    const unsubscribe = onIdTokenChanged(auth, (nextUser) => {
       setUser(nextUser);
-      setAuthLoading(false);
       setAuthError("");
-
       if (!nextUser) {
-        setTokenResult(null);
+        setHasAdminRecord(false);
+        setAuthLoading(false);
         return;
       }
 
-      try {
-        const token = await nextUser.getIdTokenResult(true);
-        setTokenResult(token);
-      } catch {
-        setTokenResult(null);
-      }
+      setAuthLoading(true);
     });
 
     return () => {
@@ -68,8 +67,39 @@ export function AdminClockSubmissionsPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
+    if (!user) {
+      setHasAdminRecord(false);
+      setAuthLoading(false);
+      return;
+    }
+
+    setAuthLoading(true);
+    setAuthError("");
+
+    const unsubscribe = subscribeToUserAdminAccess(
+      user,
+      (nextHasAdminRecord) => {
+        setHasAdminRecord(nextHasAdminRecord);
+        setAuthLoading(false);
+      },
+      (error) => {
+        setHasAdminRecord(false);
+        setAuthError(
+          error instanceof Error ? error.message : "Could not verify admin access from the users collection.",
+        );
+        setAuthLoading(false);
+      },
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
+
+  useEffect(() => {
     if (!isAdmin) {
       setSubmissions([]);
+      setSubmissionError("");
       return;
     }
 
@@ -112,10 +142,20 @@ export function AdminClockSubmissionsPage(): JSX.Element {
 
       if (!credential.user.emailVerified) {
         await signOut(auth);
+        setUser(null);
+        setHasAdminRecord(false);
         throw new Error("Admin account email must be verified before login.");
       }
 
-      setAuthInfo("Signed in.");
+      await ensureCustomerUserRecord(credential.user);
+      const nextHasAdminRecord = await getUserAdminAccess(credential.user);
+      setUser(credential.user);
+      setHasAdminRecord(nextHasAdminRecord);
+      setAuthInfo(
+        nextHasAdminRecord
+          ? "Signed in."
+          : "Signed in. This account is not marked as admin in the users collection.",
+      );
     } catch (error) {
       setAuthError(error instanceof Error ? error.message : "Login failed.");
     } finally {
@@ -125,7 +165,43 @@ export function AdminClockSubmissionsPage(): JSX.Element {
 
   const onLogout = async (): Promise<void> => {
     await signOut(auth);
+    setUser(null);
+    setHasAdminRecord(false);
     setAuthInfo("Logged out.");
+  };
+
+  const onRefreshAccess = async (): Promise<void> => {
+    setIsRefreshingAccess(true);
+    setAuthError("");
+    setAuthInfo("");
+
+    try {
+      const nextUser = auth.currentUser;
+      setUser(nextUser);
+
+      if (!nextUser) {
+        setHasAdminRecord(false);
+        setAuthInfo("No active session to refresh.");
+        return;
+      }
+
+      await nextUser.reload();
+      const refreshedUser = auth.currentUser ?? nextUser;
+      const nextHasAdminRecord = await getUserAdminAccess(refreshedUser);
+      setUser(refreshedUser);
+      setHasAdminRecord(nextHasAdminRecord);
+      setAuthInfo(
+        nextHasAdminRecord
+          ? "Admin access refreshed."
+          : "Session refreshed. This account is not marked as admin in the users collection.",
+      );
+    } catch (error) {
+      setAuthError(
+        error instanceof Error ? error.message : "Could not refresh admin access from the users collection.",
+      );
+    } finally {
+      setIsRefreshingAccess(false);
+    }
   };
 
   const onSetStatus = async (
@@ -205,19 +281,37 @@ export function AdminClockSubmissionsPage(): JSX.Element {
                 Signed in as <span className="font-semibold">{user.email}</span>
               </p>
               <p className="mt-1 text-xs text-slate-300">
+                Email verified: {isEmailVerified ? "Yes" : "No"}
+              </p>
+              <p className="mt-1 text-xs text-slate-300">
                 Admin access: {isAdmin ? "Allowed" : "Denied"}
               </p>
-              <button type="button" className="secondary-button mt-3" onClick={() => void onLogout()}>
-                Log Out
-              </button>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  className="secondary-button"
+                  onClick={() => void onRefreshAccess()}
+                  disabled={isRefreshingAccess}
+                >
+                  {isRefreshingAccess ? "Refreshing..." : "Refresh Access"}
+                </button>
+                <button type="button" className="secondary-button" onClick={() => void onLogout()}>
+                  Log Out
+                </button>
+              </div>
             </div>
           ) : null}
 
           {user && !isAdmin ? (
-            <p className="rounded-lg border border-yellow-500/50 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-100">
-              This account does not have admin privileges. Add a Firebase custom claim (`admin: true`) or include the
-              email in `VITE_ADMIN_EMAILS`.
-            </p>
+            <div className="rounded-lg border border-yellow-500/50 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-100">
+              <p>
+                Access denied. This page requires an authenticated account with a verified email address and an admin
+                user record in <code>users/{user.uid}</code>.
+              </p>
+              <p className="mt-2">
+                Changes to the Firestore user record should sync automatically. <span className="font-semibold">Refresh Access</span> also reloads the current session.
+              </p>
+            </div>
           ) : null}
         </article>
 

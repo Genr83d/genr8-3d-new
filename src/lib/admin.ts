@@ -1,23 +1,55 @@
-import type { IdTokenResult, User } from "firebase/auth";
+import type { User } from "firebase/auth";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { db } from "./firebase";
 
-const configuredAdmins = (import.meta.env.VITE_ADMIN_EMAILS ?? "")
-  .split(",")
-  .map((item: string) => item.trim().toLowerCase())
-  .filter(Boolean);
+type FirestoreUserRecord = {
+  isAdmin?: boolean;
+  role?: string;
+};
 
-export function isAdminUser(user: User | null, tokenResult: IdTokenResult | null): boolean {
+function userRecordRef(userId: string) {
+  return doc(db, "users", userId);
+}
+
+function hasAdminAccess(record: FirestoreUserRecord | undefined): boolean {
+  return record?.isAdmin === true || record?.role === "admin";
+}
+
+export async function getUserAdminAccess(user: User | null): Promise<boolean> {
   if (!user) {
     return false;
   }
 
-  const hasClaim = tokenResult?.claims?.admin === true;
-  if (hasClaim) {
-    return true;
-  }
-
-  if (!user.email) {
+  const snapshot = await getDoc(userRecordRef(user.uid));
+  if (!snapshot.exists()) {
     return false;
   }
 
-  return configuredAdmins.includes(user.email.toLowerCase());
+  return hasAdminAccess(snapshot.data() as FirestoreUserRecord);
+}
+
+export function subscribeToUserAdminAccess(
+  user: User | null,
+  onData: (isAdmin: boolean) => void,
+  onError: (error: Error) => void,
+): () => void {
+  if (!user) {
+    onData(false);
+    return () => {};
+  }
+
+  return onSnapshot(
+    userRecordRef(user.uid),
+    (snapshot) => {
+      if (!snapshot.exists()) {
+        onData(false);
+        return;
+      }
+
+      onData(hasAdminAccess(snapshot.data() as FirestoreUserRecord));
+    },
+    (error) => {
+      onError(error);
+    },
+  );
 }
