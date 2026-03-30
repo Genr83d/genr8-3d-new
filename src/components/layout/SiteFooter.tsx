@@ -87,6 +87,14 @@ export function SiteFooter(): JSX.Element {
             <Link to="/contact" className="hover:text-accentSoft">
               Quote Request
             </Link>
+            <a
+              href="https://6d831aec.portfolio-website-7hf.pages.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accentSoft"
+            >
+              External Portfolio
+            </a>
           </div>
         </section>
         <section>
