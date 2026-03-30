@@ -93,7 +93,7 @@ export function SiteFooter(): JSX.Element {
               rel="noopener noreferrer"
               className="hover:text-accentSoft"
             >
-              External Portfolio
+              Showcase
             </a>
           </div>
         </section>
