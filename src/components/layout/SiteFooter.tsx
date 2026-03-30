@@ -88,7 +88,7 @@ export function SiteFooter(): JSX.Element {
               Quote Request
             </Link>
             <a
-              href="https://6d831aec.portfolio-website-7hf.pages.dev/"
+              href="https://17c0f6ba.portfolio-website-7hf.pages.dev/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accentSoft"
