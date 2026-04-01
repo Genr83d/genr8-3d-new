@@ -90,6 +90,14 @@ export function SiteFooter(): JSX.Element {
             <Link to="/contact" className="hover:text-accentSoft">
               Quote Request
             </Link>
+            <a
+              href="https://showcase.genr83d.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accentSoft"
+            >
+              Showcase
+            </a>
           </div>
         </section>
         <section>
