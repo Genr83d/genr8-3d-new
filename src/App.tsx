@@ -4,6 +4,7 @@ import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { SiteLayout } from "./components/layout/SiteLayout";
 import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
+import { FactoryTourPage } from "./pages/FactoryTourPage";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { PortfolioPage } from "./pages/PortfolioPage";
@@ -27,6 +28,7 @@ function App(): JSX.Element {
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
             <Route path="/clocks" element={<ClockPage />} />
             <Route path="/admin/clocks" element={<AdminClockSubmissionsPage />} />
+            <Route path="/factory-tour" element={<FactoryTourPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
