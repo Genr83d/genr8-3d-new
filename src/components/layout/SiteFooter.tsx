@@ -85,7 +85,7 @@ export function SiteFooter(): JSX.Element {
               href="https://next-gen-academy.genr83d.com/"
               className="hover:text-accentSoft"
             >
-              NEXT-GEN Academy
+              Academy
             </a>
             <Link to="/contact" className="hover:text-accentSoft">
               Quote Request

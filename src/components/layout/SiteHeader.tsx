@@ -47,7 +47,7 @@ export function SiteHeader(): JSX.Element {
             rel="noopener noreferrer"
             className="text-sm font-semibold text-slate-300 transition hover:text-white"
           >
-            NEXT-GEN Academy
+            Academy
           </a>
           <Link to="/contact" className="primary-button">
             Get a Quote
@@ -97,7 +97,7 @@ export function SiteHeader(): JSX.Element {
               className="rounded-md px-3 py-2 text-sm font-semibold text-slate-200 hover:bg-accent/20"
               onClick={() => setIsOpen(false)}
             >
-              NEXT-GEN Academy
+              Academy
             </a>
             <Link
               to="/contact"
