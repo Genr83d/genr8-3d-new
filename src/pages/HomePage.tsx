@@ -29,6 +29,25 @@ const whyItems = [
   },
 ];
 
+const factoryTourPreview = [
+  {
+    title: "Clickable Floor Map",
+    description: "Visitors can jump between production zones without waiting on the final 3D scene.",
+  },
+  {
+    title: "Guided Storytelling",
+    description: "Each stop explains how projects move through the factory from planning to dispatch.",
+  },
+  {
+    title: "3D Model Ready",
+    description: "The page is prepared for your artist's published model or external virtual tour embed.",
+  },
+  {
+    title: "Mobile Friendly",
+    description: "The experience is built to work across phones, tablets, and desktop screens.",
+  },
+];
+
 export function HomePage(): JSX.Element {
   return (
     <>
@@ -114,6 +133,44 @@ export function HomePage(): JSX.Element {
           {testimonials.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
           ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="rounded-3xl border border-accentSoft/35 bg-gradient-to-br from-accent/30 via-black/75 to-support/20 p-8 shadow-card lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:gap-8 lg:p-10">
+          <div>
+            <p className="chip">Virtual Factory Tour</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-4xl">
+              Let website visitors walk through your factory before they arrive.
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
+              Explore a guided factory map now, then connect the finished 3D
+              model when your artist is ready. It is a strong way to show your
+              workflow, machines, and production story online.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/factory-tour" className="primary-button">
+                Open Factory Tour
+              </Link>
+              <Link to="/contact" className="secondary-button">
+                Plan a Visitor Experience
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-0">
+            {factoryTourPreview.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-2xl border border-accentSoft/20 bg-black/35 p-5 backdrop-blur"
+              >
+                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
