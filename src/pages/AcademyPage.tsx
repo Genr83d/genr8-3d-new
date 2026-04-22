@@ -16,7 +16,7 @@ export function AcademyPage(): JSX.Element {
   return (
     <>
       <PageHero
-        eyebrow="NEXT-GEN Academy"
+        eyebrow="GENR8-3D ACADEMY"
         title="Training the next wave of digital fabricators"
         description={academyMission}
         actions={
@@ -88,7 +88,7 @@ export function AcademyPage(): JSX.Element {
       </section>
 
       <CTASection
-        title="Partner with NEXT-GEN Academy"
+        title="Partner with GENR8-3D ACADEMY"
         description="Need training support for a school, workforce program, or private cohort? We can build a custom curriculum plan."
         primaryLabel="Request Program Details"
         primaryTo="/contact"

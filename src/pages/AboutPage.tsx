@@ -74,7 +74,7 @@ export function AboutPage(): JSX.Element {
         <SectionHeading
           eyebrow="Core Values"
           title="How we operate"
-          description="Our standards stay consistent across client services and NEXT-GEN Academy programs."
+          description="Our standards stay consistent across client services and GENR8-3D ACADEMY programs."
         />
         <div className="grid gap-4 md:grid-cols-2">
           {values.map((value) => (
