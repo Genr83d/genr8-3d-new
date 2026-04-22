@@ -41,7 +41,7 @@ export function AcademyInquiryForm(): JSX.Element {
         Enrollment Inquiry
       </h2>
       <p className="mt-2 text-sm text-slate-300">
-        Share your learning goals and we will match you to the right NEXT-GEN Academy track.
+        Share your learning goals and we will match you to the right GENR8-3D ACADEMY track.
       </p>
 
       {error ? <p className="mt-4 text-sm text-red-300">{error}</p> : null}

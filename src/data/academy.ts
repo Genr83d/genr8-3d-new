@@ -1,7 +1,7 @@
 import type { CourseCategory } from '../types/content'
 
 export const academyMission =
-  'NEXT-GEN Academy trains creators, students, and early-career builders with practical digital fabrication workflows that connect design thinking to production execution.'
+  'GENR8-3D ACADEMY trains creators, students, and early-career builders with practical digital fabrication workflows that connect design thinking to production execution.'
 
 export const academyAudience = [
   'Students preparing for technical careers',
