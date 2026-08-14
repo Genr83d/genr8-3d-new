@@ -26,8 +26,10 @@ type ProductImageProps = {
   src?: string
   alt: string
   category: ProductCategoryId
-  /** Tailwind height classes for the frame, e.g. "h-56". */
-  heightClass?: string
+  /** Tailwind sizing classes for the frame, e.g. "aspect-square" or "h-80". */
+  frameClass?: string
+  /** "cover" crops to fill the frame, "contain" shows the whole photo. */
+  fit?: 'cover' | 'contain'
   className?: string
 }
 
@@ -41,17 +43,19 @@ export function ProductImage({
   src,
   alt,
   category,
-  heightClass = 'h-56',
+  frameClass = 'aspect-square',
+  fit = 'cover',
   className = '',
 }: ProductImageProps): JSX.Element {
   const [failedSrc, setFailedSrc] = useState<string | null>(null)
+  const fitClass = fit === 'contain' ? 'object-contain' : 'object-cover'
 
   if (src && failedSrc !== src) {
     return (
       <img
         src={src}
         alt={alt}
-        className={`${heightClass} w-full object-cover ${className}`}
+        className={`${frameClass} w-full ${fitClass} ${className}`}
         loading="lazy"
         onError={() => setFailedSrc(src)}
       />
@@ -62,7 +66,7 @@ export function ProductImage({
     <div
       role="img"
       aria-label={`${alt} - photo coming soon`}
-      className={`${heightClass} flex w-full flex-col items-center justify-center gap-3 bg-lab-grid bg-[size:22px_22px] bg-black/70 ${className}`}
+      className={`${frameClass} flex w-full flex-col items-center justify-center gap-3 bg-lab-grid bg-[size:22px_22px] bg-black/70 ${className}`}
     >
       <div className="flex items-center gap-2 text-accentSoft">
         <ProductCategoryIcon category={category} className="h-8 w-8" />

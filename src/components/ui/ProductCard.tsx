@@ -20,7 +20,7 @@ export function ProductCard({ product, onSelect }: ProductCardProps): JSX.Elemen
           src={product.image}
           alt={product.name}
           category={product.category}
-          heightClass="h-56"
+          frameClass="aspect-square"
           className="transition duration-500 group-hover:scale-105"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

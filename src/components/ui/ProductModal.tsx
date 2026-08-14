@@ -53,12 +53,13 @@ export function ProductModal({ product, onClose }: ProductModalProps): JSX.Eleme
           </button>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-xl">
+        <div className="mt-6 overflow-hidden rounded-xl bg-black/50">
           <ProductImage
             src={product.image}
             alt={product.name}
             category={product.category}
-            heightClass="h-72"
+            frameClass="h-[26rem]"
+            fit="contain"
           />
         </div>
 
