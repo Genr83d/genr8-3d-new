@@ -11,7 +11,7 @@ export const productCategories: ProductCategory[] = [
     id: "clocks",
     label: "Clocks",
     description:
-      "Custom wall clocks cut and engraved in-house, from clean minimal faces to fully personalised centre designs.",
+      "GEN-TIME personalised wall clocks: solid hardwood faces, raised numerals, luminous hands, and a resin-domed centre carrying your photo, crest, or artwork.",
   },
   {
     id: "plaques",
@@ -41,24 +41,74 @@ export const productCategories: ProductCategory[] = [
 
 export const products: Product[] = [
   {
-    id: "clock-round-hardwood",
-    name: "Round Hardwood Clock",
+    id: "clock-wedding-anniversary",
+    name: "Wedding & Anniversary Clock",
     category: "clocks",
     description:
-      "Classic round face cut from solid hardwood with engraved numerals and a silent sweep movement.",
-    tags: ["Hardwood", "Engraved", "Silent Movement"],
-    options: ['12" / 16" / 20" diameter', "Roman, Arabic, or minimal markers"],
+      "Names and date engraved into a solid hardwood face, finished with raised numerals, luminous hands, and mounted keepsake pieces chosen around the couple.",
+    image: "/products/clocks/wedding-anniversary-clock.webp",
+    tags: ["Wedding", "Engraved Names", "Keepsake"],
+    options: [
+      "Names, date, and motif engraved to order",
+      "Mounted 3D keepsake accents",
+      "Cedar, Mahogany, or Blue Mahoe",
+    ],
+    leadTime: "7-10 working days",
+  },
+  {
+    id: "clock-family-photo",
+    name: "Family Photo Clock",
+    category: "clocks",
+    description:
+      "Your photograph and family name set into a decorative resin-domed centre, framed by raised numerals on a hardwood face.",
+    image: "/products/clocks/family-photo-clock.webp",
+    tags: ["Photo Centre", "Family Name", "Gift"],
+    options: ["Send us your photo and wording", "Choice of centre frame artwork"],
+    leadTime: "7-10 working days",
+  },
+  {
+    id: "clock-one-love",
+    name: "One Love Jamaica Clock",
+    category: "clocks",
+    description:
+      "Island-themed design with the Jamaica map under a glossy resin dome and hand-painted engraved numerals in green and black.",
+    image: "/products/clocks/one-love-jamaica-clock.webp",
+    tags: ["Jamaican", "Resin Dome", "Gift Shop"],
+    options: ["Painted engraved numerals", "Retail and gift-shop quantities"],
     leadTime: "5-7 working days",
   },
   {
-    id: "clock-custom-centre",
-    name: "Custom Centre Clock",
+    id: "clock-school-anniversary",
+    name: "School Anniversary Clock",
     category: "clocks",
     description:
-      "Personalised centre artwork - a logo, monogram, or photo - framed by your choice of wood and number style.",
-    tags: ["Personalised", "Logo Ready", "Gift"],
-    options: ["Upload your own artwork", "Wood or acrylic face"],
+      "Milestone clock carrying a school crest and anniversary artwork under a resin dome, cut from dark hardwood with raised white numerals.",
+    image: "/products/clocks/school-anniversary-clock.webp",
+    tags: ["Schools", "Crest", "Milestone"],
+    options: ["Crest and anniversary artwork supplied by you", "Matched batches for committees"],
+    leadTime: "10-14 working days",
+  },
+  {
+    id: "clock-recognition",
+    name: "Recognition & Guest Speaker Clock",
+    category: "clocks",
+    description:
+      "Presentation clock with crest, event title, and recipient name printed into the centre, set off by an engraved border and classic serif numerals.",
+    image: "/products/clocks/recognition-clock.webp",
+    tags: ["Awards", "Events", "Presentation"],
+    options: ["Recipient name and event details", "Engraved decorative border"],
     leadTime: "7-10 working days",
+  },
+  {
+    id: "clock-institution",
+    name: "Institution & Campus Clock",
+    category: "clocks",
+    description:
+      "Organisation clock combining campus photography and logo in the domed centre - built for reception areas, staff gifts, and alumni sets.",
+    image: "/products/clocks/institution-campus-clock.webp",
+    tags: ["Institutions", "Photo Centre", "Bulk Orders"],
+    options: ["Logo and photography layout", "Boxed and ready to present"],
+    leadTime: "10-14 working days",
   },
   {
     id: "plaque-award",

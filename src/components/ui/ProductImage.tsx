@@ -1,4 +1,4 @@
-import type { JSX } from 'react'
+import { useState, type JSX } from 'react'
 import type { ProductCategoryId } from '../../types/content'
 import {
   ClockIcon,
@@ -34,6 +34,8 @@ type ProductImageProps = {
 /**
  * Renders a product photo, or a branded placeholder tile while the photo is
  * still outstanding, so the gallery stays presentable before shoot day.
+ * A photo that fails to load (not uploaded yet, renamed, wrong extension)
+ * falls back to the same placeholder rather than a broken image.
  */
 export function ProductImage({
   src,
@@ -42,13 +44,16 @@ export function ProductImage({
   heightClass = 'h-56',
   className = '',
 }: ProductImageProps): JSX.Element {
-  if (src) {
+  const [failedSrc, setFailedSrc] = useState<string | null>(null)
+
+  if (src && failedSrc !== src) {
     return (
       <img
         src={src}
         alt={alt}
         className={`${heightClass} w-full object-cover ${className}`}
         loading="lazy"
+        onError={() => setFailedSrc(src)}
       />
     )
   }

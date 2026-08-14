@@ -25,6 +25,29 @@ product entry at it in [`src/data/products.ts`](../../src/data/products.ts).
 Any product without an `image` renders a "photo coming soon" placeholder tile,
 so the gallery stays presentable while photos are outstanding.
 
+## Filenames the gallery is already expecting
+
+These paths are wired up in `src/data/products.ts` and show the placeholder
+tile until the matching file exists:
+
+| Product | File |
+| --- | --- |
+| Wedding & Anniversary Clock | `clocks/wedding-anniversary-clock.webp` |
+| Family Photo Clock | `clocks/family-photo-clock.webp` |
+| One Love Jamaica Clock | `clocks/one-love-jamaica-clock.webp` |
+| School Anniversary Clock | `clocks/school-anniversary-clock.webp` |
+| Recognition & Guest Speaker Clock | `clocks/recognition-clock.webp` |
+| Institution & Campus Clock | `clocks/institution-campus-clock.webp` |
+
+## Converting phone photos
+
+ImageMagick handles the resize and `.webp` conversion in one pass:
+
+```bash
+convert original.jpg -resize 1400x1400 -quality 82 \
+  public/products/clocks/wedding-anniversary-clock.webp
+```
+
 ## Photo guidelines
 
 - Landscape orientation, roughly 3:2 - cards crop to a fixed height.
