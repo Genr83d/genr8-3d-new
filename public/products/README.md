@@ -38,6 +38,12 @@ tile until the matching file exists:
 | School Anniversary Clock | `clocks/school-anniversary-clock.webp` |
 | Recognition & Guest Speaker Clock | `clocks/recognition-clock.webp` |
 | Institution & Campus Clock | `clocks/institution-campus-clock.webp` |
+| Graduation Photo Keyring | `keyrings/graduation-photo-keyring.webp` |
+| House & Mascot Keyring | `keyrings/house-mascot-keyring.webp` |
+| School Crest Keyring | `keyrings/school-crest-keyring.webp` |
+| Anniversary Keyring | `keyrings/anniversary-keyring.webp` |
+| Domed Mascot Bag Tag | `keyrings/domed-mascot-bag-tag.webp` |
+| Gift & Novelty Keyring | `keyrings/gift-novelty-keyring.webp` |
 
 ## Converting phone photos
 
