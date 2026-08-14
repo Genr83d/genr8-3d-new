@@ -33,7 +33,7 @@ export function GalleryPage(): JSX.Element {
       <PageHero
         eyebrow="Product Gallery"
         title="Products we make in-house"
-        description="Clocks, plaques, pins, and keyrings cut, engraved, and finished on our own machines. Every piece can be personalised, branded, and produced in batches."
+        description="Clocks, plaques, pins, keyrings, and school furniture built, engraved, and finished on our own machines. Every piece can be personalised, branded, and produced in batches."
         actions={
           <>
             <Link to="/contact" className="primary-button">
@@ -110,8 +110,7 @@ export function GalleryPage(): JSX.Element {
                   </div>
                 ) : (
                   <p className="surface-card text-sm text-slate-300">
-                    New {category.label.toLowerCase()} are being photographed
-                    now.{" "}
+                    Photos for this line are being finalised now.{" "}
                     <Link to="/contact" className="text-accentSoft underline">
                       Contact us
                     </Link>{" "}

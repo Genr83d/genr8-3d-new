@@ -31,6 +31,12 @@ export const productCategories: ProductCategory[] = [
     description:
       "Durable personalised keyrings and tags, ideal for giveaways, staff sets, and retail lines.",
   },
+  {
+    id: "school-furniture",
+    label: "School Furniture",
+    description:
+      "Hard-wearing classroom furniture built to order for schools, training rooms, and learning centres.",
+  },
 ];
 
 export const products: Product[] = [
@@ -113,6 +119,36 @@ export const products: Product[] = [
     tags: ["Promotional", "Volume", "Branding"],
     options: ["Bulk pricing from 25 units", "Custom shape cutting"],
     leadTime: "7-10 working days",
+  },
+  {
+    id: "furniture-student-desk",
+    name: "Student Desk & Chair Set",
+    category: "school-furniture",
+    description:
+      "Single-student desk and matching chair built for daily classroom use, with a sealed writing surface and steady frame.",
+    tags: ["Classroom", "Hard-wearing", "Bulk Orders"],
+    options: ["Primary or secondary sizing", "Book shelf under the desktop"],
+    leadTime: "10-15 working days",
+  },
+  {
+    id: "furniture-classroom-table",
+    name: "Classroom & Exam Table",
+    category: "school-furniture",
+    description:
+      "Shared tables cut to your room dimensions for group work, labs, and exam layouts, with rounded safety edges.",
+    tags: ["Custom Size", "Group Seating", "Rounded Edges"],
+    options: ["2, 4, or 6 seater lengths", "Fixed or stackable frame"],
+    leadTime: "10-15 working days",
+  },
+  {
+    id: "furniture-storage-unit",
+    name: "Storage & Cubby Unit",
+    category: "school-furniture",
+    description:
+      "Open cubby and shelving units for bags, supplies, and learning materials, finished to match your classroom set.",
+    tags: ["Storage", "Modular", "Schools"],
+    options: ["Wall-mounted or free-standing", "Labelled or open compartments"],
+    leadTime: "12-18 working days",
   },
 ];
 

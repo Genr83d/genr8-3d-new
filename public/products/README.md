@@ -6,7 +6,7 @@ product entry at it in [`src/data/products.ts`](../../src/data/products.ts).
 ## Steps
 
 1. Save the photo as `public/products/<category>/<file>.webp`
-   (categories: `clocks`, `plaques`, `pins`, `keyrings`).
+   (categories: `clocks`, `plaques`, `pins`, `keyrings`, `school-furniture`).
 2. In `src/data/products.ts`, add the `image` field to that product:
 
    ```ts

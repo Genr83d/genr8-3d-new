@@ -1,6 +1,13 @@
 import type { JSX } from 'react'
 import type { ProductCategoryId } from '../../types/content'
-import { ClockIcon, ImagePlaceholderIcon, KeyringIcon, PinIcon, PlaqueIcon } from './icons'
+import {
+  ClockIcon,
+  ImagePlaceholderIcon,
+  KeyringIcon,
+  PinIcon,
+  PlaqueIcon,
+  SchoolFurnitureIcon,
+} from './icons'
 
 type ProductCategoryIconProps = {
   category: ProductCategoryId
@@ -11,7 +18,8 @@ export function ProductCategoryIcon({ category, className }: ProductCategoryIcon
   if (category === 'clocks') return <ClockIcon className={className} />
   if (category === 'plaques') return <PlaqueIcon className={className} />
   if (category === 'pins') return <PinIcon className={className} />
-  return <KeyringIcon className={className} />
+  if (category === 'keyrings') return <KeyringIcon className={className} />
+  return <SchoolFurnitureIcon className={className} />
 }
 
 type ProductImageProps = {

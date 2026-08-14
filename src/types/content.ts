@@ -38,7 +38,12 @@ export interface Project {
   image: string
 }
 
-export type ProductCategoryId = 'clocks' | 'plaques' | 'pins' | 'keyrings'
+export type ProductCategoryId =
+  | 'clocks'
+  | 'plaques'
+  | 'pins'
+  | 'keyrings'
+  | 'school-furniture'
 
 export interface ProductCategory {
   id: ProductCategoryId

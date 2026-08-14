@@ -17,7 +17,7 @@ Production-style React + Tailwind website for GENR8-3D with a futuristic maker-l
 - `/services/:slug` Service Detail
 - `/clocks` Clock Builder + design submission
 - `/admin/clocks` Admin review page
-- `/gallery` Product Gallery (clocks, plaques, pins, keyrings)
+- `/gallery` Product Gallery (clocks, plaques, pins, keyrings, school furniture)
 - `/portfolio` Portfolio
 - `/about` About
 - `/contact` Contact + Quote Request

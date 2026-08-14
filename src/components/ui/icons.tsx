@@ -113,6 +113,19 @@ export function KeyringIcon({ className = common }: IconProps): JSX.Element {
   )
 }
 
+export function SchoolFurnitureIcon({ className = common }: IconProps): JSX.Element {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M2 9h12" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M3.5 9v11M12.5 9v11" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M3.5 14.5h9" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M15.5 14h5.5" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M21 6v8" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M16.5 14v6M20.5 14v6" stroke="currentColor" strokeWidth="1.4" />
+    </svg>
+  )
+}
+
 export function ImagePlaceholderIcon({ className = common }: IconProps): JSX.Element {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
