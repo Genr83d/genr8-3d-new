@@ -38,6 +38,28 @@ export interface Project {
   image: string
 }
 
+export type ProductCategoryId = 'clocks' | 'plaques' | 'pins' | 'keyrings'
+
+export interface ProductCategory {
+  id: ProductCategoryId
+  label: string
+  description: string
+  /** Public path to the category cover photo, e.g. "/products/clocks/cover.webp". */
+  image?: string
+}
+
+export interface Product {
+  id: string
+  name: string
+  category: ProductCategoryId
+  description: string
+  /** Public path to the product photo, e.g. "/products/clocks/mahogany-round.webp". */
+  image?: string
+  tags: string[]
+  options?: string[]
+  leadTime?: string
+}
+
 export interface Testimonial {
   id: string
   quote: string
