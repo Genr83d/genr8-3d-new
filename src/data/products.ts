@@ -23,7 +23,7 @@ export const productCategories: ProductCategory[] = [
     id: "pins",
     label: "Pins",
     description:
-      "Small-batch lapel and badge pins for teams, events, schools, and brand merchandise.",
+      "Printed acrylic pins and badges cut to any shape - prefect and leadership badges, club membership pins, committee roles, and charm drops, made in matched batches for whole clubs and year groups.",
   },
   {
     id: "keyrings",
@@ -131,23 +131,77 @@ export const products: Product[] = [
     leadTime: "5-7 working days",
   },
   {
-    id: "pin-lapel-logo",
-    name: "Logo Lapel Pin",
+    id: "pin-prefect-badge",
+    name: "Prefect & Leadership Badge",
     category: "pins",
     description:
-      "Your logo reproduced as a compact lapel pin with a butterfly clutch back - built for staff and member sets.",
-    tags: ["Branding", "Small Batch", "Staff Sets"],
-    options: ["Butterfly or magnetic back", "Single or multi-colour"],
+      "Name-bar badges carrying each leadership title, finished with a hanging school crest charm - supplied as a full prefect body set.",
+    image: "/products/pins/prefect-leadership-badge.webp",
+    tags: ["Prefect Body", "Role Titles", "Charm Drop"],
+    options: [
+      "A different title per badge in one run",
+      "Hanging crest charm on chain",
+      "Pin or clutch back",
+    ],
     leadTime: "7-10 working days",
   },
   {
-    id: "pin-event-badge",
-    name: "Event Badge Pin",
+    id: "pin-committee-role",
+    name: "Committee Role Pin",
     category: "pins",
     description:
-      "Dated commemorative pins for conferences, graduations, and club milestones, produced in matched runs.",
-    tags: ["Events", "Commemorative", "Batching"],
-    options: ["Sequential numbering available", "Presentation card backing"],
+      "Society pins cut to the shape of the club's own artwork, with every executive role printed on its own version alongside the member run.",
+    image: "/products/pins/committee-role-pin.webp",
+    tags: ["Custom Shape", "Executive Roles", "Societies"],
+    options: [
+      "President through to member in one order",
+      "Cut to your club artwork",
+      "Matching charm drop",
+    ],
+    leadTime: "10-14 working days",
+  },
+  {
+    id: "pin-sports-club",
+    name: "Sports Club Pin",
+    category: "pins",
+    description:
+      "Two-piece team pin pairing a club name bar with a sport-specific figure charm, split across executive and member tiers.",
+    image: "/products/pins/sports-club-pin.webp",
+    tags: ["Sports Teams", "Two-Piece", "Member Tiers"],
+    options: ["Executive and member versions", "Figure charm drawn to your sport"],
+    leadTime: "10-14 working days",
+  },
+  {
+    id: "pin-club-crest",
+    name: "Club Crest Pin",
+    category: "pins",
+    description:
+      "Shield-shaped club pin with a high-gloss domed face, built to hold colour and detail on a uniform blazer.",
+    image: "/products/pins/club-crest-pin.webp",
+    tags: ["Clubs", "Domed Finish", "Uniform"],
+    options: ["Crest shape cut to your badge", "Gloss dome or flat finish"],
+    leadTime: "7-10 working days",
+  },
+  {
+    id: "pin-round-membership",
+    name: "Round Membership Pin",
+    category: "pins",
+    description:
+      "Classic round membership pin for bands, choirs, and school societies - the simplest option for large annual runs.",
+    image: "/products/pins/round-membership-pin.webp",
+    tags: ["Membership", "Round Dome", "Batch Runs"],
+    options: ["Standard round sizes", "Volume pricing for annual intakes"],
+    leadTime: "5-7 working days",
+  },
+  {
+    id: "pin-logo-cut",
+    name: "Logo-Cut Pin",
+    category: "pins",
+    description:
+      "Pin cut to the exact outline of your logo, so the badge reads as the mark itself rather than artwork dropped into a disc.",
+    image: "/products/pins/logo-cut-pin.webp",
+    tags: ["Custom Cut", "Logo Shape", "Studios"],
+    options: ["Cut to your supplied artwork", "Artwork prepared for cutting if needed"],
     leadTime: "7-10 working days",
   },
   {

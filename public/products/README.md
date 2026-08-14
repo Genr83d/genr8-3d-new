@@ -44,6 +44,12 @@ tile until the matching file exists:
 | Anniversary Keyring | `keyrings/anniversary-keyring.webp` |
 | Domed Mascot Bag Tag | `keyrings/domed-mascot-bag-tag.webp` |
 | Gift & Novelty Keyring | `keyrings/gift-novelty-keyring.webp` |
+| Prefect & Leadership Badge | `pins/prefect-leadership-badge.webp` |
+| Committee Role Pin | `pins/committee-role-pin.webp` |
+| Sports Club Pin | `pins/sports-club-pin.webp` |
+| Club Crest Pin | `pins/club-crest-pin.webp` |
+| Round Membership Pin | `pins/round-membership-pin.webp` |
+| Logo-Cut Pin | `pins/logo-cut-pin.webp` |
 
 ## Converting phone photos
 
