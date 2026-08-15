@@ -292,6 +292,17 @@ export const products: Product[] = [
     leadTime: "3-4 weeks",
   },
   {
+    id: "print-engine-model",
+    name: "Working Engine Model",
+    category: "3d-prints",
+    description:
+      "Scale engine built from printed parts - fan, pulleys, headers, distributor, and plug leads - motor-driven on its own stand with a speed control so the internals run.",
+    image: "/products/3d-prints/working-engine-model.webp",
+    tags: ["Working Mechanism", "Motorised", "Display Piece"],
+    options: ["Speed-controlled display stand", "Colour scheme to order"],
+    leadTime: "3-4 weeks",
+  },
+  {
     id: "print-robotics-chassis",
     name: "Robotics Chassis & Housings",
     category: "3d-prints",

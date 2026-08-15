@@ -52,6 +52,7 @@ tile until the matching file exists:
 | Round Membership Pin | `pins/round-membership-pin.webp` |
 | Logo-Cut Pin | `pins/logo-cut-pin.webp` |
 | Working Miniature Lathe | `3d-prints/working-miniature-lathe.webp` |
+| Working Engine Model | `3d-prints/working-engine-model.webp` |
 | Robotics Chassis & Housings | `3d-prints/robotics-chassis.webp` |
 | Custom Automotive Trim | `3d-prints/automotive-trim.webp` |
 | RC Body & Chassis | `3d-prints/rc-body-chassis.webp` |
