@@ -51,12 +51,11 @@ tile until the matching file exists:
 | Club Crest Pin | `pins/club-crest-pin.webp` |
 | Round Membership Pin | `pins/round-membership-pin.webp` |
 | Logo-Cut Pin | `pins/logo-cut-pin.webp` |
-| Custom Figurine & Model | `3d-prints/custom-figurine.webp` |
-| Prototype & Concept Part | `3d-prints/prototype-part.webp` |
-| Replacement & Spare Part | `3d-prints/replacement-part.webp` |
-| 3D Signage & Lettering | `3d-prints/signage-lettering.webp` |
-| Desk & Home Accessory | `3d-prints/desk-accessory.webp` |
-| Short-Run Production Part | `3d-prints/production-run-part.webp` |
+| Working Miniature Lathe | `3d-prints/working-miniature-lathe.webp` |
+| Robotics Chassis & Housings | `3d-prints/robotics-chassis.webp` |
+| Custom Automotive Trim | `3d-prints/automotive-trim.webp` |
+| RC Body & Chassis | `3d-prints/rc-body-chassis.webp` |
+| Rugged Carry Case | `3d-prints/rugged-carry-case.webp` |
 
 ## Converting phone photos
 
