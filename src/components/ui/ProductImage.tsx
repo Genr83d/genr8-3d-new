@@ -6,6 +6,7 @@ import {
   KeyringIcon,
   PinIcon,
   PlaqueIcon,
+  PrintedPartIcon,
   SchoolFurnitureIcon,
 } from './icons'
 
@@ -19,6 +20,7 @@ export function ProductCategoryIcon({ category, className }: ProductCategoryIcon
   if (category === 'plaques') return <PlaqueIcon className={className} />
   if (category === 'pins') return <PinIcon className={className} />
   if (category === 'keyrings') return <KeyringIcon className={className} />
+  if (category === '3d-prints') return <PrintedPartIcon className={className} />
   return <SchoolFurnitureIcon className={className} />
 }
 

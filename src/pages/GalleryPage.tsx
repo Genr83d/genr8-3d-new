@@ -33,7 +33,7 @@ export function GalleryPage(): JSX.Element {
       <PageHero
         eyebrow="Product Gallery"
         title="Products we make in-house"
-        description="Clocks, plaques, pins, keyrings, and school furniture built, engraved, and finished on our own machines. Every piece can be personalised, branded, and produced in batches."
+        description="Clocks, plaques, pins, keyrings, 3D prints, and school furniture built, engraved, and finished on our own machines. Every piece can be personalised, branded, and produced in batches."
         actions={
           <>
             <Link to="/contact" className="primary-button">

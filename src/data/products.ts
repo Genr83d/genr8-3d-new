@@ -32,6 +32,12 @@ export const productCategories: ProductCategory[] = [
       "Full-colour printed acrylic keyrings cut to any shape - graduation sets, school houses, crests, milestones, and gift lines, produced from single pieces to full year-group runs.",
   },
   {
+    id: "3d-prints",
+    label: "3D Prints",
+    description:
+      "Printed parts and products made on our own machines - custom models, functional components, replacement parts, and short production runs in a range of materials and finishes.",
+  },
+  {
     id: "school-furniture",
     label: "School Furniture",
     description:
@@ -273,6 +279,76 @@ export const products: Product[] = [
     tags: ["Gifts", "Seasonal", "Retail"],
     options: ["Stock gift designs", "Your wording or artwork on request"],
     leadTime: "5-7 working days",
+  },
+  // 3D print entries are placeholders: names, copy, and lead times need
+  // replacing once the real products are photographed. Image paths are already
+  // wired, so dropping the matching file into public/products/3d-prints/
+  // swaps the placeholder tile for the photo with no code change.
+  {
+    id: "print-custom-figurine",
+    name: "Custom Figurine & Model",
+    category: "3d-prints",
+    description:
+      "Characters, mascots, and display models printed from your artwork or scan, cleaned up and finished ready to hand over.",
+    image: "/products/3d-prints/custom-figurine.webp",
+    tags: ["Custom Model", "Display", "Gift"],
+    options: ["Printed from your file or modelled to order", "Painted or natural finish"],
+    leadTime: "5-7 working days",
+  },
+  {
+    id: "print-prototype-part",
+    name: "Prototype & Concept Part",
+    category: "3d-prints",
+    description:
+      "Working prototypes for fit, form, and function testing, printed fast so design changes can be proven before committing to production.",
+    image: "/products/3d-prints/prototype-part.webp",
+    tags: ["Prototyping", "Design Validation", "Fast Turnaround"],
+    options: ["Iterative revisions between prints", "Material chosen for the test"],
+    leadTime: "3-5 working days",
+  },
+  {
+    id: "print-replacement-part",
+    name: "Replacement & Spare Part",
+    category: "3d-prints",
+    description:
+      "Discontinued or hard-to-source components reproduced from a sample, drawing, or measurements to get equipment back in service.",
+    image: "/products/3d-prints/replacement-part.webp",
+    tags: ["Spares", "Reverse Engineering", "Repair"],
+    options: ["Modelled from a physical sample", "Durable material options"],
+    leadTime: "5-7 working days",
+  },
+  {
+    id: "print-signage-lettering",
+    name: "3D Signage & Lettering",
+    category: "3d-prints",
+    description:
+      "Raised letters, logos, and wall pieces printed to size for reception areas, offices, events, and shopfronts.",
+    image: "/products/3d-prints/signage-lettering.webp",
+    tags: ["Signage", "Logos", "Interior"],
+    options: ["Any size, letter by letter", "Painted to your brand colours"],
+    leadTime: "7-10 working days",
+  },
+  {
+    id: "print-desk-accessory",
+    name: "Desk & Home Accessory",
+    category: "3d-prints",
+    description:
+      "Practical printed pieces - stands, organisers, holders, and fittings - made to suit the exact item they need to hold.",
+    image: "/products/3d-prints/desk-accessory.webp",
+    tags: ["Accessories", "Made to Fit", "Everyday"],
+    options: ["Sized around your device or space", "Colour choice per piece"],
+    leadTime: "3-5 working days",
+  },
+  {
+    id: "print-production-run",
+    name: "Short-Run Production Part",
+    category: "3d-prints",
+    description:
+      "Repeatable batches of the same component printed to a consistent spec, for products and assemblies that do not justify tooling.",
+    image: "/products/3d-prints/production-run-part.webp",
+    tags: ["Batch Runs", "Repeatable", "No Tooling"],
+    options: ["Volume pricing per batch", "Consistent spec across the run"],
+    leadTime: "7-14 working days",
   },
   {
     id: "furniture-student-desk",

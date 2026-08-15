@@ -43,6 +43,7 @@ export type ProductCategoryId =
   | 'plaques'
   | 'pins'
   | 'keyrings'
+  | '3d-prints'
   | 'school-furniture'
 
 export interface ProductCategory {
