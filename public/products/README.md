@@ -6,7 +6,8 @@ product entry at it in [`src/data/products.ts`](../../src/data/products.ts).
 ## Steps
 
 1. Save the photo as `public/products/<category>/<file>.webp`
-   (categories: `clocks`, `plaques`, `pins`, `keyrings`, `school-furniture`).
+   (categories: `clocks`, `plaques`, `pins`, `keyrings`, `3d-prints`,
+   `school-furniture`).
 2. In `src/data/products.ts`, add the `image` field to that product:
 
    ```ts
@@ -50,6 +51,12 @@ tile until the matching file exists:
 | Club Crest Pin | `pins/club-crest-pin.webp` |
 | Round Membership Pin | `pins/round-membership-pin.webp` |
 | Logo-Cut Pin | `pins/logo-cut-pin.webp` |
+| Working Miniature Lathe | `3d-prints/working-miniature-lathe.webp` |
+| Working Engine Model | `3d-prints/working-engine-model.webp` |
+| Robotics Chassis & Housings | `3d-prints/robotics-chassis.webp` |
+| Custom Automotive Trim | `3d-prints/automotive-trim.webp` |
+| RC Body & Chassis | `3d-prints/rc-body-chassis.webp` |
+| Rugged Carry Case | `3d-prints/rugged-carry-case.webp` |
 
 ## Converting phone photos
 

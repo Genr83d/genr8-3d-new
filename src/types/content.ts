@@ -43,6 +43,7 @@ export type ProductCategoryId =
   | 'plaques'
   | 'pins'
   | 'keyrings'
+  | '3d-prints'
   | 'school-furniture'
 
 export interface ProductCategory {
@@ -62,7 +63,6 @@ export interface Product {
   image?: string
   tags: string[]
   options?: string[]
-  leadTime?: string
 }
 
 export interface Testimonial {

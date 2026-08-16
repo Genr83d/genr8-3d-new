@@ -113,6 +113,18 @@ export function KeyringIcon({ className = common }: IconProps): JSX.Element {
   )
 }
 
+export function PrintedPartIcon({ className = common }: IconProps): JSX.Element {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M10 3h4v3l-2 2-2-2z" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M10 13.5V11h4v2.5" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M8.5 16v-2.5h7V16" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M7 18.5V16h10v2.5" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M4 21h16" stroke="currentColor" strokeWidth="1.4" />
+    </svg>
+  )
+}
+
 export function SchoolFurnitureIcon({ className = common }: IconProps): JSX.Element {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">

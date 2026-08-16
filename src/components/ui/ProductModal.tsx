@@ -94,12 +94,13 @@ export function ProductModal({ product, onClose }: ProductModalProps): JSX.Eleme
           </div>
         ) : null}
 
-        {product.leadTime ? (
-          <p className="mt-6 text-sm text-slate-400">
-            Typical lead time:{' '}
-            <span className="font-semibold text-slate-200">{product.leadTime}</span>
-          </p>
-        ) : null}
+        <p className="mt-6 text-sm text-slate-400">
+          Lead time depends on the design, finish, and quantity.{' '}
+          <Link to="/contact" className="font-semibold text-accentSoft" onClick={onClose}>
+            Contact us
+          </Link>{' '}
+          for current turnaround on this product.
+        </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link to="/contact" className="primary-button" onClick={onClose}>
