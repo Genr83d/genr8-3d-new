@@ -50,7 +50,7 @@ export function GalleryPage(): JSX.Element {
         <SectionHeading
           eyebrow="Browse"
           title="Pick a product line"
-          description="Filter the gallery by category, then open any product for options and lead times."
+          description="Filter the gallery by category, then open any product for the full detail and options."
         />
         <div className="mb-10 flex flex-wrap gap-2">
           {filters.map((filter) => (

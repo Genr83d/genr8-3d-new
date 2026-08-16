@@ -63,7 +63,6 @@ export interface Product {
   image?: string
   tags: string[]
   options?: string[]
-  leadTime?: string
 }
 
 export interface Testimonial {
