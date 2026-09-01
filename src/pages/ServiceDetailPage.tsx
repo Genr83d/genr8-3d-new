@@ -4,10 +4,18 @@ import { PageHero } from "../components/sections/PageHero";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { services } from "../data/services";
 import { NotFoundPage } from "./NotFoundPage";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export function ServiceDetailPage(): JSX.Element {
   const { slug } = useParams<{ slug: string }>();
   const service = services.find((item) => item.slug === slug);
+
+  useDocumentMeta({
+    title: service ? `${service.name} | GENR8-3D` : "Page Not Found | GENR8-3D",
+    description: service ? service.shortDescription : "This service page does not exist.",
+    path: service ? `/services/${service.slug}` : "/services",
+    noIndex: !service,
+  });
 
   // An outdated or mistyped service URL is a 404 like any other, so it gets the
   // same branded page and `noindex` rather than a one-off inline message.
@@ -23,8 +31,8 @@ export function ServiceDetailPage(): JSX.Element {
         description={service.fullDescription}
         actions={
           <>
-            <Link to="/contact" className="primary-button">
-              Request Quote
+            <Link to={`/contact?service=${service.slug}#quote`} className="primary-button">
+              Request a {service.name} Quote
             </Link>
             <Link to="/services" className="secondary-button">
               All Services
@@ -88,8 +96,8 @@ export function ServiceDetailPage(): JSX.Element {
       <section className="section-shell">
         <SectionHeading
           eyebrow="Gallery"
-          title={`${service.name} in action`}
-          description="Representative output from recent client builds."
+          title={`What ${service.name.toLowerCase()} looks like`}
+          description="Illustrations of the process. See the Gallery for photographs of work we have made."
         />
         <div className="grid gap-4 md:grid-cols-2">
           {service.gallery.map((item) => (
@@ -102,6 +110,11 @@ export function ServiceDetailPage(): JSX.Element {
               />
               <figcaption className="mt-3 text-xs text-slate-400">
                 {item.alt}
+                {item.credit === "stock" ? (
+                  <span className="mt-1 block text-slate-500">
+                    Illustrative stock photograph, not a GENR8-3D project.
+                  </span>
+                ) : null}
               </figcaption>
             </figure>
           ))}
@@ -119,7 +132,10 @@ export function ServiceDetailPage(): JSX.Element {
               production-ready plan.
             </p>
           </div>
-          <Link to="/contact" className="primary-button mt-4 lg:mt-0">
+          <Link
+            to={`/contact?service=${service.slug}#quote`}
+            className="primary-button mt-4 lg:mt-0"
+          >
             Request Quote
           </Link>
         </div>

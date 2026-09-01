@@ -1,5 +1,7 @@
 import type { JSX } from "react";
 import { Link } from "react-router-dom";
+import { contactDetails, mailtoHref, telHref, whatsappHref } from "../../data/contact";
+import { ACADEMY_URL, SHOWCASE_URL } from "../../data/externalLinks";
 import LogoWide from "../../assets/icons/logos/genr8-logo-wide.svg";
 import FacebookIcon from "../../assets/icons/social/facebook.svg";
 import LinkedInIcon from "../../assets/icons/social/linkedin.svg";
@@ -18,7 +20,7 @@ export function SiteFooter(): JSX.Element {
           </p>
           <div className="mt-4 flex gap-3">
             <a
-              href="https://wa.me/18768018972"
+              href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
@@ -82,7 +84,9 @@ export function SiteFooter(): JSX.Element {
               Portfolio
             </Link>
             <a
-              href="https://next-gen-academy.genr83d.com/"
+              href={ACADEMY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-accentSoft"
             >
               Academy
@@ -91,7 +95,7 @@ export function SiteFooter(): JSX.Element {
               Quote Request
             </Link>
             <a
-              href="https://showcase.genr83d.com/"
+              href={SHOWCASE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accentSoft"
@@ -104,18 +108,25 @@ export function SiteFooter(): JSX.Element {
           <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-200">
             Contact
           </h2>
-          <p className="mt-3 text-sm text-slate-300">
-            Mon-Fri: 8:00 AM - 5:00 PM
+          <p className="mt-3 text-sm text-slate-300">{contactDetails.hours}</p>
+          <p className="mt-1 text-sm text-slate-300">
+            <a className="hover:text-accentSoft" href={mailtoHref()}>
+              {contactDetails.email}
+            </a>
           </p>
-          <p className="mt-1 text-sm text-slate-300">contact@genr83d.com</p>
+          <p className="mt-1 text-sm text-slate-300">
+            <a className="hover:text-accentSoft" href={telHref}>
+              {contactDetails.phoneDisplay}
+            </a>
+          </p>
           <address className="mt-1 text-sm text-slate-300 not-italic">
-            Pembrooke Commercial Complex
-            <br />
-            Lots 19 & 20 Fairfield
-            <br />
-            Montego Bay, St. James
-            <br />
-            Jamaica
+            {contactDetails.address.lines.map((line) => (
+              <span key={line}>
+                {line}
+                <br />
+              </span>
+            ))}
+            {contactDetails.address.country}
           </address>
         </section>
       </div>

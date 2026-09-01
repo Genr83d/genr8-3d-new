@@ -1,5 +1,12 @@
 export type ServiceCategory = 'fabrication' | 'digital' | 'education'
 
+/**
+ * Where a picture came from. `stock` images are licensed library photos used to
+ * illustrate a process; they are never GENR8-3D client work and are labelled as
+ * such wherever they appear. `owned` is our own photography.
+ */
+export type ImageCredit = 'owned' | 'stock'
+
 export interface Service {
   id: string
   slug: string
@@ -12,7 +19,7 @@ export interface Service {
   useCases: string[]
   materials: string[]
   capabilities: string[]
-  gallery: { src: string; alt: string }[]
+  gallery: { src: string; alt: string; credit: ImageCredit }[]
 }
 
 export interface ProcessStep {
@@ -36,6 +43,7 @@ export interface Project {
   tags: string[]
   description: string
   image: string
+  credit: ImageCredit
 }
 
 export type ProductCategoryId =

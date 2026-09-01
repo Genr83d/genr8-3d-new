@@ -1,5 +1,6 @@
-import { useEffect, type JSX } from 'react'
+import type { JSX } from 'react'
 import type { Project } from '../../types/content'
+import { useDialog } from '../../lib/useDialog'
 import { CloseIcon } from './icons'
 
 type ProjectModalProps = {
@@ -8,19 +9,7 @@ type ProjectModalProps = {
 }
 
 export function ProjectModal({ project, onClose }: ProjectModalProps): JSX.Element {
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose()
-      }
-    }
-
-    window.addEventListener('keydown', handleEscape)
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape)
-    }
-  }, [onClose])
+  const dialogRef = useDialog(onClose)
 
   return (
     <div
@@ -29,16 +18,19 @@ export function ProjectModal({ project, onClose }: ProjectModalProps): JSX.Eleme
       onClick={onClose}
     >
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-label={`${project.title} project details`}
+        aria-labelledby="project-modal-title"
         className="surface-card max-h-[90vh] w-full max-w-3xl overflow-y-auto"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="chip">{project.category}</p>
-            <h3 className="mt-4 text-2xl font-semibold text-white">{project.title}</h3>
+            <h3 id="project-modal-title" className="mt-4 text-2xl font-semibold text-white">
+              {project.title}
+            </h3>
           </div>
           <button
             type="button"
@@ -50,6 +42,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps): JSX.Eleme
           </button>
         </div>
         <img src={project.image} alt={project.title} className="mt-6 h-72 w-full rounded-xl object-cover" />
+        {project.credit === 'stock' ? (
+          <p className="mt-2 text-xs text-slate-500">
+            Illustrative stock photograph, not a GENR8-3D project.
+          </p>
+        ) : null}
         <p className="mt-6 text-sm text-slate-300">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tags.map((tag) => (

@@ -1,7 +1,8 @@
-import { useEffect, type JSX } from 'react'
+import type { JSX } from 'react'
 import { Link } from 'react-router-dom'
 import type { Product } from '../../types/content'
 import { getCategoryLabel } from '../../data/products'
+import { useDialog } from '../../lib/useDialog'
 import { CloseIcon } from './icons'
 import { ProductImage } from './ProductImage'
 
@@ -11,19 +12,7 @@ type ProductModalProps = {
 }
 
 export function ProductModal({ product, onClose }: ProductModalProps): JSX.Element {
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose()
-      }
-    }
-
-    window.addEventListener('keydown', handleEscape)
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape)
-    }
-  }, [onClose])
+  const dialogRef = useDialog(onClose)
 
   return (
     <div
@@ -32,16 +21,19 @@ export function ProductModal({ product, onClose }: ProductModalProps): JSX.Eleme
       onClick={onClose}
     >
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-label={`${product.name} product details`}
+        aria-labelledby="product-modal-title"
         className="surface-card max-h-[90vh] w-full max-w-3xl overflow-y-auto"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="chip">{getCategoryLabel(product.category)}</p>
-            <h3 className="mt-4 text-2xl font-semibold text-white">{product.name}</h3>
+            <h3 id="product-modal-title" className="mt-4 text-2xl font-semibold text-white">
+            {product.name}
+          </h3>
           </div>
           <button
             type="button"

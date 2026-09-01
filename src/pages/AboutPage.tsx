@@ -2,6 +2,7 @@ import type { JSX } from "react";
 import { Link } from "react-router-dom";
 import { PageHero } from "../components/sections/PageHero";
 import { SectionHeading } from "../components/ui/SectionHeading";
+import { ACADEMY_URL } from "../data/externalLinks";
 
 const values = [
   {
@@ -25,8 +26,16 @@ const values = [
       "We support local creators, schools, and startups with access to modern fabrication pathways.",
   },
 ];
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export function AboutPage(): JSX.Element {
+  useDocumentMeta({
+    title: "About | GENR8-3D",
+    description:
+      "GENR8-3D is a fabrication and digital studio in Montego Bay, Jamaica, combining CNC routing, 3D printing, laser engraving, and web delivery.",
+    path: "/about",
+  });
+
   return (
     <>
       <PageHero
@@ -39,8 +48,9 @@ export function AboutPage(): JSX.Element {
               Work With Us
             </Link>
             <a
-              href="https://next-gen-academy.genr83d.com/"
+              href={ACADEMY_URL}
               target="_blank"
+              rel="noopener noreferrer"
               className="secondary-button"
             >
               Explore Academy

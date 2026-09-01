@@ -8,12 +8,16 @@ import { Link } from "react-router-dom";
  */
 function useNoIndex(): void {
   useEffect(() => {
+    const previousTitle = document.title;
+    document.title = "Page Not Found | GENR8-3D";
+
     const meta = document.createElement("meta");
     meta.name = "robots";
     meta.content = "noindex";
     document.head.appendChild(meta);
 
     return () => {
+      document.title = previousTitle;
       meta.remove();
     };
   }, []);

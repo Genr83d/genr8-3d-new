@@ -1,117 +1,197 @@
-import { useState, type FormEvent, type JSX } from "react";
+import { useRef, useState, type FormEvent, type JSX } from "react";
+import { useSearchParams } from "react-router-dom";
+import { Field, SelectField } from "./FormFields";
 import { services } from "../../data/services";
+import {
+  acceptedFileFormats,
+  contactDetails,
+  mailtoHref,
+  whatsappHref,
+} from "../../data/contact";
+import {
+  conditionalFieldsFor,
+  initialQuoteValues,
+  quoteFieldOrder,
+  validateQuote,
+  type QuoteFieldName,
+  type QuoteFormValues,
+} from "../../lib/quoteFields";
 
-type QuoteFormValues = {
-  name: string;
-  email: string;
-  phone: string;
-  service: string;
-  details: string;
-  timeline: string;
-  budget: string;
-  fileName: string;
-};
-
-const initialValues: QuoteFormValues = {
-  name: "",
-  email: "",
-  phone: "",
-  service: "",
-  details: "",
-  timeline: "",
-  budget: "",
-  fileName: "",
-};
-
-const FORMSPARK_ACTION_URL = "https://submit-form.com/RYHyzaTr";
+const FORM_ACTION_URL =
+  import.meta.env.VITE_FORMSPARK_ACTION_URL ?? "https://submit-form.com/RYHyzaTr";
 
 export function QuoteForm(): JSX.Element {
-  const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof QuoteFormValues, string>>
-  >({});
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState("");
+  const [searchParams] = useSearchParams();
+  const [values, setValues] = useState<QuoteFormValues>(() => {
+    // Arriving from a service page should not mean re-picking the service.
+    const requested = searchParams.get("service");
+    const matched = services.find((service) => service.slug === requested);
 
-  const validate = (): Partial<Record<keyof QuoteFormValues, string>> => {
-    const nextErrors: Partial<Record<keyof QuoteFormValues, string>> = {};
+    return matched ? { ...initialQuoteValues, service: matched.slug } : initialQuoteValues;
+  });
+  const [errors, setErrors] = useState<Partial<Record<QuoteFieldName, string>>>({});
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-    if (!values.name.trim()) nextErrors.name = "Name is required.";
-    if (!values.email.trim()) {
-      nextErrors.email = "Email is required.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-      nextErrors.email = "Enter a valid email address.";
-    }
-    if (!values.phone.trim()) nextErrors.phone = "Phone is required.";
-    if (!values.service) nextErrors.service = "Select a service.";
-    if (!values.details.trim())
-      nextErrors.details = "Project details are required.";
-    if (!values.timeline.trim()) nextErrors.timeline = "Timeline is required.";
+  const fieldRefs = useRef<Partial<Record<QuoteFieldName, HTMLElement | null>>>({});
+  // The disabled button alone loses a race against a double Enter press.
+  const submittingRef = useRef(false);
 
-    return nextErrors;
+  const selectedService = services.find((service) => service.slug === values.service);
+  const visibleFields = conditionalFieldsFor(values.service);
+  const isVisible = (field: QuoteFieldName) => visibleFields.includes(field);
+
+  const setValue = (field: QuoteFieldName, value: string) => {
+    setValues((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => {
+      if (!prev[field] && !prev.email && !prev.phone) return prev;
+      const next = { ...prev };
+      delete next[field];
+      // Email and phone are validated as a pair, so clear both together.
+      if (field === "email" || field === "phone") {
+        delete next.email;
+        delete next.phone;
+      }
+      return next;
+    });
   };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const nextErrors = validate();
+    if (submittingRef.current) return;
 
+    const nextErrors = validateQuote(values);
     setErrors(nextErrors);
 
-    if (Object.keys(nextErrors).length > 0) return;
+    const firstInvalid = quoteFieldOrder.find((field) => nextErrors[field]);
+    if (firstInvalid) {
+      fieldRefs.current[firstInvalid]?.focus();
+      return;
+    }
 
-    setSubmitting(true);
-    setSubmitError("");
+    submittingRef.current = true;
+    setStatus("submitting");
 
     try {
-      const response = await fetch(FORMSPARK_ACTION_URL, {
+      const response = await fetch(FORM_ACTION_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           name: values.name,
-          email: values.email,
-          phone: values.phone,
-          service: values.service,
+          company: values.company || "Not specified",
+          email: values.email || "Not provided",
+          phone: values.phone || "Not provided",
+          preferredContact: values.preferredContact,
+          service: selectedService?.name ?? values.service,
           details: values.details,
-          timeline: values.timeline,
-          budget: values.budget || "Not specified",
+          ...(isVisible("quantity") && values.quantity ? { quantity: values.quantity } : {}),
+          ...(isVisible("dimensions") && values.dimensions ? { dimensions: values.dimensions } : {}),
+          ...(isVisible("material") && values.material ? { material: values.material } : {}),
+          ...(isVisible("deliveryLocation") && values.deliveryLocation
+            ? { deliveryLocation: values.deliveryLocation }
+            : {}),
+          ...(isVisible("currentWebsite") && values.currentWebsite
+            ? { currentWebsite: values.currentWebsite }
+            : {}),
+          ...(isVisible("referenceFiles") && values.referenceFiles
+            ? { referenceFiles: values.referenceFiles }
+            : {}),
+          deadline: values.deadline || "Not specified",
+          budget: values.budgetAmount
+            ? `${values.budgetCurrency} ${values.budgetAmount}`
+            : "Not specified",
         }),
       });
 
       if (!response.ok) throw new Error("Submission failed.");
 
-      setSubmitted(true);
-      setValues(initialValues);
+      setStatus("success");
+      setValues(initialQuoteValues);
+      setErrors({});
     } catch {
-      setSubmitError("Something went wrong. Please try again.");
+      setStatus("error");
     } finally {
-      setSubmitting(false);
+      submittingRef.current = false;
     }
   };
 
+  const registerRef = (field: QuoteFieldName) => (element: HTMLElement | null) => {
+    fieldRefs.current[field] = element;
+  };
+
+  if (status === "success") {
+    return (
+      <section className="surface-card" aria-labelledby="quote-success-title" id="quote">
+        <div role="status">
+          <p className="chip">Request received</p>
+          <h2 id="quote-success-title" className="mt-4 text-2xl font-semibold text-white">
+            Thanks - your quote request is in.
+          </h2>
+          <p className="mt-3 text-sm text-slate-300">
+            We will review the details and reply with scope, production approach, and pricing.
+          </p>
+        </div>
+
+        <SendFilesPanel />
+
+        <button
+          type="button"
+          className="secondary-button mt-6"
+          onClick={() => setStatus("idle")}
+        >
+          Submit another request
+        </button>
+      </section>
+    );
+  }
+
+  const errorList = quoteFieldOrder
+    .filter((field) => errors[field])
+    .map((field) => ({ field, message: errors[field] as string }));
+
   return (
-    <section className="surface-card" aria-labelledby="quote-form-title">
+    <section className="surface-card" aria-labelledby="quote-form-title" id="quote">
       <h2 id="quote-form-title" className="text-2xl font-semibold text-white">
         Request a Quote
       </h2>
       <p className="mt-2 text-sm text-slate-300">
-        Tell us what you are building. We respond with scope, timeline, and
-        production guidance.
+        Tell us what you are building. The more detail you give, the more accurate the quote.
+        Fields marked <span aria-hidden="true">*</span> are required.
       </p>
 
-      {submitted ? (
-        <p className="mt-4 rounded-lg border border-support/50 bg-support/20 px-4 py-3 text-sm text-white">
-          Your quote request has been submitted successfully. We will get back
-          to you shortly.
-        </p>
-      ) : null}
+      <div
+        role="alert"
+        className={errorList.length > 0 ? "mt-4 rounded-lg border border-red-500/50 bg-red-500/15 px-4 py-3" : undefined}
+      >
+        {errorList.length > 0 ? (
+          <>
+            <p className="text-sm font-semibold text-red-200">
+              {errorList.length === 1
+                ? "There is 1 problem with this form:"
+                : `There are ${errorList.length} problems with this form:`}
+            </p>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-red-200">
+              {errorList.map((item) => (
+                <li key={item.field}>{item.message}</li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+      </div>
 
-      {submitError ? (
-        <p className="mt-4 rounded-lg border border-red-500/50 bg-red-500/20 px-4 py-3 text-sm text-red-300">
-          {submitError}
+      <p aria-live="polite" className="sr-only">
+        {status === "submitting" ? "Submitting your quote request." : ""}
+      </p>
+
+      {status === "error" ? (
+        <p
+          role="alert"
+          className="mt-4 rounded-lg border border-red-500/50 bg-red-500/20 px-4 py-3 text-sm text-red-200"
+        >
+          We could not send your request. Please try again, or reach us directly at{" "}
+          <a className="font-semibold underline" href={mailtoHref("Quote request")}>
+            {contactDetails.email}
+          </a>
+          .
         </p>
       ) : null}
 
@@ -119,210 +199,253 @@ export function QuoteForm(): JSX.Element {
         className="mt-6 grid gap-5 sm:grid-cols-2"
         noValidate
         onSubmit={onSubmit}
+        aria-busy={status === "submitting"}
       >
-        <label
-          className="block text-sm font-semibold text-slate-200"
-          htmlFor="name"
-        >
-          Name
-          <input
-            id="name"
-            className="field"
-            value={values.name}
-            onChange={(event) =>
-              setValues((prev) => ({ ...prev, name: event.target.value }))
-            }
-            aria-invalid={Boolean(errors.name)}
-            aria-describedby={errors.name ? "name-error" : undefined}
-          />
-          {errors.name ? (
-            <span id="name-error" className="mt-2 block text-xs text-red-300">
-              {errors.name}
-            </span>
-          ) : null}
-        </label>
+        <Field
+          name="name"
+          label="Name"
+          required
+          value={values.name}
+          error={errors.name}
+          onChange={setValue}
+          inputRef={registerRef("name")}
+          autoComplete="name"
+        />
 
-        <label
-          className="block text-sm font-semibold text-slate-200"
-          htmlFor="email"
-        >
-          Email
-          <input
-            id="email"
-            type="email"
-            className="field"
-            value={values.email}
-            onChange={(event) =>
-              setValues((prev) => ({ ...prev, email: event.target.value }))
-            }
-            aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? "email-error" : undefined}
-          />
-          {errors.email ? (
-            <span id="email-error" className="mt-2 block text-xs text-red-300">
-              {errors.email}
-            </span>
-          ) : null}
-        </label>
+        <Field
+          name="company"
+          label="Company / organisation"
+          value={values.company}
+          onChange={setValue}
+          autoComplete="organization"
+        />
 
-        <label
-          className="block text-sm font-semibold text-slate-200"
-          htmlFor="phone"
-        >
-          Phone
-          <input
-            id="phone"
-            className="field"
-            value={values.phone}
-            onChange={(event) =>
-              setValues((prev) => ({ ...prev, phone: event.target.value }))
-            }
-            aria-invalid={Boolean(errors.phone)}
-            aria-describedby={errors.phone ? "phone-error" : undefined}
-          />
-          {errors.phone ? (
-            <span id="phone-error" className="mt-2 block text-xs text-red-300">
-              {errors.phone}
-            </span>
-          ) : null}
-        </label>
+        <Field
+          name="email"
+          label="Email"
+          type="email"
+          value={values.email}
+          error={errors.email}
+          onChange={setValue}
+          inputRef={registerRef("email")}
+          autoComplete="email"
+          hint="Email or phone - whichever you prefer. At least one is required."
+        />
 
-        <label
-          className="block text-sm font-semibold text-slate-200"
-          htmlFor="service"
-        >
-          Service Needed
-          <select
-            id="service"
-            className="field"
-            value={values.service}
-            onChange={(event) =>
-              setValues((prev) => ({ ...prev, service: event.target.value }))
-            }
-            aria-invalid={Boolean(errors.service)}
-            aria-describedby={errors.service ? "service-error" : undefined}
-          >
-            <option value="">Select a service</option>
-            {services.map((service) => (
-              <option key={service.id} value={service.name}>
-                {service.name}
-              </option>
-            ))}
-          </select>
-          {errors.service ? (
-            <span
-              id="service-error"
-              className="mt-2 block text-xs text-red-300"
+        <Field
+          name="phone"
+          label="Phone / WhatsApp"
+          type="tel"
+          value={values.phone}
+          error={errors.phone}
+          onChange={setValue}
+          inputRef={registerRef("phone")}
+          autoComplete="tel"
+        />
+
+        <SelectField
+          name="preferredContact"
+          label="Preferred way to reach you"
+          value={values.preferredContact}
+          onChange={setValue}
+          options={[
+            { value: "email", label: "Email" },
+            { value: "phone", label: "Phone call" },
+            { value: "whatsapp", label: "WhatsApp" },
+          ]}
+        />
+
+        <SelectField
+          name="service"
+          label="Service needed"
+          required
+          value={values.service}
+          error={errors.service}
+          onChange={setValue}
+          selectRef={registerRef("service")}
+          placeholder="Select a service"
+          options={services.map((service) => ({ value: service.slug, label: service.name }))}
+        />
+
+        <Field
+          name="details"
+          label="Project details"
+          required
+          multiline
+          value={values.details}
+          error={errors.details}
+          onChange={setValue}
+          inputRef={registerRef("details")}
+          className="sm:col-span-2"
+          hint="What is it, what is it for, and any finish or branding requirements."
+        />
+
+        {isVisible("quantity") ? (
+          <Field
+            name="quantity"
+            label="Quantity"
+            value={values.quantity}
+            onChange={setValue}
+            placeholder="e.g., 1 prototype, 250 units"
+          />
+        ) : null}
+
+        {isVisible("dimensions") ? (
+          <Field
+            name="dimensions"
+            label="Size / dimensions"
+            value={values.dimensions}
+            onChange={setValue}
+            placeholder='e.g., 300 x 200 x 15 mm, or 12" diameter'
+            hint="Include the units."
+          />
+        ) : null}
+
+        {isVisible("material") ? (
+          <Field
+            name="material"
+            label="Material preference"
+            value={values.material}
+            onChange={setValue}
+            placeholder="e.g., mahogany, acrylic, PETG"
+            hint="Not sure? Leave it blank and we will advise."
+          />
+        ) : null}
+
+        {isVisible("referenceFiles") ? (
+          <Field
+            name="referenceFiles"
+            label="What do you have to work from?"
+            value={values.referenceFiles}
+            onChange={setValue}
+            placeholder="e.g., hand sketches, photos, a broken part, an existing STEP file"
+          />
+        ) : null}
+
+        {isVisible("currentWebsite") ? (
+          <Field
+            name="currentWebsite"
+            label="Current website (if any)"
+            type="url"
+            value={values.currentWebsite}
+            onChange={setValue}
+            placeholder="https://"
+            autoComplete="url"
+          />
+        ) : null}
+
+        <Field
+          name="deadline"
+          label="Date you need it by"
+          type="date"
+          value={values.deadline}
+          onChange={setValue}
+        />
+
+        {isVisible("deliveryLocation") ? (
+          <Field
+            name="deliveryLocation"
+            label="Delivery or collection location"
+            value={values.deliveryLocation}
+            onChange={setValue}
+            placeholder="e.g., Montego Bay, Kingston, collection from your workshop"
+          />
+        ) : null}
+
+        <fieldset className="border-0 p-0">
+          <legend className="text-sm font-semibold text-slate-200">Budget (optional)</legend>
+          <div className="mt-2 flex gap-2">
+            <label className="sr-only" htmlFor="budgetCurrency">
+              Budget currency
+            </label>
+            <select
+              id="budgetCurrency"
+              name="budgetCurrency"
+              className="field mt-0 w-28"
+              value={values.budgetCurrency}
+              onChange={(event) => setValue("budgetCurrency", event.target.value)}
             >
-              {errors.service}
-            </span>
-          ) : null}
-        </label>
-
-        <label
-          className="block text-sm font-semibold text-slate-200 sm:col-span-2"
-          htmlFor="details"
-        >
-          Project Details
-          <textarea
-            id="details"
-            rows={5}
-            className="field"
-            value={values.details}
-            onChange={(event) =>
-              setValues((prev) => ({ ...prev, details: event.target.value }))
-            }
-            aria-invalid={Boolean(errors.details)}
-            aria-describedby={errors.details ? "details-error" : undefined}
-          />
-          {errors.details ? (
-            <span
-              id="details-error"
-              className="mt-2 block text-xs text-red-300"
-            >
-              {errors.details}
-            </span>
-          ) : null}
-        </label>
-
-        <label
-          className="block text-sm font-semibold text-slate-200"
-          htmlFor="timeline"
-        >
-          Timeline
-          <input
-            id="timeline"
-            className="field"
-            placeholder="e.g., 2 weeks, end of quarter"
-            value={values.timeline}
-            onChange={(event) =>
-              setValues((prev) => ({ ...prev, timeline: event.target.value }))
-            }
-            aria-invalid={Boolean(errors.timeline)}
-            aria-describedby={errors.timeline ? "timeline-error" : undefined}
-          />
-          {errors.timeline ? (
-            <span
-              id="timeline-error"
-              className="mt-2 block text-xs text-red-300"
-            >
-              {errors.timeline}
-            </span>
-          ) : null}
-        </label>
-
-        <label
-          className="block text-sm font-semibold text-slate-200"
-          htmlFor="budget"
-        >
-          Budget Range (optional)
-          <select
-            id="budget"
-            className="field"
-            value={values.budget}
-            onChange={(event) =>
-              setValues((prev) => ({ ...prev, budget: event.target.value }))
-            }
-          >
-            <option value="">Select a range</option>
-            <option value="Under $1,000">Under $1,000</option>
-            <option value="$1,000 - $5,000">$1,000 - $5,000</option>
-            <option value="$5,000 - $15,000">$5,000 - $15,000</option>
-            <option value="$15,000+">$15,000+</option>
-          </select>
-        </label>
-
-        <label
-          className="block text-sm font-semibold text-slate-200 sm:col-span-2"
-          htmlFor="file-upload"
-        >
-          File Upload (optional)
-          <input
-            id="file-upload"
-            type="file"
-            className="field hover:cursor-pointer file:mr-3 file:rounded-md file:border-0 file:bg-accent file:px-3 file:py-2 file:text-xs file:font-semibold file:text-white"
-            onChange={(event) => {
-              const selectedName = event.target.files?.[0]?.name ?? "";
-              setValues((prev) => ({ ...prev, fileName: selectedName }));
-            }}
-          />
-          {values.fileName ? (
-            <span className="mt-2 block text-xs text-slate-400">
-              Attached: {values.fileName}
-            </span>
-          ) : null}
-        </label>
+              <option value="JMD">JMD</option>
+              <option value="USD">USD</option>
+            </select>
+            <label className="sr-only" htmlFor="budgetAmount">
+              Budget amount
+            </label>
+            <input
+              id="budgetAmount"
+              name="budgetAmount"
+              type="number"
+              inputMode="numeric"
+              min="0"
+              step="any"
+              className="field mt-0 flex-1"
+              placeholder="Approximate amount"
+              value={values.budgetAmount}
+              onChange={(event) => setValue("budgetAmount", event.target.value)}
+            />
+          </div>
+          <p className="mt-2 text-xs text-slate-400">
+            A rough figure helps us propose an approach that fits. Leave it blank if you would
+            rather we advise.
+          </p>
+        </fieldset>
 
         <div className="sm:col-span-2">
-          <button
-            type="submit"
-            className="primary-button"
-            disabled={submitting}
-          >
-            {submitting ? "Submitting..." : "Submit Quote Request"}
+          <button type="submit" className="primary-button" disabled={status === "submitting"}>
+            {status === "submitting" ? "Submitting..." : "Submit Quote Request"}
           </button>
         </div>
       </form>
+
+      <SendFilesPanel serviceName={selectedService?.name} name={values.name} />
     </section>
+  );
+}
+
+/**
+ * The form previously showed a file input that only ever recorded the filename -
+ * the file itself was never sent anywhere. Until a storage backend is in place
+ * (tracked in CONTENT_NEEDED.md) this tells customers how to actually get files
+ * to us, rather than leaving a control that silently does nothing.
+ */
+function SendFilesPanel({
+  serviceName,
+  name,
+}: {
+  serviceName?: string;
+  name?: string;
+}): JSX.Element {
+  const subject = ["Quote files", name?.trim(), serviceName].filter(Boolean).join(" - ");
+
+  return (
+    <div className="mt-8 rounded-xl border border-accentSoft/30 bg-black/40 p-5">
+      <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-200">
+        Sending drawings or artwork
+      </h3>
+      <p className="mt-3 text-sm text-slate-300">
+        Send your files to us directly and we will match them to your request.
+      </p>
+      <div className="mt-4 flex flex-wrap gap-3">
+        <a className="secondary-button" href={mailtoHref(subject)}>
+          Email {contactDetails.email}
+        </a>
+        <a
+          className="secondary-button"
+          href={whatsappHref(
+            `Hi GENR8-3D, I just submitted a quote request${
+              serviceName ? ` for ${serviceName}` : ""
+            } and I would like to send my files.`,
+          )}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Send on WhatsApp
+        </a>
+      </div>
+      <p className="mt-4 text-xs text-slate-400">
+        Formats we can open: {acceptedFileFormats.join(", ")}. For anything larger than an email
+        will carry, send a share link (Google Drive, Dropbox, WeTransfer).
+      </p>
+    </div>
   );
 }

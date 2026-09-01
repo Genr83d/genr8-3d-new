@@ -1,6 +1,7 @@
 import { useState, type JSX } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CloseIcon, MenuIcon } from "../ui/icons";
+import { ACADEMY_URL } from "../../data/externalLinks";
 import LogoWide from "../../assets/icons/logos/genr8-logo-wide.svg";
 
 const links = [
@@ -13,7 +14,6 @@ const links = [
   { to: "/contact", label: "Contact" },
 ];
 
-const ACADEMY_URL = "https://next-gen-academy.genr83d.com";
 
 export function SiteHeader(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,7 @@ export function SiteHeader(): JSX.Element {
           <img src={LogoWide} alt="GENR8-3D Logo" className="w-28" />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary">
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -57,7 +57,7 @@ export function SiteHeader(): JSX.Element {
 
         <button
           type="button"
-          className="rounded-md border border-accentSoft/50 p-2 text-accentSoft lg:hidden"
+          className="rounded-md border border-accentSoft/50 p-2 text-accentSoft xl:hidden"
           onClick={() => setIsOpen((prev) => !prev)}
           aria-expanded={isOpen}
           aria-controls="mobile-nav"
@@ -70,7 +70,7 @@ export function SiteHeader(): JSX.Element {
       {isOpen ? (
         <nav
           id="mobile-nav"
-          className="border-t border-accentSoft/25 px-4 py-4 lg:hidden"
+          className="border-t border-accentSoft/25 px-4 py-4 xl:hidden"
           aria-label="Mobile primary"
         >
           <div className="flex flex-col gap-2">

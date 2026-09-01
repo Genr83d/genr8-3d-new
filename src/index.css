@@ -82,7 +82,12 @@
   }
 
   .field {
-    @apply mt-2 w-full rounded-lg border border-accentSoft/40 bg-black/55 px-3 py-2.5 text-sm text-text placeholder:text-slate-400 hover:cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
+    @apply mt-2 w-full rounded-lg border border-accentSoft/40 bg-black/55 px-3 py-2.5 text-sm text-text placeholder:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
+  }
+
+  select.field,
+  input[type='date'].field {
+    @apply hover:cursor-pointer;
   }
 
   .small-muted {

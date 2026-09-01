@@ -10,8 +10,16 @@ import {
   projects,
 } from "../data/projects";
 import type { Project } from "../types/content";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export function PortfolioPage(): JSX.Element {
+  useDocumentMeta({
+    title: "Portfolio | GENR8-3D",
+    description:
+      "The kinds of fabrication and digital work GENR8-3D takes on, across CNC routing, 3D printing, laser engraving, 3D modeling, and web development.",
+    path: "/portfolio",
+  });
+
   const [activeCategory, setActiveCategory] = useState<ProjectFilter>("All");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
@@ -25,7 +33,7 @@ export function PortfolioPage(): JSX.Element {
       <PageHero
         eyebrow="Portfolio"
         title="Projects built for real-world deployment"
-        description="Explore fabrication and digital execution across retail, product teams, education partners, and local businesses."
+        description="The kinds of fabrication and digital work we take on. Photographs of finished pieces we have made are in the Product Gallery."
         actions={
           <>
             <Link to="/contact" className="primary-button">
@@ -50,6 +58,7 @@ export function PortfolioPage(): JSX.Element {
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
+              aria-pressed={category === activeCategory}
               className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition ${
                 category === activeCategory
                   ? "border-accentSoft bg-accent/35 text-accentSoft"

@@ -14,7 +14,7 @@ export const processSteps: ProcessStep[] = [
   {
     title: "Production",
     description:
-      "Our CNC, additive, and laser workflows run with documented tolerances, material checks, and in-process quality verification.",
+      "Our CNC, additive, and laser workflows run with material checks and in-process quality verification.",
   },
   {
     title: "Delivery",
@@ -60,10 +60,12 @@ export const services: Service[] = [
       {
         src: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=1400&q=80",
         alt: "CNC machine cutting sheet material",
+        credit: "stock",
       },
       {
         src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1400&q=80",
         alt: "Finished routed wood display panel",
+        credit: "stock",
       },
     ],
   },
@@ -95,10 +97,12 @@ export const services: Service[] = [
       {
         src: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1400&q=80",
         alt: "3D printer manufacturing a part",
+        credit: "stock",
       },
       {
         src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1400&q=80",
         alt: "Array of finished 3D printed components",
+        credit: "stock",
       },
     ],
   },
@@ -137,10 +141,12 @@ export const services: Service[] = [
       {
         src: "https://images.unsplash.com/photo-1581092588421-8b6ef1f045b4?auto=format&fit=crop&w=1400&q=80",
         alt: "Laser machine engraving metal plate",
+        credit: "stock",
       },
       {
         src: "https://images.unsplash.com/photo-1582582494700-1f9f6fbd4f2d?auto=format&fit=crop&w=1400&q=80",
         alt: "Close-up of engraved branded product",
+        credit: "stock",
       },
     ],
   },
@@ -173,10 +179,12 @@ export const services: Service[] = [
       {
         src: "https://images.unsplash.com/photo-1626908013351-800ddd734b8a?auto=format&fit=crop&w=1400&q=80",
         alt: "3D modeling software interface with product concept",
+        credit: "stock",
       },
       {
         src: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1400&q=80",
         alt: "Technical CAD drawing and digital model",
+        credit: "stock",
       },
     ],
   },
@@ -209,10 +217,12 @@ export const services: Service[] = [
       {
         src: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=80",
         alt: "Developer workstation with web UI prototypes",
+        credit: "stock",
       },
       {
         src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80",
         alt: "Code editor and design system for modern website",
+        credit: "stock",
       },
     ],
   },

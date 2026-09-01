@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { ClockPreviewSvg } from "../components/clocks/ClockPreviewSvg";
 import { PageHero } from "../components/sections/PageHero";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 import {
   centerBySize,
   numberStyleOptions,
@@ -44,6 +45,13 @@ const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
 
 export function ClockPage(): JSX.Element {
+  useDocumentMeta({
+    title: "Design Your Own Wall Clock | GENR8-3D",
+    description:
+      "Configure a personalised hardwood wall clock - size, wood, numerals, and your own centre artwork - and send the design to GENR8-3D for production.",
+    path: "/clocks",
+  });
+
   const [size, setSize] = useState<ClockSize>(10);
   const [wood, setWood] = useState<WoodType>("cedar");
   const [numberStyle, setNumberStyle] = useState<NumberStyle>("standardArabic");

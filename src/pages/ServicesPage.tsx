@@ -6,8 +6,16 @@ import { ProcessFlow } from '../components/ui/ProcessFlow'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { ServiceCard } from '../components/ui/ServiceCard'
 import { processSteps, services } from '../data/services'
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export function ServicesPage(): JSX.Element {
+  useDocumentMeta({
+    title: "Services | GENR8-3D",
+    description:
+      "CNC routing, 3D printing, laser engraving, 3D modeling, and web development and hosting - scoped as one project or combined into a single quote.",
+    path: "/services",
+  });
+
   return (
     <>
       <PageHero

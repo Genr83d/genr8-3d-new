@@ -19,6 +19,11 @@ export function ProjectCard({ project, onSelect }: ProjectCardProps): JSX.Elemen
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
         <p className="absolute bottom-3 left-3 chip">{project.category}</p>
       </div>
+      {project.credit === "stock" ? (
+        <p className="mt-3 text-xs text-slate-500">
+          Illustrative stock photograph, not a GENR8-3D project.
+        </p>
+      ) : null}
       <h3 className="mt-4 text-lg font-semibold text-white">{project.title}</h3>
       <p className="mt-2 text-sm text-slate-300">{project.description}</p>
       <div className="mt-4 flex flex-wrap gap-2">

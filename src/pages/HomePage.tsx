@@ -18,9 +18,9 @@ const whyItems = [
       "Engineering-minded process controls from design validation to final production handoff.",
   },
   {
-    title: "Fast Iteration Cycles",
+    title: "Prototype to Production",
     description:
-      "Short lead times for prototypes and clear production scaling paths when volumes increase.",
+      "Start with a single prototype and scale to a production run on the same machines and files.",
   },
   {
     title: "Local Build + Modern Stack",
@@ -28,8 +28,16 @@ const whyItems = [
       "Hands-on fabrication paired with digital delivery, web presence, and technical training support.",
   },
 ];
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export function HomePage(): JSX.Element {
+  useDocumentMeta({
+    title: "GENR8-3D | CNC Routing, 3D Printing and Laser Engraving in Montego Bay",
+    description:
+      "CNC routing, 3D printing, laser engraving, 3D modeling, custom products, and web development and hosting for businesses in Jamaica.",
+    path: "/",
+  });
+
   return (
     <>
       <PageHero
@@ -50,10 +58,26 @@ export function HomePage(): JSX.Element {
 
       <MetricStrip
         metrics={[
-          { label: "Projects Delivered", value: "540+" },
-          { label: "Average Prototype Turnaround", value: "72 hrs" },
-          { label: "Fabrication Disciplines", value: "5 Core" },
-          { label: "Client Satisfaction", value: "98%" },
+          {
+            label: "Services",
+            value: `${services.length} disciplines`,
+            detail: "CNC routing, 3D printing, laser engraving, 3D modeling, and web work.",
+          },
+          {
+            label: "Based in",
+            value: "Montego Bay",
+            detail: "Lots 19 & 20 Fairfield, St. James, Jamaica.",
+          },
+          {
+            label: "Production",
+            value: "In-house",
+            detail: "Cutting, printing, engraving, and finishing on our own machines.",
+          },
+          {
+            label: "Client feedback",
+            value: "Named references",
+            detail: "Schools and businesses you can read below, quoted and attributed.",
+          },
         ]}
       />
 
@@ -88,12 +112,12 @@ export function HomePage(): JSX.Element {
 
       <section className="section-shell">
         <SectionHeading
-          eyebrow="Featured Work"
-          title="Recent projects from our production floor"
-          description="A mix of fabrication, design, and digital delivery engagements across industries."
+          eyebrow="What We Do"
+          title="The kind of work we take on"
+          description="Fabrication, design, and digital delivery. Photographs of finished pieces are in the Product Gallery."
           action={
-            <Link to="/portfolio" className="secondary-button">
-              Open Portfolio
+            <Link to="/gallery" className="secondary-button">
+              See Product Photos
             </Link>
           }
         />

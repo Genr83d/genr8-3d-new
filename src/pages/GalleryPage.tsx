@@ -18,8 +18,16 @@ const filters: { id: GalleryFilter; label: string }[] = [
     label: category.label,
   })),
 ];
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export function GalleryPage(): JSX.Element {
+  useDocumentMeta({
+    title: "Product Gallery | GENR8-3D",
+    description:
+      "Clocks, plaques, pins, keyrings, 3D prints, and school furniture made, engraved, and finished in-house at GENR8-3D.",
+    path: "/gallery",
+  });
+
   const [activeFilter, setActiveFilter] = useState<GalleryFilter>("all");
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
 
