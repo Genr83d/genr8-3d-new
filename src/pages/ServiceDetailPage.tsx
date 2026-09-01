@@ -3,28 +3,16 @@ import { Link, useParams } from "react-router-dom";
 import { PageHero } from "../components/sections/PageHero";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { services } from "../data/services";
+import { NotFoundPage } from "./NotFoundPage";
 
 export function ServiceDetailPage(): JSX.Element {
   const { slug } = useParams<{ slug: string }>();
   const service = services.find((item) => item.slug === slug);
 
+  // An outdated or mistyped service URL is a 404 like any other, so it gets the
+  // same branded page and `noindex` rather than a one-off inline message.
   if (!service) {
-    return (
-      <section className="surface-card">
-        <h1 className="text-2xl font-semibold text-white">Service Not Found</h1>
-        <p className="mt-3 text-sm text-slate-300">
-          The requested service is unavailable or the link is outdated.
-        </p>
-        <div className="mt-6 flex gap-3">
-          <Link to="/services" className="secondary-button">
-            Back to Services
-          </Link>
-          <Link to="/contact" className="primary-button">
-            Request a Quote
-          </Link>
-        </div>
-      </section>
-    );
+    return <NotFoundPage />;
   }
 
   return (

@@ -16,26 +16,36 @@ const AdminClockSubmissionsPage = lazy(async () => ({
   default: (await import("./pages/AdminClockSubmissionsPage")).AdminClockSubmissionsPage,
 }));
 
+/**
+ * The route tree on its own, without a router, so tests can mount it inside a
+ * `MemoryRouter` at any path and assert what a direct request would render.
+ */
+export function AppRoutes(): JSX.Element {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-base text-white" />}>
+      <Routes>
+        <Route element={<SiteLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path="/clocks" element={<ClockPage />} />
+          <Route path="/admin/clocks" element={<AdminClockSubmissionsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  );
+}
+
 function App(): JSX.Element {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Suspense fallback={<div className="min-h-screen bg-base text-white" />}>
-        <Routes>
-          <Route element={<SiteLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/:slug" element={<ServiceDetailPage />} />
-            <Route path="/clocks" element={<ClockPage />} />
-            <Route path="/admin/clocks" element={<AdminClockSubmissionsPage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/portfolio" element={<PortfolioPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </Suspense>
+      <AppRoutes />
     </BrowserRouter>
   );
 }
