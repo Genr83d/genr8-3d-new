@@ -7,7 +7,6 @@ import LogoWide from "../../assets/icons/logos/genr8-logo-wide.svg";
 const links = [
   { to: "/services", label: "Services" },
   { to: "/products", label: "Products" },
-  { to: "/our-work", label: "Our Work" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];

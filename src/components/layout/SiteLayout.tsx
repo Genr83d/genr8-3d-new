@@ -1,9 +1,12 @@
-import type { JSX } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Suspense, type JSX } from 'react'
+import { PageSkeleton } from '../ui/Skeleton'
+import { Outlet, useLocation } from 'react-router-dom'
 import { SiteFooter } from './SiteFooter'
 import { SiteHeader } from './SiteHeader'
 
 export function SiteLayout(): JSX.Element {
+  const { pathname } = useLocation()
+
   return (
     <div className="site-wrap">
       <a
@@ -14,7 +17,9 @@ export function SiteLayout(): JSX.Element {
       </a>
       <SiteHeader />
       <main id="main-content" className="page-shell">
-        <Outlet />
+        <Suspense key={pathname} fallback={<PageSkeleton pathname={pathname} />}>
+          <Outlet />
+        </Suspense>
       </main>
       <SiteFooter />
     </div>

@@ -454,8 +454,8 @@ export function FactoryTourPage(): JSX.Element {
         description="We can connect the artist's deliverable to guided hotspots, calls to action, and a polished public-facing visitor experience."
         primaryLabel="Request a Quote"
         primaryTo="/contact"
-        secondaryLabel="See Other Projects"
-        secondaryTo="/our-work"
+        secondaryLabel="Explore Services"
+        secondaryTo="/services"
       />
     </>
   );

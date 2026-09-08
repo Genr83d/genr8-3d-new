@@ -1,3 +1,4 @@
+import { LoadingImage } from "../components/ui/LoadingImage";
 import type { JSX } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PageHero } from "../components/sections/PageHero";
@@ -106,10 +107,10 @@ export function ServiceDetailPage(): JSX.Element {
         <div className="grid gap-4 md:grid-cols-2">
           {service.gallery.map((item) => (
             <figure key={item.src} className="surface-card p-3">
-              <img
+              <LoadingImage
                 src={item.src}
                 alt={item.alt}
-                className="h-72 w-full rounded-xl object-cover"
+                frameClass="h-72 w-full rounded-xl"
                 loading="lazy"
               />
               <figcaption className="mt-3 text-xs text-slate-400">

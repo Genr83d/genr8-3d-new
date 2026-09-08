@@ -70,8 +70,6 @@ export function ServicesPage(): JSX.Element {
         description="Many projects combine modeling, fabrication, and digital delivery. We can scope them as one integrated quote."
         primaryLabel="Request a Quote"
         primaryTo="/contact"
-        secondaryLabel="View Our Work"
-        secondaryTo="/our-work"
       />
     </>
   )

@@ -1,3 +1,4 @@
+import { LoadingImage } from './LoadingImage'
 import type { JSX } from 'react'
 import type { Project } from '../../types/content'
 
@@ -10,10 +11,11 @@ export function ProjectCard({ project, onSelect }: ProjectCardProps): JSX.Elemen
   const content = (
     <>
       <div className="relative overflow-hidden rounded-xl">
-        <img
+        <LoadingImage
           src={project.image}
           alt={project.title}
-          className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
+          frameClass="h-52 w-full"
+          className="transition duration-500 group-hover:scale-105"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

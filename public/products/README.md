@@ -57,6 +57,8 @@ tile until the matching file exists:
 | Custom Automotive Trim | `3d-prints/automotive-trim.webp` |
 | RC Body & Chassis | `3d-prints/rc-body-chassis.webp` |
 | Rugged Carry Case | `3d-prints/rugged-carry-case.webp` |
+| Classroom Chair with Writing Desk | `school-furniture/classroom-chair-writing-desk.webp` |
+| Classroom Stool | `school-furniture/classroom-stool.webp` |
 
 ## Converting phone photos
 
