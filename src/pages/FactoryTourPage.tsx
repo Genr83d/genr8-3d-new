@@ -452,10 +452,10 @@ export function FactoryTourPage(): JSX.Element {
       <CTASection
         title="Want us to turn the finished model into a full web walkthrough?"
         description="We can connect the artist's deliverable to guided hotspots, calls to action, and a polished public-facing visitor experience."
-        primaryLabel="Talk About the Tour"
+        primaryLabel="Request a Quote"
         primaryTo="/contact"
         secondaryLabel="See Other Projects"
-        secondaryTo="/portfolio"
+        secondaryTo="/our-work"
       />
     </>
   );

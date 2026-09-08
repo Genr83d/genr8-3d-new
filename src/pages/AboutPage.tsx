@@ -36,14 +36,15 @@ export function AboutPage(): JSX.Element {
         actions={
           <>
             <Link to="/contact" className="primary-button">
-              Work With Us
+              Request a Quote
             </Link>
             <a
               href="https://next-gen-academy.genr83d.com/"
               target="_blank"
+              rel="noopener noreferrer"
               className="secondary-button"
             >
-              Explore Academy
+              Training ↗ (external)
             </a>
           </>
         }

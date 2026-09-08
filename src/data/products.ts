@@ -1,0 +1,365 @@
+import type { Product, ProductCategory, ProductCategoryId } from "../types/content";
+
+/**
+ * Product photos live in `public/products/<category>/` and are referenced by
+ * their public path (for example "/products/clocks/mahogany-round.webp").
+ * Leave `image` unset until the photo is added and the gallery shows a
+ * "photo coming soon" placeholder tile in its place.
+ */
+export const productCategories: ProductCategory[] = [
+  {
+    id: "clocks",
+    label: "Clocks",
+    description:
+      "GEN-TIME personalised wall clocks: solid hardwood faces, raised numerals, luminous hands, and a resin-domed centre carrying your photo, crest, or artwork.",
+  },
+  {
+    id: "plaques",
+    label: "Plaques",
+    description:
+      "Award, recognition, and signage plaques in wood and acrylic with crisp engraved detail.",
+  },
+  {
+    id: "pins",
+    label: "Pins",
+    description:
+      "Printed acrylic pins and badges cut to any shape - prefect and leadership badges, club membership pins, committee roles, and charm drops, made in matched batches for whole clubs and year groups.",
+  },
+  {
+    id: "keyrings",
+    label: "Keyrings",
+    description:
+      "Full-colour printed acrylic keyrings cut to any shape - graduation sets, school houses, crests, milestones, and gift lines, produced from single pieces to full year-group runs.",
+  },
+  {
+    id: "3d-prints",
+    label: "3D Prints",
+    description:
+      "Functional printed builds - working mechanisms, robotics platforms, vehicle trim, scale bodies, and protective cases - modelled to fit and printed on our own machines.",
+  },
+  {
+    id: "school-furniture",
+    label: "School Furniture",
+    description:
+      "Hard-wearing classroom furniture built to order for schools, training rooms, and learning centres.",
+  },
+];
+
+export const products: Product[] = [
+  {
+    id: "clock-wedding-anniversary",
+    name: "Wedding & Anniversary Clock",
+    category: "clocks",
+    description:
+      "Names and date engraved into a solid hardwood face, finished with raised numerals, luminous hands, and mounted keepsake pieces chosen around the couple.",
+    image: "/products/clocks/wedding-anniversary-clock.webp",
+    tags: ["Wedding", "Engraved Names", "Keepsake"],
+    options: [
+      "Names, date, and motif engraved to order",
+      "Mounted 3D keepsake accents",
+      "Cedar, Mahogany, or Blue Mahoe",
+    ],
+  },
+  {
+    id: "clock-family-photo",
+    name: "Family Photo Clock",
+    category: "clocks",
+    description:
+      "Your photograph and family name set into a decorative resin-domed centre, framed by raised numerals on a hardwood face.",
+    image: "/products/clocks/family-photo-clock.webp",
+    tags: ["Photo Centre", "Family Name", "Gift"],
+    options: ["Send us your photo and wording", "Choice of centre frame artwork"],
+  },
+  {
+    id: "clock-one-love",
+    name: "One Love Jamaica Clock",
+    category: "clocks",
+    description:
+      "Island-themed design with the Jamaica map under a glossy resin dome and hand-painted engraved numerals in green and black.",
+    image: "/products/clocks/one-love-jamaica-clock.webp",
+    tags: ["Jamaican", "Resin Dome", "Gift Shop"],
+    options: ["Painted engraved numerals", "Retail and gift-shop quantities"],
+  },
+  {
+    id: "clock-school-anniversary",
+    name: "School Anniversary Clock",
+    category: "clocks",
+    description:
+      "Milestone clock carrying a school crest and anniversary artwork under a resin dome, cut from dark hardwood with raised white numerals.",
+    image: "/products/clocks/school-anniversary-clock.webp",
+    tags: ["Schools", "Crest", "Milestone"],
+    options: ["Crest and anniversary artwork supplied by you", "Matched batches for committees"],
+  },
+  {
+    id: "clock-recognition",
+    name: "Recognition & Guest Speaker Clock",
+    category: "clocks",
+    description:
+      "Presentation clock with crest, event title, and recipient name printed into the centre, set off by an engraved border and classic serif numerals.",
+    image: "/products/clocks/recognition-clock.webp",
+    tags: ["Awards", "Events", "Presentation"],
+    options: ["Recipient name and event details", "Engraved decorative border"],
+  },
+  {
+    id: "clock-institution",
+    name: "Institution & Campus Clock",
+    category: "clocks",
+    description:
+      "Organisation clock combining campus photography and logo in the domed centre - built for reception areas, staff gifts, and alumni sets.",
+    image: "/products/clocks/institution-campus-clock.webp",
+    tags: ["Institutions", "Photo Centre", "Bulk Orders"],
+    options: ["Logo and photography layout", "Boxed and ready to present"],
+  },
+  {
+    id: "plaque-award",
+    name: "Award Plaque",
+    category: "plaques",
+    description:
+      "Presentation plaque with engraved title, recipient name, and date - supplied ready to mount or stand.",
+    tags: ["Awards", "Engraved", "Corporate"],
+    options: ["Wall mount or desk stand", "Wood, acrylic, or two-tone"],
+  },
+  {
+    id: "plaque-house-sign",
+    name: "House & Office Sign",
+    category: "plaques",
+    description:
+      "Weather-ready name and number signage cut to your dimensions with raised or engraved lettering.",
+    tags: ["Signage", "Outdoor", "Custom Size"],
+    options: ["Raised or engraved lettering", "Painted or natural finish"],
+  },
+  {
+    id: "pin-prefect-badge",
+    name: "Prefect & Leadership Badge",
+    category: "pins",
+    description:
+      "Name-bar badges carrying each leadership title, finished with a hanging school crest charm - supplied as a full prefect body set.",
+    image: "/products/pins/prefect-leadership-badge.webp",
+    tags: ["Prefect Body", "Role Titles", "Charm Drop"],
+    options: [
+      "A different title per badge in one run",
+      "Hanging crest charm on chain",
+      "Pin or clutch back",
+    ],
+  },
+  {
+    id: "pin-committee-role",
+    name: "Committee Role Pin",
+    category: "pins",
+    description:
+      "Society pins cut to the shape of the club's own artwork, with every executive role printed on its own version alongside the member run.",
+    image: "/products/pins/committee-role-pin.webp",
+    tags: ["Custom Shape", "Executive Roles", "Societies"],
+    options: [
+      "President through to member in one order",
+      "Cut to your club artwork",
+      "Matching charm drop",
+    ],
+  },
+  {
+    id: "pin-sports-club",
+    name: "Sports Club Pin",
+    category: "pins",
+    description:
+      "Two-piece team pin pairing a club name bar with a sport-specific figure charm, split across executive and member tiers.",
+    image: "/products/pins/sports-club-pin.webp",
+    tags: ["Sports Teams", "Two-Piece", "Member Tiers"],
+    options: ["Executive and member versions", "Figure charm drawn to your sport"],
+  },
+  {
+    id: "pin-club-crest",
+    name: "Club Crest Pin",
+    category: "pins",
+    description:
+      "Shield-shaped club pin with a high-gloss domed face, built to hold colour and detail on a uniform blazer.",
+    image: "/products/pins/club-crest-pin.webp",
+    tags: ["Clubs", "Domed Finish", "Uniform"],
+    options: ["Crest shape cut to your badge", "Gloss dome or flat finish"],
+  },
+  {
+    id: "pin-round-membership",
+    name: "Round Membership Pin",
+    category: "pins",
+    description:
+      "Classic round membership pin for bands, choirs, and school societies - the simplest option for large annual runs.",
+    image: "/products/pins/round-membership-pin.webp",
+    tags: ["Membership", "Round Dome", "Batch Runs"],
+    options: ["Standard round sizes", "Volume pricing for annual intakes"],
+  },
+  {
+    id: "pin-logo-cut",
+    name: "Logo-Cut Pin",
+    category: "pins",
+    description:
+      "Pin cut to the exact outline of your logo, so the badge reads as the mark itself rather than artwork dropped into a disc.",
+    image: "/products/pins/logo-cut-pin.webp",
+    tags: ["Custom Cut", "Logo Shape", "Studios"],
+    options: ["Cut to your supplied artwork", "Artwork prepared for cutting if needed"],
+  },
+  {
+    id: "keyring-graduation-photo",
+    name: "Graduation Photo Keyring",
+    category: "keyrings",
+    description:
+      "Each student's photo, title, and graduating year printed into clear acrylic - produced as individual keepsakes or a full class set.",
+    image: "/products/keyrings/graduation-photo-keyring.webp",
+    tags: ["Graduation", "Photo Print", "Class Sets"],
+    options: [
+      "Square, round, or shield shapes",
+      "Individual name and title per student",
+      "Priced per unit on class runs",
+    ],
+  },
+  {
+    id: "keyring-house-mascot",
+    name: "House & Mascot Keyring",
+    category: "keyrings",
+    description:
+      "Full-colour house mascots printed on round acrylic with the house name around the edge - one design per house, supplied as matched sets.",
+    image: "/products/keyrings/house-mascot-keyring.webp",
+    tags: ["School Houses", "Full Colour", "Matched Sets"],
+    options: ["A design per house in your colours", "Mascot artwork drawn to order"],
+  },
+  {
+    id: "keyring-school-crest",
+    name: "School Crest Keyring",
+    category: "keyrings",
+    description:
+      "Crest and lettering keyrings cut to the outline of the badge itself rather than dropped into a standard disc.",
+    image: "/products/keyrings/school-crest-keyring.webp",
+    tags: ["Crest", "Custom Cut", "Schools"],
+    options: ["Cut to your badge outline", "Shield, letterform, or free-form shapes"],
+  },
+  {
+    id: "keyring-anniversary",
+    name: "Anniversary Keyring",
+    category: "keyrings",
+    description:
+      "Commemorative milestone keyring with metallic print, made for reunions, foundation years, and institutional anniversaries.",
+    image: "/products/keyrings/anniversary-keyring.webp",
+    tags: ["Milestone", "Commemorative", "Metallic Print"],
+    options: ["Metallic gold or silver backing", "Volume runs for reunion committees"],
+  },
+  {
+    id: "keyring-domed-bag-tag",
+    name: "Domed Mascot Bag Tag",
+    category: "keyrings",
+    description:
+      "The same house artwork finished with a raised resin dome and chain, sized to hang from a backpack zip or bag strap.",
+    image: "/products/keyrings/domed-mascot-bag-tag.webp",
+    tags: ["Domed Finish", "Bag Tag", "School Houses"],
+    options: ["Raised resin dome finish", "Chain and split ring fitted"],
+  },
+  {
+    id: "keyring-gift-novelty",
+    name: "Gift & Novelty Keyring",
+    category: "keyrings",
+    description:
+      "Ready-made gift designs in coloured acrylic for Mother's Day, Father's Day, and everyday retail - or your own wording on the same shapes.",
+    image: "/products/keyrings/gift-novelty-keyring.webp",
+    tags: ["Gifts", "Seasonal", "Retail"],
+    options: ["Stock gift designs", "Your wording or artwork on request"],
+  },
+  {
+    id: "print-miniature-lathe",
+    name: "Working Miniature Lathe",
+    category: "3d-prints",
+    description:
+      "A scale lathe built entirely from printed parts, with a moving carriage, tailstock, and tool post - made as a demonstration piece and classroom teaching aid.",
+    image: "/products/3d-prints/working-miniature-lathe.webp",
+    tags: ["Working Mechanism", "Demonstration", "Teaching Aid"],
+    options: ["Colour scheme to match your branding", "Display base and signage"],
+  },
+  {
+    id: "print-engine-model",
+    name: "Working Engine Model",
+    category: "3d-prints",
+    description:
+      "Scale engine built from printed parts - fan, pulleys, headers, distributor, and plug leads - motor-driven on its own stand with a speed control so the internals run.",
+    image: "/products/3d-prints/working-engine-model.webp",
+    tags: ["Working Mechanism", "Motorised", "Display Piece"],
+    options: ["Speed-controlled display stand", "Colour scheme to order"],
+  },
+  {
+    id: "print-robotics-chassis",
+    name: "Robotics Chassis & Housings",
+    category: "3d-prints",
+    description:
+      "Multi-level chassis plates, standoffs, and component housings printed around a team's own boards, motors, and sensors.",
+    image: "/products/3d-prints/robotics-chassis.webp",
+    tags: ["Robotics", "STEM Teams", "Built to Layout"],
+    options: [
+      "Printed to your board and motor layout",
+      "Spare plates run to the same spec",
+    ],
+  },
+  {
+    id: "print-automotive-trim",
+    name: "Custom Automotive Trim",
+    category: "3d-prints",
+    description:
+      "Interior panels, speaker pods, and trim pieces modelled to the vehicle's own contours and printed to land on the factory mounting points.",
+    image: "/products/3d-prints/automotive-trim.webp",
+    tags: ["Automotive", "Speaker Pods", "Made to Fit"],
+    options: ["Modelled from the original panel", "Colour printed or paint-ready"],
+  },
+  {
+    id: "print-rc-body-chassis",
+    name: "RC Body & Chassis",
+    category: "3d-prints",
+    description:
+      "Scale RC bodies, roll cages, bumpers, and interiors printed as a complete build, sized to your chassis and ready for paint.",
+    image: "/products/3d-prints/rc-body-chassis.webp",
+    tags: ["RC Scale", "Body & Cage", "Paint Ready"],
+    options: ["Standard scales or your chassis dimensions", "Assembled or as a parts kit"],
+  },
+  {
+    id: "print-rugged-case",
+    name: "Rugged Carry Case",
+    category: "3d-prints",
+    description:
+      "Hard carry case with printed latches, hinge, and an interior cut around the exact device it holds - finished with embossed lettering on the lid.",
+    image: "/products/3d-prints/rugged-carry-case.webp",
+    tags: ["Protective Case", "Fitted Insert", "Two-Colour"],
+    options: [
+      "Interior fitted to your device",
+      "Embossed lettering on the lid",
+      "Two-colour body and lid",
+    ],
+  },
+  {
+    id: "furniture-student-desk",
+    name: "Student Desk & Chair Set",
+    category: "school-furniture",
+    description:
+      "Single-student desk and matching chair built for daily classroom use, with a sealed writing surface and steady frame.",
+    tags: ["Classroom", "Hard-wearing", "Bulk Orders"],
+    options: ["Primary or secondary sizing", "Book shelf under the desktop"],
+  },
+  {
+    id: "furniture-classroom-table",
+    name: "Classroom & Exam Table",
+    category: "school-furniture",
+    description:
+      "Shared tables cut to your room dimensions for group work, labs, and exam layouts, with rounded safety edges.",
+    tags: ["Custom Size", "Group Seating", "Rounded Edges"],
+    options: ["2, 4, or 6 seater lengths", "Fixed or stackable frame"],
+  },
+  {
+    id: "furniture-storage-unit",
+    name: "Storage & Cubby Unit",
+    category: "school-furniture",
+    description:
+      "Open cubby and shelving units for bags, supplies, and learning materials, finished to match your classroom set.",
+    tags: ["Storage", "Modular", "Schools"],
+    options: ["Wall-mounted or free-standing", "Labelled or open compartments"],
+  },
+];
+
+export function getCategory(id: ProductCategoryId): ProductCategory | undefined {
+  return productCategories.find((category) => category.id === id);
+}
+
+export function getCategoryLabel(id: ProductCategoryId): string {
+  return getCategory(id)?.label ?? id;
+}

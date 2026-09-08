@@ -23,13 +23,13 @@ export function PortfolioPage(): JSX.Element {
   return (
     <>
       <PageHero
-        eyebrow="Portfolio"
+        eyebrow="Our Work"
         title="Projects built for real-world deployment"
         description="Explore fabrication and digital execution across retail, product teams, education partners, and local businesses."
         actions={
           <>
             <Link to="/contact" className="primary-button">
-              Start Your Project
+              Request a Quote
             </Link>
             <Link to="/services" className="secondary-button">
               Service Catalog

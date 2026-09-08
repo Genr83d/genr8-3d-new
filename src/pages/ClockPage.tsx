@@ -258,11 +258,11 @@ export function ClockPage(): JSX.Element {
         description='Preview 10" and 12" builds, switch between Cedar, Mahogany, and Blue Mahoe, and test your center design placement before final manufacturing.'
         actions={
           <>
-            <a href="#clock-builder" className="primary-button">
+            <a href="#clock-builder" className="secondary-button">
               Start Building
             </a>
-            <Link to="/contact" className="secondary-button">
-              Request Production Quote
+            <Link to="/contact" className="primary-button">
+              Request a Quote
             </Link>
           </>
         }

@@ -36,7 +36,7 @@ export function ServiceDetailPage(): JSX.Element {
         actions={
           <>
             <Link to="/contact" className="primary-button">
-              Request Quote
+              Request a Quote
             </Link>
             <Link to="/services" className="secondary-button">
               All Services
@@ -132,7 +132,7 @@ export function ServiceDetailPage(): JSX.Element {
             </p>
           </div>
           <Link to="/contact" className="primary-button mt-4 lg:mt-0">
-            Request Quote
+            Request a Quote
           </Link>
         </div>
       </section>
