@@ -7,7 +7,6 @@ import { ContactPage } from "./pages/ContactPage";
 import { GalleryPage } from "./pages/GalleryPage";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
-import { PortfolioPage } from "./pages/PortfolioPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
 import { ServicesPage } from "./pages/ServicesPage";
 
@@ -36,8 +35,8 @@ function App(): JSX.Element {
             <Route path="/admin/clocks" element={<AdminClockSubmissionsPage />} />
             <Route path="/products" element={<GalleryPage />} />
             <Route path="/gallery" element={<LegacyRedirect to="/products" />} />
-            <Route path="/our-work" element={<PortfolioPage />} />
-            <Route path="/portfolio" element={<LegacyRedirect to="/our-work" />} />
+            <Route path="/our-work" element={<LegacyRedirect to="/services" />} />
+            <Route path="/portfolio" element={<LegacyRedirect to="/services" />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFoundPage />} />

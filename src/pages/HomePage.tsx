@@ -108,11 +108,6 @@ export function HomePage(): JSX.Element {
           eyebrow="Featured Work"
           title="Recent projects from our production floor"
           description="A mix of fabrication, design, and digital delivery engagements across industries."
-          action={
-            <Link to="/our-work" className="secondary-button">
-              View Our Work
-            </Link>
-          }
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {projects.slice(0, 3).map((project) => (
