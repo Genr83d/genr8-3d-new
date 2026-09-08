@@ -39,7 +39,7 @@ export function HomePage(): JSX.Element {
         actions={
           <>
             <Link to="/contact" className="primary-button">
-              Get a Quote
+              Request a Quote
             </Link>
             <Link to="/services" className="secondary-button">
               View Services
@@ -52,7 +52,7 @@ export function HomePage(): JSX.Element {
         metrics={[
           { label: "Projects Delivered", value: "540+" },
           { label: "Average Prototype Turnaround", value: "72 hrs" },
-          { label: "Fabrication Disciplines", value: "5 Core" },
+          { label: "Core Services", value: "5" },
           { label: "Client Satisfaction", value: "98%" },
         ]}
       />
@@ -63,10 +63,27 @@ export function HomePage(): JSX.Element {
           title="Integrated fabrication and digital execution"
           description="From concept modeling to production parts and deployment-ready web platforms."
         />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
+        {[
+          { category: "fabrication", title: "Fabrication Services", description: "CNC routing, 3D printing, and laser engraving for physical parts and finished pieces." },
+          { category: "digital", title: "Digital Services", description: "3D modeling, web development, and hosting for your designs and online presence." },
+        ].map((group) => (
+          <div key={group.category} className="mb-8">
+            <h2 className="mb-2 text-2xl font-semibold text-white">{group.title}</h2>
+            <p className="mb-4 text-sm text-slate-300">{group.description}</p>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {services.filter((service) => service.category === group.category).map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </div>
+          </div>
+        ))}
+        <div className="surface-card">
+          <h2 className="text-2xl font-semibold text-white">Custom Products</h2>
+          <p className="mt-2 text-sm text-slate-300">Order personalised clocks, plaques, gifts, and more, or create your own clock with our Clock Builder.</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link to="/products" className="secondary-button">Browse Products</Link>
+            <Link to="/products/clocks" className="secondary-button">Clock Builder</Link>
+          </div>
         </div>
       </section>
 
@@ -92,8 +109,8 @@ export function HomePage(): JSX.Element {
           title="Recent projects from our production floor"
           description="A mix of fabrication, design, and digital delivery engagements across industries."
           action={
-            <Link to="/portfolio" className="secondary-button">
-              Open Portfolio
+            <Link to="/our-work" className="secondary-button">
+              View Our Work
             </Link>
           }
         />
@@ -120,7 +137,7 @@ export function HomePage(): JSX.Element {
       <CTASection
         title="Ready to move your project into production?"
         description="Share your goals, files, and timeline. We will map the right process and return a clear quote."
-        primaryLabel="Start Quote Request"
+        primaryLabel="Request a Quote"
         primaryTo="/contact"
         secondaryLabel="See Full Services"
         secondaryTo="/services"

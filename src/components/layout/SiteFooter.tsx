@@ -75,20 +75,22 @@ export function SiteFooter(): JSX.Element {
             <Link to="/services" className="hover:text-accentSoft">
               Services
             </Link>
-            <Link to="/gallery" className="hover:text-accentSoft">
-              Product Gallery
+            <Link to="/products" className="hover:text-accentSoft">
+              Products
             </Link>
-            <Link to="/portfolio" className="hover:text-accentSoft">
-              Portfolio
+            <Link to="/our-work" className="hover:text-accentSoft">
+              Our Work
             </Link>
             <a
               href="https://next-gen-academy.genr83d.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-accentSoft"
             >
-              Academy
+              GENR8-3D Academy ↗ (external)
             </a>
             <Link to="/contact" className="hover:text-accentSoft">
-              Quote Request
+              Request a Quote
             </Link>
             <a
               href="https://showcase.genr83d.com/"

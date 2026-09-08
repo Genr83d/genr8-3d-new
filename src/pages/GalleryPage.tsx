@@ -31,16 +31,16 @@ export function GalleryPage(): JSX.Element {
   return (
     <>
       <PageHero
-        eyebrow="Product Gallery"
+        eyebrow="Custom Products"
         title="Products we make in-house"
         description="Clocks, plaques, pins, keyrings, 3D prints, and school furniture built, engraved, and finished on our own machines. Every piece can be personalised, branded, and produced in batches."
         actions={
           <>
             <Link to="/contact" className="primary-button">
-              Request a Product
+              Request a Quote
             </Link>
-            <Link to="/services" className="secondary-button">
-              View Services
+            <Link to="/products/clocks" className="secondary-button">
+              Clock Builder
             </Link>
           </>
         }
@@ -50,7 +50,7 @@ export function GalleryPage(): JSX.Element {
         <SectionHeading
           eyebrow="Browse"
           title="Pick a product line"
-          description="Filter the gallery by category, then open any product for the full detail and options."
+          description="Filter products by category, then open any product for the full detail and options."
         />
         <div className="mb-10 flex flex-wrap gap-2">
           {filters.map((filter) => (
@@ -126,10 +126,10 @@ export function GalleryPage(): JSX.Element {
       <CTASection
         title="Want one of these in your own branding?"
         description="Send us your logo, wording, or artwork and we will quote a single piece or a full production run."
-        primaryLabel="Start Quote Request"
+        primaryLabel="Request a Quote"
         primaryTo="/contact"
         secondaryLabel="Design a Clock"
-        secondaryTo="/clocks"
+        secondaryTo="/products/clocks"
       />
 
       {activeProduct ? (

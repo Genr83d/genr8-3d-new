@@ -104,10 +104,10 @@ export function ProductModal({ product, onClose }: ProductModalProps): JSX.Eleme
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link to="/contact" className="primary-button" onClick={onClose}>
-            Request This Product
+            Request a Quote
           </Link>
           {product.category === 'clocks' ? (
-            <Link to="/clocks" className="secondary-button" onClick={onClose}>
+            <Link to="/products/clocks" className="secondary-button" onClick={onClose}>
               Design Your Own Clock
             </Link>
           ) : null}
