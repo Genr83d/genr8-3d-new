@@ -10,6 +10,8 @@ const NotFoundPage = lazy(async () => ({ default: (await import("./pages/NotFoun
 const ServiceDetailPage = lazy(async () => ({ default: (await import("./pages/ServiceDetailPage")).ServiceDetailPage }));
 const ServicesPage = lazy(async () => ({ default: (await import("./pages/ServicesPage")).ServicesPage }));
 
+const FactoryTourPage = lazy(async () => ({ default: (await import("./pages/FactoryTourPage")).FactoryTourPage }));
+
 const ClockPage = lazy(async () => ({ default: (await import("./pages/ClockPage")).ClockPage }));
 const AdminClockSubmissionsPage = lazy(async () => ({
   default: (await import("./pages/AdminClockSubmissionsPage")).AdminClockSubmissionsPage,
@@ -32,6 +34,7 @@ function App(): JSX.Element {
           <Route path="/products/clocks" element={<ClockPage />} />
           <Route path="/clocks" element={<LegacyRedirect to="/products/clocks" />} />
           <Route path="/admin/clocks" element={<AdminClockSubmissionsPage />} />
+          <Route path="/factory-tour" element={<FactoryTourPage />} />
           <Route path="/products" element={<GalleryPage />} />
           <Route path="/gallery" element={<LegacyRedirect to="/products" />} />
           <Route path="/our-work" element={<LegacyRedirect to="/services" />} />
