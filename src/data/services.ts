@@ -1,4 +1,5 @@
 import type { ProcessStep, Service } from "../types/content";
+import CncImg from "../assets/images/cnc.webp";
 
 export const processSteps: ProcessStep[] = [
   {
@@ -58,12 +59,12 @@ export const services: Service[] = [
     ],
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=1400&q=80",
+        src: CncImg,
         alt: "CNC machine cutting sheet material",
       },
       {
-        src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1400&q=80",
-        alt: "Finished routed wood display panel",
+        src: "/services/cnc-routing/cnc-routed-cabinet-door-furniture-panels.webp",
+        alt: "CNC-routed cabinet door and furniture panels on a workbench",
       },
     ],
   },
@@ -93,12 +94,12 @@ export const services: Service[] = [
     ],
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1400&q=80",
-        alt: "3D printer manufacturing a part",
+        src: "/services/3d-printing/fdm-printer-in-action.webp",
+        alt: "FDM 3D printer building a part with tree supports",
       },
       {
-        src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1400&q=80",
-        alt: "Array of finished 3D printed components",
+        src: "/services/3d-printing/3d-printed-rc-truck.webp",
+        alt: "3D-printed RC truck body mounted on an off-road chassis",
       },
     ],
   },

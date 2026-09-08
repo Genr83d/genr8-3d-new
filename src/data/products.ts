@@ -328,31 +328,22 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "furniture-student-desk",
-    name: "Student Desk & Chair Set",
+    id: "furniture-classroom-chair-writing-desk",
+    name: "Classroom Chair with Writing Desk",
     category: "school-furniture",
     description:
-      "Single-student desk and matching chair built for daily classroom use, with a sealed writing surface and steady frame.",
-    tags: ["Classroom", "Hard-wearing", "Bulk Orders"],
-    options: ["Primary or secondary sizing", "Book shelf under the desktop"],
+      "Classroom chair with an attached writing desk, shaped seat and backrest, and a metal frame for individual student seating.",
+    image: "/products/school-furniture/classroom-chair-writing-desk.webp",
+    tags: ["Classroom", "Attached Desk", "Student Seating"],
   },
   {
-    id: "furniture-classroom-table",
-    name: "Classroom & Exam Table",
+    id: "furniture-classroom-stool",
+    name: "Classroom Stool",
     category: "school-furniture",
     description:
-      "Shared tables cut to your room dimensions for group work, labs, and exam layouts, with rounded safety edges.",
-    tags: ["Custom Size", "Group Seating", "Rounded Edges"],
-    options: ["2, 4, or 6 seater lengths", "Fixed or stackable frame"],
-  },
-  {
-    id: "furniture-storage-unit",
-    name: "Storage & Cubby Unit",
-    category: "school-furniture",
-    description:
-      "Open cubby and shelving units for bags, supplies, and learning materials, finished to match your classroom set.",
-    tags: ["Storage", "Modular", "Schools"],
-    options: ["Wall-mounted or free-standing", "Labelled or open compartments"],
+      "Backless stool with a rounded square seat, metal frame, and footrest for school labs, workshops, and practical learning spaces.",
+    image: "/products/school-furniture/classroom-stool.webp",
+    tags: ["Schools", "Labs & Workshops", "Footrest"],
   },
 ];
 
