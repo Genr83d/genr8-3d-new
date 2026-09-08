@@ -1,5 +1,5 @@
 import { Suspense, lazy, type JSX } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { SiteLayout } from "./components/layout/SiteLayout";
 import { AboutPage } from "./pages/AboutPage";
@@ -16,6 +16,11 @@ const AdminClockSubmissionsPage = lazy(async () => ({
   default: (await import("./pages/AdminClockSubmissionsPage")).AdminClockSubmissionsPage,
 }));
 
+function LegacyRedirect({ to }: { to: string }): JSX.Element {
+  const { search, hash } = useLocation();
+  return <Navigate to={`${to}${search}${hash}`} replace />;
+}
+
 function App(): JSX.Element {
   return (
     <BrowserRouter>
@@ -26,10 +31,13 @@ function App(): JSX.Element {
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
-            <Route path="/clocks" element={<ClockPage />} />
+            <Route path="/products/clocks" element={<ClockPage />} />
+            <Route path="/clocks" element={<LegacyRedirect to="/products/clocks" />} />
             <Route path="/admin/clocks" element={<AdminClockSubmissionsPage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/products" element={<GalleryPage />} />
+            <Route path="/gallery" element={<LegacyRedirect to="/products" />} />
+            <Route path="/our-work" element={<PortfolioPage />} />
+            <Route path="/portfolio" element={<LegacyRedirect to="/our-work" />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFoundPage />} />
