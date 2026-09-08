@@ -136,12 +136,12 @@ export const services: Service[] = [
     ],
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1581092588421-8b6ef1f045b4?auto=format&fit=crop&w=1400&q=80",
-        alt: "Laser machine engraving metal plate",
+        src: "/services/laser-engraving/laser-cut-acrylic-sheet.webp",
+        alt: "Laser-cut acrylic sheet with circular cutouts on the machine bed",
       },
       {
-        src: "https://images.unsplash.com/photo-1582582494700-1f9f6fbd4f2d?auto=format&fit=crop&w=1400&q=80",
-        alt: "Close-up of engraved branded product",
+        src: "/services/laser-engraving/personalised-engraved-wooden-boards.webp",
+        alt: "Personalised wooden boards engraved with family names and Jamaica artwork",
       },
     ],
   },
