@@ -1,3 +1,4 @@
+import { ContentSkeleton } from "../components/ui/Skeleton";
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type JSX } from "react";
 import {
   GoogleAuthProvider,
@@ -434,7 +435,7 @@ export function ClockPage(): JSX.Element {
               When you click save, you will be prompted to sign in with Google if needed.
             </p>
 
-            {isAuthLoading ? <p className="mt-3 text-sm text-slate-200">Checking session...</p> : null}
+            {isAuthLoading ? <ContentSkeleton label="Checking session" rows={2} /> : null}
 
             {authMessage ? (
               <p className="mt-3 rounded-lg border border-support/50 bg-support/20 px-3 py-2 text-xs text-white">{authMessage}</p>

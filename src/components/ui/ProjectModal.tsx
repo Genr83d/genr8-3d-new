@@ -1,3 +1,4 @@
+import { LoadingImage } from './LoadingImage'
 import { useEffect, type JSX } from 'react'
 import type { Project } from '../../types/content'
 import { CloseIcon } from './icons'
@@ -49,7 +50,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps): JSX.Eleme
             <CloseIcon className="h-4 w-4" />
           </button>
         </div>
-        <img src={project.image} alt={project.title} className="mt-6 h-72 w-full rounded-xl object-cover" />
+        <LoadingImage src={project.image} alt={project.title} frameClass="mt-6 h-72 w-full rounded-xl" loading="eager" />
         <p className="mt-6 text-sm text-slate-300">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tags.map((tag) => (

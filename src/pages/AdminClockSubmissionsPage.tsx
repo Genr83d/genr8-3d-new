@@ -1,3 +1,4 @@
+import { ContentSkeleton } from "../components/ui/Skeleton";
 import { useEffect, useMemo, useState, type FormEvent, type JSX } from "react";
 import {
   onIdTokenChanged,
@@ -239,7 +240,7 @@ export function AdminClockSubmissionsPage(): JSX.Element {
             <p className="rounded-lg border border-red-500/50 bg-red-500/20 px-3 py-2 text-xs text-red-300">{authError}</p>
           ) : null}
 
-          {authLoading ? <p className="text-sm text-slate-200">Checking session...</p> : null}
+          {authLoading ? <ContentSkeleton label="Checking session" rows={2} /> : null}
 
           {!authLoading && !user ? (
             <form className="grid max-w-md gap-3" onSubmit={(event) => void onLogin(event)}>
@@ -340,7 +341,7 @@ export function AdminClockSubmissionsPage(): JSX.Element {
               </div>
             </div>
 
-            {loadingSubmissions ? <p className="text-sm text-slate-200">Loading submissions...</p> : null}
+            {loadingSubmissions ? <ContentSkeleton label="Loading submissions" rows={6} /> : null}
 
             {submissionError ? (
               <p className="rounded-lg border border-red-500/50 bg-red-500/20 px-3 py-2 text-xs text-red-300">{submissionError}</p>

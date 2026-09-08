@@ -1,4 +1,5 @@
-import { useState, type JSX } from 'react'
+import type { JSX } from 'react'
+import { LoadingImage } from './LoadingImage'
 import type { ProductCategoryId } from '../../types/content'
 import {
   ClockIcon,
@@ -49,22 +50,7 @@ export function ProductImage({
   fit = 'cover',
   className = '',
 }: ProductImageProps): JSX.Element {
-  const [failedSrc, setFailedSrc] = useState<string | null>(null)
-  const fitClass = fit === 'contain' ? 'object-contain' : 'object-cover'
-
-  if (src && failedSrc !== src) {
-    return (
-      <img
-        src={src}
-        alt={alt}
-        className={`${frameClass} w-full ${fitClass} ${className}`}
-        loading="lazy"
-        onError={() => setFailedSrc(src)}
-      />
-    )
-  }
-
-  return (
+  const placeholder = (
     <div
       role="img"
       aria-label={`${alt} - photo coming soon`}
@@ -79,4 +65,8 @@ export function ProductImage({
       </p>
     </div>
   )
+
+  return src ? (
+    <LoadingImage src={src} alt={alt} frameClass={`${frameClass} w-full`} fit={fit} className={className} fallback={placeholder} />
+  ) : placeholder
 }
