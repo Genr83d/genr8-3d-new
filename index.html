@@ -9,10 +9,48 @@
   <link rel="icon" href="src/assets/icons/favicon/facivon.ico" type="image/x-icon">
   <meta name="author" content="Khamisi Lawrence" />
   <title>GENR8-3D | Fabrication, Digital and Website Solutions</title>
+  <style>
+    /* Available before the app's JavaScript and stylesheet finish downloading. */
+    .boot-shell { min-height: 100vh; background: #080b16; color: #e2e8f0; }
+    body:has(.boot-shell) { margin: 0; }
+    .boot-inner { max-width: 1200px; margin: auto; padding: 24px; }
+    .boot-nav { display: flex; align-items: center; justify-content: space-between; padding-bottom: 36px; }
+    .boot-block { border-radius: 8px; background: #263044; animation: boot-pulse 2s ease-in-out infinite; }
+    .boot-hero { padding: 40px; border: 1px solid #334155; border-radius: 24px; }
+    .boot-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
+    .boot-card { height: 320px; border-radius: 16px; }
+    .boot-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    @keyframes boot-pulse { 50% { opacity: .5; } }
+    @media (max-width: 767px) { .boot-grid { grid-template-columns: 1fr; } .boot-hero { padding: 24px; } }
+    @media (prefers-reduced-motion: reduce) { .boot-block { animation: none; } }
+  </style>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div class="boot-shell" role="status">
+      <span class="boot-label">Loading GENR8-3D</span>
+      <div class="boot-inner" aria-hidden="true">
+        <div class="boot-nav">
+          <div class="boot-block" style="width:112px;height:40px"></div>
+          <div class="boot-block" style="width:35%;height:32px"></div>
+        </div>
+        <div class="boot-hero">
+          <div class="boot-block" style="width:128px;height:24px"></div>
+          <div class="boot-block" style="width:75%;height:48px;margin-top:20px"></div>
+          <div class="boot-block" style="width:90%;height:16px;margin-top:24px"></div>
+          <div class="boot-block" style="width:65%;height:16px;margin-top:12px"></div>
+          <div class="boot-block" style="width:144px;height:44px;margin-top:32px"></div>
+        </div>
+        <div class="boot-grid">
+          <div class="boot-block boot-card"></div>
+          <div class="boot-block boot-card"></div>
+          <div class="boot-block boot-card"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <noscript><style>.boot-shell { display: none; }</style><p>Please enable JavaScript to view GENR8-3D.</p></noscript>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
