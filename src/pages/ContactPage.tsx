@@ -27,7 +27,7 @@ export function ContactPage(): JSX.Element {
           <dl className="mt-4 space-y-4 text-sm text-slate-300">
             <div>
               <dt className="font-semibold text-white">Hours</dt>
-              <dd>Mon-Fri: 8:00 AM - 5:00 PM</dd>
+              <dd>Mon-Fri: 9:00 AM - 5:00 PM</dd>
               <dd>Weekends: Closed</dd>
             </div>
             <div>

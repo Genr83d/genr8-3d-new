@@ -104,7 +104,7 @@ export function SiteFooter(): JSX.Element {
             Contact
           </h2>
           <p className="mt-3 text-sm text-slate-300">
-            Mon-Fri: 8:00 AM - 5:00 PM
+            Mon-Fri: 9:00 AM - 5:00 PM
           </p>
           <p className="mt-1 text-sm text-slate-300">contact@genr83d.com</p>
           <address className="mt-1 text-sm text-slate-300 not-italic">
