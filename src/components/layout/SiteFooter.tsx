@@ -1,5 +1,6 @@
 import type { JSX } from "react";
 import { Link } from "react-router-dom";
+import { CopyableEmail } from "../ui/CopyableEmail";
 import LogoWide from "../../assets/icons/logos/genr8-logo-wide.svg";
 import FacebookIcon from "../../assets/icons/social/facebook.svg";
 import LinkedInIcon from "../../assets/icons/social/linkedin.svg";
@@ -106,7 +107,9 @@ export function SiteFooter(): JSX.Element {
           <p className="mt-3 text-sm text-slate-300">
             Mon-Fri: 9:00 AM - 5:00 PM
           </p>
-          <p className="mt-1 text-sm text-slate-300">contact@genr83d.com</p>
+          <p className="mt-1 text-sm text-slate-300">
+            <CopyableEmail email="contact@genr83d.com" />
+          </p>
           <address className="mt-1 text-sm text-slate-300 not-italic">
             Pembrooke Commercial Complex
             <br />
