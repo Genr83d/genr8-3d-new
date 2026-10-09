@@ -10,11 +10,6 @@ const NotFoundPage = lazy(async () => ({ default: (await import("./pages/NotFoun
 const ServiceDetailPage = lazy(async () => ({ default: (await import("./pages/ServiceDetailPage")).ServiceDetailPage }));
 const ServicesPage = lazy(async () => ({ default: (await import("./pages/ServicesPage")).ServicesPage }));
 
-const ClockPage = lazy(async () => ({ default: (await import("./pages/ClockPage")).ClockPage }));
-const AdminClockSubmissionsPage = lazy(async () => ({
-  default: (await import("./pages/AdminClockSubmissionsPage")).AdminClockSubmissionsPage,
-}));
-
 function LegacyRedirect({ to }: { to: string }): JSX.Element {
   const { search, hash } = useLocation();
   return <Navigate to={`${to}${search}${hash}`} replace />;
@@ -29,9 +24,7 @@ function App(): JSX.Element {
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
-          <Route path="/products/clocks" element={<ClockPage />} />
-          <Route path="/clocks" element={<LegacyRedirect to="/products/clocks" />} />
-          <Route path="/admin/clocks" element={<AdminClockSubmissionsPage />} />
+          <Route path="/clocks" element={<LegacyRedirect to="/products" />} />
           <Route path="/products" element={<GalleryPage />} />
           <Route path="/gallery" element={<LegacyRedirect to="/products" />} />
           <Route path="/our-work" element={<LegacyRedirect to="/services" />} />

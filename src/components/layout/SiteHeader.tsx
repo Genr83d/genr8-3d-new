@@ -67,10 +67,7 @@ export function SiteHeader(): JSX.Element {
                     ))}
                   </div>
                 )) : (
-                  <>
-                    <Link to="/products" onClick={closeMenus} className="block py-2 text-sm text-slate-300 hover:text-white">Custom Products</Link>
-                    <NavLink to="/products/clocks" onClick={closeMenus} className={({ isActive }) => `block py-2 text-sm hover:text-white ${isActive ? "text-accentSoft" : "text-slate-300"}`}>Clock Builder</NavLink>
-                  </>
+                  <Link to="/products" onClick={closeMenus} className="block py-2 text-sm text-slate-300 hover:text-white">Custom Products</Link>
                 )}
               </div>
             )}

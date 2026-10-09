@@ -106,11 +106,6 @@ export function ProductModal({ product, onClose }: ProductModalProps): JSX.Eleme
           <Link to="/contact" className="primary-button" onClick={onClose}>
             Request a Quote
           </Link>
-          {product.category === 'clocks' ? (
-            <Link to="/products/clocks" className="secondary-button" onClick={onClose}>
-              Design Your Own Clock
-            </Link>
-          ) : null}
         </div>
       </div>
     </div>

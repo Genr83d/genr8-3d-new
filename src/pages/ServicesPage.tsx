@@ -48,10 +48,9 @@ export function ServicesPage(): JSX.Element {
         ))}
         <div className="surface-card">
           <h2 className="text-2xl font-semibold text-white">Custom Products</h2>
-          <p className="mt-2 text-sm text-slate-300">Order personalised clocks, plaques, gifts, and more, or create your own clock with our Clock Builder.</p>
+          <p className="mt-2 text-sm text-slate-300">Order personalised clocks, plaques, gifts, and more.</p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link to="/products" className="secondary-button">Browse Products</Link>
-            <Link to="/products/clocks" className="secondary-button">Clock Builder</Link>
           </div>
         </div>
       </section>

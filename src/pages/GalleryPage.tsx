@@ -39,9 +39,6 @@ export function GalleryPage(): JSX.Element {
             <Link to="/contact" className="primary-button">
               Request a Quote
             </Link>
-            <Link to="/products/clocks" className="secondary-button">
-              Clock Builder
-            </Link>
           </>
         }
       />
@@ -128,8 +125,6 @@ export function GalleryPage(): JSX.Element {
         description="Send us your logo, wording, or artwork and we will quote a single piece or a full production run."
         primaryLabel="Request a Quote"
         primaryTo="/contact"
-        secondaryLabel="Design a Clock"
-        secondaryTo="/products/clocks"
       />
 
       {activeProduct ? (

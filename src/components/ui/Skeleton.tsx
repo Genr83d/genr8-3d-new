@@ -16,7 +16,7 @@ export function ContentSkeleton({ label = 'Loading content', rows = 3 }: { label
 }
 
 export function PageSkeleton({ pathname = '/' }: { pathname?: string }): JSX.Element {
-  const isForm = pathname === '/contact' || pathname === '/products/clocks' || pathname === '/admin/clocks'
+  const isForm = pathname === '/contact'
   const isDetail = pathname.startsWith('/services/') || pathname === '/about'
 
   return (
