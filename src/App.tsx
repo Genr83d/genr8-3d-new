@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-route
 import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { SiteLayout } from "./components/layout/SiteLayout";
 const AboutPage = lazy(async () => ({ default: (await import("./pages/AboutPage")).AboutPage }));
+const DigitalSolutionsPage = lazy(async () => ({ default: (await import("./pages/DigitalSolutionsPage")).DigitalSolutionsPage }));
 const ContactPage = lazy(async () => ({ default: (await import("./pages/ContactPage")).ContactPage }));
 const GalleryPage = lazy(async () => ({ default: (await import("./pages/GalleryPage")).GalleryPage }));
 const HomePage = lazy(async () => ({ default: (await import("./pages/HomePage")).HomePage }));
@@ -24,6 +25,10 @@ function App(): JSX.Element {
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path="/services/web-development-hosting" element={<LegacyRedirect to="/digital-solutions" />} />
+          <Route path="/digital-solutions" element={<DigitalSolutionsPage />} />
+          <Route path="/digital" element={<LegacyRedirect to="/digital-solutions" />} />
+          <Route path="/solutions" element={<LegacyRedirect to="/digital-solutions" />} />
           <Route path="/clocks" element={<LegacyRedirect to="/products" />} />
           <Route path="/products" element={<GalleryPage />} />
           <Route path="/gallery" element={<LegacyRedirect to="/products" />} />

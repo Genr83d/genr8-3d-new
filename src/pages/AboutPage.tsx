@@ -32,11 +32,14 @@ export function AboutPage(): JSX.Element {
       <PageHero
         eyebrow="About GENR8-3D"
         title="A modern maker studio built for precision and momentum"
-        description="GENR8-3D started as a local fabrication lab and evolved into a full-service production partner that combines physical manufacturing with digital delivery and training."
+        description="GENR8-3D started as a local fabrication lab and evolved into a full-service production partner that combines physical manufacturing with digital solutions and training."
         actions={
           <>
             <Link to="/contact" className="primary-button">
               Request a Quote
+            </Link>
+            <Link to="/digital-solutions" className="secondary-button">
+              Digital Solutions
             </Link>
             <a
               href="https://next-gen-academy.genr83d.com/"

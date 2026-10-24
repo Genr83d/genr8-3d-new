@@ -7,6 +7,7 @@ import LogoWide from "../../assets/icons/logos/genr8-logo-wide.svg";
 const links = [
   { to: "/services", label: "Services" },
   { to: "/products", label: "Products" },
+  { to: "/digital-solutions", label: "Digital Solutions" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
@@ -54,8 +55,7 @@ export function SiteHeader(): JSX.Element {
               <div id={`${mobile ? "mobile" : "desktop"}-${link.label}`} hidden={submenu !== link.to}
                 className={`${mobile ? "ml-3" : "absolute left-0 top-full w-72 shadow-xl"} rounded-lg border border-accentSoft/25 bg-black p-4`}>
                 {link.label === "Services" ? [
-                  { category: "fabrication", label: "Fabrication Services" },
-                  { category: "digital", label: "Digital Services" },
+                  { category: "fabrication", label: "Fabrication & Design Services" },
                 ].map((group) => (
                   <div key={group.category} className="mb-3 last:mb-0">
                     <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">{group.label}</p>
