@@ -155,7 +155,7 @@ export const services: Service[] = [
       "Parametric and production-focused modeling for prototypes, fixtures, and custom mechanical concepts.",
     fullDescription:
       "Our modeling team translates ideas into clean, manufacturable digital assets. We build from sketches, scan references, or existing drawings and output files optimized for CNC, 3D printing, and presentation.",
-    category: "digital",
+    category: "fabrication",
     icon: "model",
     useCases: [
       "Concept to CAD conversion",
@@ -178,42 +178,6 @@ export const services: Service[] = [
       {
         src: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1400&q=80",
         alt: "Technical CAD drawing and digital model",
-      },
-    ],
-  },
-  {
-    id: "web-development-hosting",
-    slug: "web-development-hosting",
-    name: "Web Development & Hosting",
-    tagline:
-      "Digital platforms that support fabrication businesses and training pipelines",
-    shortDescription:
-      "Modern websites, booking flows, and hosting support for makers, studios, and technical training organizations.",
-    fullDescription:
-      "Beyond physical production, GENR8-3D delivers high-performance web builds that help teams showcase capabilities, capture leads, and scale operations. We handle UX, frontend implementation, and managed hosting workflows.",
-    category: "digital",
-    icon: "web",
-    useCases: [
-      "Service business websites",
-      "Course enrollment pages",
-      "Portfolio systems",
-      "Quote request workflows",
-    ],
-    materials: ["Digital deliverables only"],
-    capabilities: [
-      "Responsive frontend engineering",
-      "CMS and static content strategies",
-      "Performance optimization",
-      "Managed hosting guidance",
-    ],
-    gallery: [
-      {
-        src: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=80",
-        alt: "Developer workstation with web UI prototypes",
-      },
-      {
-        src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80",
-        alt: "Code editor and design system for modern website",
       },
     ],
   },

@@ -77,6 +77,10 @@
     @apply inline-flex items-center justify-center rounded-lg border border-accentSoft/70 bg-accent px-5 py-2.5 text-sm font-semibold text-text transition duration-300 hover:bg-accentSoft hover:text-base hover:text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
   }
 
+  .primary-button-lg {
+    @apply inline-flex items-center justify-center rounded-xl border border-accentSoft/80 bg-accent px-8 py-4 text-[1rem] font-semibold text-text shadow-glow transition duration-300 hover:bg-accentSoft hover:text-base sm:text-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
+  }
+
   .secondary-button {
     @apply inline-flex items-center justify-center rounded-lg border border-accentSoft/55 bg-black/60 px-5 py-2.5 text-sm font-semibold text-accentSoft transition duration-300 hover:border-accentSoft hover:bg-accentSoft/20 hover:text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentSoft;
   }

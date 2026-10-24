@@ -31,7 +31,7 @@ export function CTASection({
         </div>
         <div className="mt-6 flex flex-wrap gap-3 lg:mt-0">
           {primaryTo.startsWith("http") ? (
-            <a href={primaryTo} target="_blank" className="primary-button">
+            <a href={primaryTo} target="_blank" rel="noopener noreferrer" className="primary-button">
               {primaryLabel}
             </a>
           ) : (
@@ -44,6 +44,7 @@ export function CTASection({
               <a
                 href={secondaryTo}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="secondary-button"
               >
                 {secondaryLabel}

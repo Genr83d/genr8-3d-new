@@ -2,6 +2,7 @@ import type { JSX } from 'react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/sections/PageHero'
 import { CTASection } from '../components/sections/CTASection'
+import { DigitalSolutionsBanner } from '../components/sections/DigitalSolutionsBanner'
 import { ProcessFlow } from '../components/ui/ProcessFlow'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { ServiceCard } from '../components/ui/ServiceCard'
@@ -12,7 +13,7 @@ export function ServicesPage(): JSX.Element {
     <>
       <PageHero
         eyebrow="Main Services"
-        title="Fabrication, design, and digital services under one workflow"
+        title="Fabrication and design services under one workflow"
         description="Select a specialized service or combine multiple capabilities into a single production track with unified quality control."
         actions={
           <>
@@ -33,8 +34,7 @@ export function ServicesPage(): JSX.Element {
           description="Each service includes dedicated details on use cases, material constraints, and production guidance."
         />
         {[
-          { category: "fabrication", title: "Fabrication Services", description: "CNC routing, 3D printing, and laser engraving for physical parts and finished pieces." },
-          { category: "digital", title: "Digital Services", description: "3D modeling, web development, and hosting for your designs and online presence." },
+          { category: "fabrication", title: "Fabrication & Design Services", description: "CNC routing, 3D printing, laser engraving, and 3D modeling for physical parts and finished pieces." },
         ].map((group) => (
           <div key={group.category} className="mb-8">
             <h2 className="mb-2 text-2xl font-semibold text-white">{group.title}</h2>
@@ -46,6 +46,7 @@ export function ServicesPage(): JSX.Element {
             </div>
           </div>
         ))}
+        <DigitalSolutionsBanner />
         <div className="surface-card">
           <h2 className="text-2xl font-semibold text-white">Custom Products</h2>
           <p className="mt-2 text-sm text-slate-300">Order personalised clocks, plaques, gifts, and more.</p>
@@ -66,7 +67,7 @@ export function ServicesPage(): JSX.Element {
 
       <CTASection
         title="Need a blended service package?"
-        description="Many projects combine modeling, fabrication, and digital delivery. We can scope them as one integrated quote."
+        description="Many projects combine modeling, fabrication, and finishing. We can scope them as one integrated quote."
         primaryLabel="Request a Quote"
         primaryTo="/contact"
       />

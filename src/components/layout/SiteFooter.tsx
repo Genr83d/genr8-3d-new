@@ -14,7 +14,7 @@ export function SiteFooter(): JSX.Element {
         <section>
           <img src={LogoWide} alt="GENR8-3D Logo" className="w-32" />
           <p className="mt-4 text-sm text-slate-300">
-            Precision fabrication, technical design, and digital delivery for
+            Precision fabrication, technical design, and digital solutions for
             teams that need production-ready output.
           </p>
           <div className="mt-4 flex gap-3">
@@ -78,6 +78,9 @@ export function SiteFooter(): JSX.Element {
             </Link>
             <Link to="/products" className="hover:text-accentSoft">
               Products
+            </Link>
+            <Link to="/digital-solutions" className="hover:text-accentSoft">
+              Digital Solutions
             </Link>
             <a
               href="https://next-gen-academy.genr83d.com/"

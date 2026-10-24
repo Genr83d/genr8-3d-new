@@ -15,6 +15,7 @@ Production-style React + Tailwind website for GENR8-3D with a futuristic maker-l
 - `/services` Services
 - `/services/:slug` Service Detail
 - `/products` Product Gallery (clocks, plaques, pins, keyrings, school furniture)
+- `/digital-solutions` Digital Solutions (marketing page linking to https://solutions.genr83d.com/)
 - `/portfolio` Portfolio
 - `/about` About
 - `/contact` Contact + Quote Request

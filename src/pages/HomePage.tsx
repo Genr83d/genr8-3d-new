@@ -10,6 +10,7 @@ import { TestimonialCard } from "../components/ui/TestimonialCard";
 import { PageHero } from "../components/sections/PageHero";
 import { CTASection } from "../components/sections/CTASection";
 import { MetricStrip } from "../components/sections/MetricStrip";
+import { DigitalSolutionsBanner } from "../components/sections/DigitalSolutionsBanner";
 
 const whyItems = [
   {
@@ -25,7 +26,7 @@ const whyItems = [
   {
     title: "Local Build + Modern Stack",
     description:
-      "Hands-on fabrication paired with digital delivery, web presence, and technical training support.",
+      "Hands-on fabrication paired with custom software, automation, and technical training support.",
   },
 ];
 
@@ -52,7 +53,7 @@ export function HomePage(): JSX.Element {
         metrics={[
           { label: "Projects Delivered", value: "540+" },
           { label: "Average Prototype Turnaround", value: "72 hrs" },
-          { label: "Core Services", value: "5" },
+          { label: "Core Services", value: "4" },
           { label: "Client Satisfaction", value: "98%" },
         ]}
       />
@@ -60,12 +61,11 @@ export function HomePage(): JSX.Element {
       <section className="section-shell">
         <SectionHeading
           eyebrow="Core Services"
-          title="Integrated fabrication and digital execution"
-          description="From concept modeling to production parts and deployment-ready web platforms."
+          title="Integrated fabrication, design, and digital solutions"
+          description="From concept modeling to production parts, plus custom software that runs your operations."
         />
         {[
-          { category: "fabrication", title: "Fabrication Services", description: "CNC routing, 3D printing, and laser engraving for physical parts and finished pieces." },
-          { category: "digital", title: "Digital Services", description: "3D modeling, web development, and hosting for your designs and online presence." },
+          { category: "fabrication", title: "Fabrication & Design Services", description: "CNC routing, 3D printing, laser engraving, and 3D modeling for physical parts and finished pieces." },
         ].map((group) => (
           <div key={group.category} className="mb-8">
             <h2 className="mb-2 text-2xl font-semibold text-white">{group.title}</h2>
@@ -77,6 +77,7 @@ export function HomePage(): JSX.Element {
             </div>
           </div>
         ))}
+        <DigitalSolutionsBanner />
         <div className="surface-card">
           <h2 className="text-2xl font-semibold text-white">Custom Products</h2>
           <p className="mt-2 text-sm text-slate-300">Order personalised clocks, plaques, gifts, and more.</p>
