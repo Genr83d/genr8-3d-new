@@ -20,6 +20,12 @@ export const productCategories: ProductCategory[] = [
       "Award, recognition, and signage plaques in wood and acrylic with crisp engraved detail.",
   },
   {
+    id: "signs",
+    label: "Signs",
+    description:
+      "Custom business, reception, house, and office signs with raised or engraved lettering and your own branding.",
+  },
+  {
     id: "pins",
     label: "Pins",
     description:
@@ -39,9 +45,9 @@ export const productCategories: ProductCategory[] = [
   },
   {
     id: "school-furniture",
-    label: "School Furniture",
+    label: "Furniture",
     description:
-      "Hard-wearing classroom furniture built to order for schools, training rooms, and learning centres.",
+      "Custom wooden bed frames and hard-wearing classroom furniture, built to order for homes, schools, and learning spaces.",
   },
 ];
 
@@ -121,12 +127,14 @@ export const products: Product[] = [
   },
   {
     id: "plaque-house-sign",
-    name: "House & Office Sign",
-    category: "plaques",
+    name: "House & Business Signs",
+    category: "signs",
     description:
-      "Weather-ready name and number signage cut to your dimensions with raised or engraved lettering.",
-    tags: ["Signage", "Outdoor", "Custom Size"],
-    options: ["Raised or engraved lettering", "Painted or natural finish"],
+      "Custom name, number, and business signs with raised or engraved lettering, made to suit your wording and branding.",
+    image: "/products/signs/fiwi-shipping-sign.webp",
+    imageSrcSet: "/products/signs/fiwi-shipping-sign-480.webp 480w, /products/signs/fiwi-shipping-sign-800.webp 800w, /products/signs/fiwi-shipping-sign.webp 1206w",
+    tags: ["Signage", "Raised Lettering", "Custom Size"],
+    options: ["Your wording and branding", "Raised or engraved lettering", "Custom dimensions"],
   },
   {
     id: "pin-prefect-badge",
@@ -326,6 +334,16 @@ export const products: Product[] = [
       "Embossed lettering on the lid",
       "Two-colour body and lid",
     ],
+  },
+  {
+    id: "furniture-cedar-bed",
+    name: "Carved Cedar Bed Frame",
+    category: "school-furniture",
+    description:
+      "Four-post wooden bed frame with engraved headboard, footboard, and side panels, shown in Jamaican cedar with tree motifs and decorative lettering.",
+    image: "/products/furniture/cedar-bed-front.webp",
+    imageSrcSet: "/products/furniture/cedar-bed-front-480.webp 480w, /products/furniture/cedar-bed-front-800.webp 800w, /products/furniture/cedar-bed-front.webp 1206w",
+    tags: ["Jamaican Cedar", "Carved Detail", "Bed Frame"],
   },
   {
     id: "furniture-classroom-chair-writing-desk",

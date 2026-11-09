@@ -3,6 +3,8 @@ import { Skeleton } from './Skeleton'
 
 type LoadingImageProps = {
   src: string
+  srcSet?: string
+  sizes?: string
   alt: string
   frameClass: string
   className?: string
@@ -16,7 +18,7 @@ export function LoadingImage(props: LoadingImageProps): JSX.Element {
   return <ImageWithState key={props.src} {...props} />
 }
 
-function ImageWithState({ src, alt, frameClass, className = '', fit = 'cover', loading = 'lazy', fallback }: LoadingImageProps): JSX.Element {
+function ImageWithState({ src, srcSet, sizes, alt, frameClass, className = '', fit = 'cover', loading = 'lazy', fallback }: LoadingImageProps): JSX.Element {
   const [status, setStatus] = useState<'loading' | 'loaded' | 'error'>('loading')
 
   if (status === 'error') {
@@ -32,6 +34,8 @@ function ImageWithState({ src, alt, frameClass, className = '', fit = 'cover', l
       {status === 'loading' && <Skeleton className="absolute inset-0 h-full w-full rounded-none" />}
       <img
         src={src}
+        srcSet={srcSet}
+        sizes={sizes}
         alt={alt}
         loading={loading}
         decoding="async"

@@ -18,11 +18,19 @@ const categories: { id: GalleryCategory; label: string }[] = [
   { id: "keyrings", label: "Keyrings" },
   { id: "3d-prints", label: "3D Prints" },
   { id: "plaques", label: "Plaques" },
-  { id: "school-furniture", label: "Desk & Chairs" },
+  { id: "signs", label: "Signs" },
+  { id: "school-furniture", label: "Furniture" },
   { id: "other", label: "Other" },
 ];
 
 const untitledProductImages: GalleryImage[] = [
+  {
+    id: "photo-cedar-bed-angle",
+    category: "school-furniture",
+    src: "/products/furniture/cedar-bed-angle.webp",
+    srcSet: "/products/furniture/cedar-bed-angle-480.webp 480w, /products/furniture/cedar-bed-angle-800.webp 800w, /products/furniture/cedar-bed-angle.webp 1206w",
+    alt: "Angled view of a carved Jamaican cedar bed frame in a neutral studio setting",
+  },
   {
     id: "photo-cabinet-front",
     category: "other",
@@ -92,6 +100,7 @@ export function ImageGalleryPage(): JSX.Element {
                 id: product.id,
                 category: product.category,
                 src: product.image,
+                srcSet: product.imageSrcSet,
                 alt: product.name,
               },
             ]
@@ -162,7 +171,7 @@ export function ImageGalleryPage(): JSX.Element {
               alt={image.alt}
               loading="lazy"
               decoding="async"
-              className="aspect-square w-full object-cover"
+              className={`aspect-square w-full ${image.category === "signs" ? "bg-black/50 object-contain" : "object-cover"}`}
             />
           </div>
         ))}

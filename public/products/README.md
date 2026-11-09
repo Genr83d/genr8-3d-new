@@ -6,8 +6,8 @@ product entry at it in [`src/data/products.ts`](../../src/data/products.ts).
 ## Steps
 
 1. Save the photo as `public/products/<category>/<file>.webp`
-   (product categories: `clocks`, `plaques`, `pins`, `keyrings`, `3d-prints`,
-   `school-furniture`; image-only items without a catalog title use `other`).
+   (product folders: `clocks`, `plaques`, `signs`, `pins`, `keyrings`, `3d-prints`,
+   `school-furniture`, `furniture`; image-only items without a catalog title use `other`).
 2. In `src/data/products.ts`, add the `image` field to that product:
 
    ```ts
@@ -29,6 +29,13 @@ so the gallery stays presentable while photos are outstanding.
 For products without a title in the catalog, add the WebP path and a short alt
 text to `untitledProductImages` in
 [`src/pages/ImageGalleryPage.tsx`](../../src/pages/ImageGalleryPage.tsx).
+
+For responsive product photos, add `imageSrcSet` with the actual file widths
+alongside `image` in the product entry. Use `-480.webp` and `-800.webp` copies
+when the source is large enough. The Furniture category retains the
+`school-furniture` ID so existing category links keep working; bed photos live
+in `public/products/furniture/`. Signs have their own category and are displayed
+without cropping their lettering.
 
 ## Filenames the gallery is already expecting
 

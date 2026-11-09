@@ -18,7 +18,7 @@ type ProductCategoryIconProps = {
 
 export function ProductCategoryIcon({ category, className }: ProductCategoryIconProps): JSX.Element {
   if (category === 'clocks') return <ClockIcon className={className} />
-  if (category === 'plaques') return <PlaqueIcon className={className} />
+  if (category === 'plaques' || category === 'signs') return <PlaqueIcon className={className} />
   if (category === 'pins') return <PinIcon className={className} />
   if (category === 'keyrings') return <KeyringIcon className={className} />
   if (category === '3d-prints') return <PrintedPartIcon className={className} />
@@ -27,6 +27,8 @@ export function ProductCategoryIcon({ category, className }: ProductCategoryIcon
 
 type ProductImageProps = {
   src?: string
+  srcSet?: string
+  sizes?: string
   alt: string
   category: ProductCategoryId
   /** Tailwind sizing classes for the frame, e.g. "aspect-square" or "h-80". */
@@ -44,6 +46,8 @@ type ProductImageProps = {
  */
 export function ProductImage({
   src,
+  srcSet,
+  sizes,
   alt,
   category,
   frameClass = 'aspect-square',
@@ -67,6 +71,6 @@ export function ProductImage({
   )
 
   return src ? (
-    <LoadingImage src={src} alt={alt} frameClass={`${frameClass} w-full`} fit={fit} className={className} fallback={placeholder} />
+    <LoadingImage src={src} srcSet={srcSet} sizes={sizes} alt={alt} frameClass={`${frameClass} w-full`} fit={fit} className={className} fallback={placeholder} />
   ) : placeholder
 }

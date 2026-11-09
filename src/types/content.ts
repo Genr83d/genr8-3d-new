@@ -41,6 +41,7 @@ export interface Project {
 export type ProductCategoryId =
   | 'clocks'
   | 'plaques'
+  | 'signs'
   | 'pins'
   | 'keyrings'
   | '3d-prints'
@@ -61,6 +62,8 @@ export interface Product {
   description: string
   /** Public path to the product photo, e.g. "/products/clocks/mahogany-round.webp". */
   image?: string
+  /** Responsive copies of the same photo, with width descriptors. */
+  imageSrcSet?: string
   tags: string[]
   options?: string[]
 }
