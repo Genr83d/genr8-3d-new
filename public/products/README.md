@@ -34,8 +34,10 @@ For responsive product photos, add `imageSrcSet` with the actual file widths
 alongside `image` in the product entry. Use `-480.webp` and `-800.webp` copies
 when the source is large enough. The Furniture category retains the
 `school-furniture` ID so existing category links keep working; bed photos live
-in `public/products/furniture/`. Signs have their own category and are displayed
-without cropping their lettering.
+in `public/products/furniture/`. Signs have their own category. Prepare wide
+signs on a square studio background before exporting so the gallery fills each
+tile while preserving the complete sign and its lettering. Keep the product's
+original proportions; never stretch it to fill the square.
 
 ## Filenames the gallery is already expecting
 
@@ -82,7 +84,9 @@ convert original.jpg -resize '1400x1400>' -quality 82 \
 
 ## Photo guidelines
 
-- Landscape orientation, roughly 3:2 - cards crop to a fixed height.
+- Prefer square compositions for the square catalog and photo-gallery tiles.
+  Give wide or tall products enough studio background to keep the full subject
+  visible. Preserve lettering, logos, and product proportions.
 - Use a sharp original at 1200-1600px wide when possible; avoid enlarging a
   small source photo if it makes the product look soft or pixelated.
 - Prefer `.webp` and keep files under ~300KB.

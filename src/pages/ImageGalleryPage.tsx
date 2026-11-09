@@ -25,6 +25,13 @@ const categories: { id: GalleryCategory; label: string }[] = [
 
 const untitledProductImages: GalleryImage[] = [
   {
+    id: "photo-panelled-cabinet-detail",
+    category: "school-furniture",
+    src: "/products/furniture/panelled-cabinet-detail.webp",
+    srcSet: "/products/furniture/panelled-cabinet-detail-480.webp 480w, /products/furniture/panelled-cabinet-detail.webp 710w",
+    alt: "Close-up of a light panelled cabinet door, dark frame, and open shelves in a neutral studio setting",
+  },
+  {
     id: "photo-cedar-bed-angle",
     category: "school-furniture",
     src: "/products/furniture/cedar-bed-angle.webp",
@@ -171,7 +178,7 @@ export function ImageGalleryPage(): JSX.Element {
               alt={image.alt}
               loading="lazy"
               decoding="async"
-              className={`aspect-square w-full ${image.category === "signs" ? "bg-black/50 object-contain" : "object-cover"}`}
+              className="aspect-square w-full object-cover"
             />
           </div>
         ))}
