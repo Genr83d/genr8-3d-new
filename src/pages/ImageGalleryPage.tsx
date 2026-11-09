@@ -8,6 +8,7 @@ type GalleryImage = {
   id: string;
   category: GalleryCategory;
   src: string;
+  srcSet?: string;
   alt: string;
 };
 
@@ -21,7 +22,64 @@ const categories: { id: GalleryCategory; label: string }[] = [
   { id: "other", label: "Other" },
 ];
 
-const untitledProductImages: GalleryImage[] = [];
+const untitledProductImages: GalleryImage[] = [
+  {
+    id: "photo-cabinet-front",
+    category: "other",
+    src: "/products/other/cabinet-front.webp",
+    srcSet: "/products/other/cabinet-front-480.webp 480w, /products/other/cabinet-front-800.webp 800w, /products/other/cabinet-front.webp 1080w",
+    alt: "Front view of a wooden twelve-drawer cabinet with engraved values",
+  },
+  {
+    id: "photo-cabinet-angle",
+    category: "other",
+    src: "/products/other/cabinet-angle.webp",
+    srcSet: "/products/other/cabinet-angle-480.webp 480w, /products/other/cabinet-angle-800.webp 800w, /products/other/cabinet-angle.webp 1080w",
+    alt: "Angled view of a wooden twelve-drawer cabinet with engraved values",
+  },
+  {
+    id: "photo-peer-counsellor-badges",
+    category: "pins",
+    src: "/products/pins/peer-counsellor-badges.webp",
+    srcSet: "/products/pins/peer-counsellor-badges-480.webp 480w, /products/pins/peer-counsellor-badges.webp 720w",
+    alt: "Anchovy Primary School peer counsellor badges",
+  },
+  {
+    id: "photo-lantern-pins",
+    category: "pins",
+    src: "/products/pins/lantern-pins.webp",
+    srcSet: "/products/pins/lantern-pins-480.webp 480w, /products/pins/lantern-pins-800.webp 800w, /products/pins/lantern-pins.webp 1280w",
+    alt: "Round wooden lantern pins with engraved lettering",
+  },
+  {
+    id: "photo-business-club-badges",
+    category: "pins",
+    src: "/products/pins/business-club-badges.webp",
+    srcSet: "/products/pins/business-club-badges-480.webp 480w, /products/pins/business-club-badges-800.webp 800w, /products/pins/business-club-badges.webp 960w",
+    alt: "Business Club member and leadership badges",
+  },
+  {
+    id: "photo-cornwall-crocz-badge",
+    category: "pins",
+    src: "/products/pins/cornwall-crocz-badge.webp",
+    srcSet: "/products/pins/cornwall-crocz-badge-480.webp 480w, /products/pins/cornwall-crocz-badge-800.webp 800w, /products/pins/cornwall-crocz-badge.webp 1280w",
+    alt: "Cornwall College CROCZ swim club badge",
+  },
+  {
+    id: "photo-technical-design-badges",
+    category: "pins",
+    src: "/products/pins/technical-design-badges.webp",
+    srcSet: "/products/pins/technical-design-badges-480.webp 480w, /products/pins/technical-design-badges-800.webp 800w, /products/pins/technical-design-badges.webp 1280w",
+    alt: "M.A.H.S Technical Design Society cog-shaped badges",
+  },
+  {
+    id: "photo-prefect-badges",
+    category: "pins",
+    src: "/products/pins/prefect-badges.webp",
+    srcSet: "/products/pins/prefect-badges-480.webp 480w, /products/pins/prefect-badges-800.webp 800w, /products/pins/prefect-badges.webp 1280w",
+    alt: "John Rollins Success prefect badges",
+  },
+];
 
 export function ImageGalleryPage(): JSX.Element {
   const [activeFilter, setActiveFilter] = useState<GalleryFilter>("all");
@@ -99,6 +157,8 @@ export function ImageGalleryPage(): JSX.Element {
           >
             <img
               src={image.src}
+              srcSet={image.srcSet}
+              sizes="(min-width: 1280px) 288px, (min-width: 1024px) calc((100vw - 112px) / 3), (min-width: 640px) calc((100vw - 80px) / 3), calc((100vw - 44px) / 2)"
               alt={image.alt}
               loading="lazy"
               decoding="async"
