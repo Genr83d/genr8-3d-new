@@ -6,8 +6,8 @@ product entry at it in [`src/data/products.ts`](../../src/data/products.ts).
 ## Steps
 
 1. Save the photo as `public/products/<category>/<file>.webp`
-   (categories: `clocks`, `plaques`, `pins`, `keyrings`, `3d-prints`,
-   `school-furniture`).
+   (product categories: `clocks`, `plaques`, `pins`, `keyrings`, `3d-prints`,
+   `school-furniture`; image-only items without a catalog title use `other`).
 2. In `src/data/products.ts`, add the `image` field to that product:
 
    ```ts
@@ -25,6 +25,10 @@ product entry at it in [`src/data/products.ts`](../../src/data/products.ts).
 
 Any product without an `image` renders a "photo coming soon" placeholder tile,
 so the gallery stays presentable while photos are outstanding.
+
+For products without a title in the catalog, add the WebP path and a short alt
+text to `untitledProductImages` in
+[`src/pages/ImageGalleryPage.tsx`](../../src/pages/ImageGalleryPage.tsx).
 
 ## Filenames the gallery is already expecting
 
@@ -65,14 +69,15 @@ tile until the matching file exists:
 ImageMagick handles the resize and `.webp` conversion in one pass:
 
 ```bash
-convert original.jpg -resize 1400x1400 -quality 82 \
+convert original.jpg -resize '1400x1400>' -quality 82 \
   public/products/clocks/wedding-anniversary-clock.webp
 ```
 
 ## Photo guidelines
 
 - Landscape orientation, roughly 3:2 - cards crop to a fixed height.
-- 1200-1600px wide is plenty; keep files under ~300KB.
-- Prefer `.webp` (fall back to `.jpg` if needed).
+- Use a sharp original at 1200-1600px wide when possible; avoid enlarging a
+  small source photo if it makes the product look soft or pixelated.
+- Prefer `.webp` and keep files under ~300KB.
 - Shoot on a dark or neutral background to match the site theme.
 - Use lowercase, hyphenated filenames: `custom-centre-clock.webp`.

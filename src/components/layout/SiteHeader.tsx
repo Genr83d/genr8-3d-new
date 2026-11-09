@@ -67,7 +67,10 @@ export function SiteHeader(): JSX.Element {
                     ))}
                   </div>
                 )) : (
-                  <Link to="/products" onClick={closeMenus} className="block py-2 text-sm text-slate-300 hover:text-white">Custom Products</Link>
+                  <>
+                    <Link to="/products" onClick={closeMenus} className="block py-2 text-sm text-slate-300 hover:text-white">Custom Products</Link>
+                    <Link to="/gallery" onClick={closeMenus} className="block py-2 text-sm text-slate-300 hover:text-white">Image Gallery</Link>
+                  </>
                 )}
               </div>
             )}

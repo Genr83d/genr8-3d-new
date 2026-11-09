@@ -79,6 +79,9 @@ export function SiteFooter(): JSX.Element {
             <Link to="/products" className="hover:text-accentSoft">
               Products
             </Link>
+            <Link to="/gallery" className="hover:text-accentSoft">
+              Gallery
+            </Link>
             <Link to="/digital-solutions" className="hover:text-accentSoft">
               Digital Solutions
             </Link>

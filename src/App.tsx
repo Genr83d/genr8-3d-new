@@ -6,6 +6,7 @@ const AboutPage = lazy(async () => ({ default: (await import("./pages/AboutPage"
 const DigitalSolutionsPage = lazy(async () => ({ default: (await import("./pages/DigitalSolutionsPage")).DigitalSolutionsPage }));
 const ContactPage = lazy(async () => ({ default: (await import("./pages/ContactPage")).ContactPage }));
 const GalleryPage = lazy(async () => ({ default: (await import("./pages/GalleryPage")).GalleryPage }));
+const ImageGalleryPage = lazy(async () => ({ default: (await import("./pages/ImageGalleryPage")).ImageGalleryPage }));
 const HomePage = lazy(async () => ({ default: (await import("./pages/HomePage")).HomePage }));
 const NotFoundPage = lazy(async () => ({ default: (await import("./pages/NotFoundPage")).NotFoundPage }));
 const ServiceDetailPage = lazy(async () => ({ default: (await import("./pages/ServiceDetailPage")).ServiceDetailPage }));
@@ -31,7 +32,7 @@ function App(): JSX.Element {
           <Route path="/solutions" element={<LegacyRedirect to="/digital-solutions" />} />
           <Route path="/clocks" element={<LegacyRedirect to="/products" />} />
           <Route path="/products" element={<GalleryPage />} />
-          <Route path="/gallery" element={<LegacyRedirect to="/products" />} />
+          <Route path="/gallery" element={<ImageGalleryPage />} />
           <Route path="/our-work" element={<LegacyRedirect to="/services" />} />
           <Route path="/portfolio" element={<LegacyRedirect to="/services" />} />
           <Route path="/about" element={<AboutPage />} />
