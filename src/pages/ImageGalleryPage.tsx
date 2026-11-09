@@ -27,9 +27,9 @@ const untitledProductImages: GalleryImage[] = [
   {
     id: "photo-panelled-cabinet-detail",
     category: "school-furniture",
-    src: "/products/furniture/panelled-cabinet-detail.webp",
-    srcSet: "/products/furniture/panelled-cabinet-detail-480.webp 480w, /products/furniture/panelled-cabinet-detail.webp 710w",
-    alt: "Close-up of a light panelled cabinet door, dark frame, and open shelves in a neutral studio setting",
+    src: "/products/furniture/panelled-cabinet-detail.webp?v=original-workshop-3",
+    srcSet: "/products/furniture/panelled-cabinet-detail-480.webp?v=original-workshop-3 480w, /products/furniture/panelled-cabinet-detail.webp?v=original-workshop-3 720w",
+    alt: "Close-up of a light panelled cabinet door, dark frame, and open shelves on the original workshop bench",
   },
   {
     id: "photo-cedar-bed-angle",

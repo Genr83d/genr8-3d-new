@@ -152,8 +152,8 @@ export const products: Product[] = [
     category: "signs",
     description:
       "Layered wooden business sign with raised lettering and a central logo, shown here for the Hungry Herbie canteen.",
-    image: "/products/signs/hungry-herbie-canteen-sign.webp",
-    imageSrcSet: "/products/signs/hungry-herbie-canteen-sign-480.webp 480w, /products/signs/hungry-herbie-canteen-sign-800.webp 800w, /products/signs/hungry-herbie-canteen-sign.webp 960w",
+    image: "/products/signs/hungry-herbie-canteen-sign.webp?v=original-workshop-3",
+    imageSrcSet: "/products/signs/hungry-herbie-canteen-sign-480.webp?v=original-workshop-3 480w, /products/signs/hungry-herbie-canteen-sign-800.webp?v=original-workshop-3 800w, /products/signs/hungry-herbie-canteen-sign.webp?v=original-workshop-3 960w",
     tags: ["Business Branding", "Layered Wood", "Raised Lettering"],
   },
   {
@@ -371,8 +371,8 @@ export const products: Product[] = [
     category: "school-furniture",
     description:
       "Narrow bench with a wood-grain seat, dark frame, and engraved end panels for custom branding or personal designs.",
-    image: "/products/furniture/engraved-bench.webp",
-    imageSrcSet: "/products/furniture/engraved-bench-480.webp 480w, /products/furniture/engraved-bench-800.webp 800w, /products/furniture/engraved-bench.webp 930w",
+    image: "/products/furniture/engraved-bench.webp?v=original-workshop-3",
+    imageSrcSet: "/products/furniture/engraved-bench-480.webp?v=original-workshop-3 480w, /products/furniture/engraved-bench-800.webp?v=original-workshop-3 800w, /products/furniture/engraved-bench.webp?v=original-workshop-3 960w",
     tags: ["Bench Seating", "Engraved Panels", "Custom Branding"],
   },
   {
@@ -381,8 +381,8 @@ export const products: Product[] = [
     category: "school-furniture",
     description:
       "Storage cabinets pairing light panelled doors with a dark frame and shelving, made to suit your space.",
-    image: "/products/furniture/panelled-cabinet-unit.webp",
-    imageSrcSet: "/products/furniture/panelled-cabinet-unit-480.webp 480w, /products/furniture/panelled-cabinet-unit-800.webp 800w, /products/furniture/panelled-cabinet-unit.webp 840w",
+    image: "/products/furniture/panelled-cabinet-unit.webp?v=original-workshop-3",
+    imageSrcSet: "/products/furniture/panelled-cabinet-unit-480.webp?v=original-workshop-3 480w, /products/furniture/panelled-cabinet-unit-800.webp?v=original-workshop-3 800w, /products/furniture/panelled-cabinet-unit.webp?v=original-workshop-3 840w",
     tags: ["Cabinet Storage", "Panelled Doors", "Custom Furniture"],
   },
   {
