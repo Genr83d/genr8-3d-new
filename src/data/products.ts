@@ -299,7 +299,7 @@ export const products: Product[] = [
     category: "3d-prints",
     description:
       "Interior panels, speaker pods, and trim pieces modelled to the vehicle's own contours and printed to land on the factory mounting points.",
-    image: "/products/3d-prints/automotive-trim.webp",
+    image: "/products/3d-prints/automotive-trim.webp?v=background-clean-1",
     tags: ["Automotive", "Speaker Pods", "Made to Fit"],
     options: ["Modelled from the original panel", "Colour printed or paint-ready"],
   },
