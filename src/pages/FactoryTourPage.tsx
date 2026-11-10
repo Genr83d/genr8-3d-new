@@ -14,7 +14,7 @@ export function FactoryTourPage(): JSX.Element {
   const activeIndex = tourStops.indexOf(active)
   return (
     <div className="ft-page">
-      <header className="ft-heading"><div><p className="ft-location">GENR8-3D · Virtual factory tour</p><h1>Step inside the workshop.</h1><p>Look around the production floor in 360°, move between the machines, and see the workshop from the mezzanine.</p></div><Link to="/contact" className="secondary-button">Plan a real visit <TourIcon name="right" /></Link></header>
+      <header className="ft-heading"><div><p className="chip">Virtual Factory Tour</p><h1>Step inside the workshop.</h1><p>Look around the production floor in 360°, move between the machines, and see the workshop from the mezzanine.</p></div><Link to="/contact" className="secondary-button">Plan a real visit <TourIcon name="right" /></Link></header>
       <div className="ft-experience">
         <FactoryViewer request={request} onSelectStop={selectStop} />
         <aside className="ft-guide" aria-label="Factory tour guide">

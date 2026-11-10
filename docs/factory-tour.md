@@ -2,7 +2,7 @@
 
 `/factory-tour` is a 360° tour of the workshop. Each stop is a panorama rendered from the real Blender scene of the building, shown on the inside of a sphere with Three.js. Visitors drag to look around and select markers to move from stop to stop. The Blender scene, its textures, and the full-size renders stay outside Git; the site ships only the compressed panoramas, two floor plans, and a poster. Asset details are in [`public/factory-tour/README.md`](../public/factory-tour/README.md).
 
-Keep deployment on a **VIRTOUR preview**, separate from main/live. Changes outside the tour are limited to its route, footer link, home-page tour teaser, and dependency/check wiring.
+Changes outside the tour are limited to its route, footer link, home-page tour teaser, and dependency/check wiring.
 
 ## Behavior
 
