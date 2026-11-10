@@ -30,5 +30,7 @@ dist-ssr
 .env.test.local
 .env.production.local
 secrets/
-firebase-service-account*.json
-serviceAccountKey*.json
+
+# Keep the entire photo inbox, originals, guides, and editing masters local.
+/incoming photos/
+/incoming-photos/

@@ -20,6 +20,12 @@ export const productCategories: ProductCategory[] = [
       "Award, recognition, and signage plaques in wood and acrylic with crisp engraved detail.",
   },
   {
+    id: "signs",
+    label: "Signs",
+    description:
+      "Custom business, reception, house, and office signs with raised or engraved lettering and your own branding.",
+  },
+  {
     id: "pins",
     label: "Pins",
     description:
@@ -39,9 +45,9 @@ export const productCategories: ProductCategory[] = [
   },
   {
     id: "school-furniture",
-    label: "School Furniture",
+    label: "Furniture",
     description:
-      "Hard-wearing classroom furniture built to order for schools, training rooms, and learning centres.",
+      "Custom bed frames, benches, cabinets, and classroom furniture, built to order for homes, schools, and learning spaces.",
   },
 ];
 
@@ -121,12 +127,34 @@ export const products: Product[] = [
   },
   {
     id: "plaque-house-sign",
-    name: "House & Office Sign",
-    category: "plaques",
+    name: "House & Business Signs",
+    category: "signs",
     description:
-      "Weather-ready name and number signage cut to your dimensions with raised or engraved lettering.",
-    tags: ["Signage", "Outdoor", "Custom Size"],
-    options: ["Raised or engraved lettering", "Painted or natural finish"],
+      "Custom name, number, and business signs with raised or engraved lettering, made to suit your wording and branding.",
+    image: "/products/signs/fiwi-shipping-sign.webp?v=square-studio-2",
+    imageSrcSet: "/products/signs/fiwi-shipping-sign-480.webp?v=square-studio-2 480w, /products/signs/fiwi-shipping-sign-800.webp?v=square-studio-2 800w, /products/signs/fiwi-shipping-sign.webp?v=square-studio-2 1206w",
+    tags: ["Signage", "Raised Lettering", "Custom Size"],
+    options: ["Your wording and branding", "Raised or engraved lettering", "Custom dimensions"],
+  },
+  {
+    id: "sign-achievement-board",
+    name: "School Achievement Sign",
+    category: "signs",
+    description:
+      "Framed achievement-board header with raised lettering, made with your school's name and display title.",
+    image: "/products/signs/achievement-board-sign.webp",
+    imageSrcSet: "/products/signs/achievement-board-sign-480.webp 480w, /products/signs/achievement-board-sign-800.webp 800w, /products/signs/achievement-board-sign.webp 1030w",
+    tags: ["Schools", "Raised Lettering", "Custom Wording"],
+  },
+  {
+    id: "sign-round-logo",
+    name: "Round Wooden Logo Sign",
+    category: "signs",
+    description:
+      "Layered wooden business sign with raised lettering and a central logo, shown here for the Hungry Herbie canteen.",
+    image: "/products/signs/hungry-herbie-canteen-sign.webp?v=original-workshop-3",
+    imageSrcSet: "/products/signs/hungry-herbie-canteen-sign-480.webp?v=original-workshop-3 480w, /products/signs/hungry-herbie-canteen-sign-800.webp?v=original-workshop-3 800w, /products/signs/hungry-herbie-canteen-sign.webp?v=original-workshop-3 960w",
+    tags: ["Business Branding", "Layered Wood", "Raised Lettering"],
   },
   {
     id: "pin-prefect-badge",
@@ -299,7 +327,7 @@ export const products: Product[] = [
     category: "3d-prints",
     description:
       "Interior panels, speaker pods, and trim pieces modelled to the vehicle's own contours and printed to land on the factory mounting points.",
-    image: "/products/3d-prints/automotive-trim.webp",
+    image: "/products/3d-prints/automotive-trim.webp?v=background-clean-1",
     tags: ["Automotive", "Speaker Pods", "Made to Fit"],
     options: ["Modelled from the original panel", "Colour printed or paint-ready"],
   },
@@ -326,6 +354,36 @@ export const products: Product[] = [
       "Embossed lettering on the lid",
       "Two-colour body and lid",
     ],
+  },
+  {
+    id: "furniture-cedar-bed",
+    name: "Carved Cedar Bed Frame",
+    category: "school-furniture",
+    description:
+      "Four-post wooden bed frame with engraved headboard, footboard, and side panels, shown in Jamaican cedar with tree motifs and decorative lettering.",
+    image: "/products/furniture/cedar-bed-front.webp",
+    imageSrcSet: "/products/furniture/cedar-bed-front-480.webp 480w, /products/furniture/cedar-bed-front-800.webp 800w, /products/furniture/cedar-bed-front.webp 1206w",
+    tags: ["Jamaican Cedar", "Carved Detail", "Bed Frame"],
+  },
+  {
+    id: "furniture-engraved-bench",
+    name: "Engraved Bench",
+    category: "school-furniture",
+    description:
+      "Narrow bench with a wood-grain seat, dark frame, and engraved end panels for custom branding or personal designs.",
+    image: "/products/furniture/engraved-bench.webp?v=original-workshop-3",
+    imageSrcSet: "/products/furniture/engraved-bench-480.webp?v=original-workshop-3 480w, /products/furniture/engraved-bench-800.webp?v=original-workshop-3 800w, /products/furniture/engraved-bench.webp?v=original-workshop-3 960w",
+    tags: ["Bench Seating", "Engraved Panels", "Custom Branding"],
+  },
+  {
+    id: "furniture-panelled-cabinet",
+    name: "Panelled Cabinet Units",
+    category: "school-furniture",
+    description:
+      "Storage cabinets pairing light panelled doors with a dark frame and shelving, made to suit your space.",
+    image: "/products/furniture/panelled-cabinet-unit.webp?v=original-workshop-3",
+    imageSrcSet: "/products/furniture/panelled-cabinet-unit-480.webp?v=original-workshop-3 480w, /products/furniture/panelled-cabinet-unit-800.webp?v=original-workshop-3 800w, /products/furniture/panelled-cabinet-unit.webp?v=original-workshop-3 840w",
+    tags: ["Cabinet Storage", "Panelled Doors", "Custom Furniture"],
   },
   {
     id: "furniture-classroom-chair-writing-desk",

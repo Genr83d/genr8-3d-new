@@ -6,8 +6,8 @@ product entry at it in [`src/data/products.ts`](../../src/data/products.ts).
 ## Steps
 
 1. Save the photo as `public/products/<category>/<file>.webp`
-   (categories: `clocks`, `plaques`, `pins`, `keyrings`, `3d-prints`,
-   `school-furniture`).
+   (product folders: `clocks`, `plaques`, `signs`, `pins`, `keyrings`, `3d-prints`,
+   `school-furniture`, `furniture`; image-only items without a catalog title use `other`).
 2. In `src/data/products.ts`, add the `image` field to that product:
 
    ```ts
@@ -25,6 +25,19 @@ product entry at it in [`src/data/products.ts`](../../src/data/products.ts).
 
 Any product without an `image` renders a "photo coming soon" placeholder tile,
 so the gallery stays presentable while photos are outstanding.
+
+For products without a title in the catalog, add the WebP path and a short alt
+text to `untitledProductImages` in
+[`src/pages/ImageGalleryPage.tsx`](../../src/pages/ImageGalleryPage.tsx).
+
+For responsive product photos, add `imageSrcSet` with the actual file widths
+alongside `image` in the product entry. Use `-480.webp` and `-800.webp` copies
+when the source is large enough. The Furniture category retains the
+`school-furniture` ID so existing category links keep working; bed photos live
+in `public/products/furniture/`. Signs have their own category. Prepare wide
+signs on a square studio background before exporting so the gallery fills each
+tile while preserving the complete sign and its lettering. Keep the product's
+original proportions; never stretch it to fill the square.
 
 ## Filenames the gallery is already expecting
 
@@ -65,14 +78,17 @@ tile until the matching file exists:
 ImageMagick handles the resize and `.webp` conversion in one pass:
 
 ```bash
-convert original.jpg -resize 1400x1400 -quality 82 \
+convert original.jpg -resize '1400x1400>' -quality 82 \
   public/products/clocks/wedding-anniversary-clock.webp
 ```
 
 ## Photo guidelines
 
-- Landscape orientation, roughly 3:2 - cards crop to a fixed height.
-- 1200-1600px wide is plenty; keep files under ~300KB.
-- Prefer `.webp` (fall back to `.jpg` if needed).
+- Prefer square compositions for the square catalog and photo-gallery tiles.
+  Give wide or tall products enough studio background to keep the full subject
+  visible. Preserve lettering, logos, and product proportions.
+- Use a sharp original at 1200-1600px wide when possible; avoid enlarging a
+  small source photo if it makes the product look soft or pixelated.
+- Prefer `.webp` and keep files under ~300KB.
 - Shoot on a dark or neutral background to match the site theme.
 - Use lowercase, hyphenated filenames: `custom-centre-clock.webp`.

@@ -1,5 +1,6 @@
 import type { JSX } from "react";
 import { Link } from "react-router-dom";
+import { CopyableEmail } from "../ui/CopyableEmail";
 import LogoWide from "../../assets/icons/logos/genr8-logo-wide.svg";
 import FacebookIcon from "../../assets/icons/social/facebook.svg";
 import LinkedInIcon from "../../assets/icons/social/linkedin.svg";
@@ -13,7 +14,7 @@ export function SiteFooter(): JSX.Element {
         <section>
           <img src={LogoWide} alt="GENR8-3D Logo" className="w-32" />
           <p className="mt-4 text-sm text-slate-300">
-            Precision fabrication, technical design, and digital delivery for
+            Precision fabrication, technical design, and digital solutions for
             teams that need production-ready output.
           </p>
           <div className="mt-4 flex gap-3">
@@ -81,6 +82,12 @@ export function SiteFooter(): JSX.Element {
             <Link to="/products" className="hover:text-accentSoft">
               Products
             </Link>
+            <Link to="/gallery" className="hover:text-accentSoft">
+              Gallery
+            </Link>
+            <Link to="/digital-solutions" className="hover:text-accentSoft">
+              Digital Solutions
+            </Link>
             <a
               href="https://next-gen-academy.genr83d.com/"
               target="_blank"
@@ -107,9 +114,11 @@ export function SiteFooter(): JSX.Element {
             Contact
           </h2>
           <p className="mt-3 text-sm text-slate-300">
-            Mon-Fri: 8:00 AM - 5:00 PM
+            Mon-Fri: 9:00 AM - 5:00 PM
           </p>
-          <p className="mt-1 text-sm text-slate-300">contact@genr83d.com</p>
+          <p className="mt-1 text-sm text-slate-300">
+            <CopyableEmail email="contact@genr83d.com" />
+          </p>
           <address className="mt-1 text-sm text-slate-300 not-italic">
             Pembrooke Commercial Complex
             <br />

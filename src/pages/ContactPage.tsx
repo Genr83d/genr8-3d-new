@@ -1,6 +1,7 @@
 import type { JSX } from "react";
 import { PageHero } from "../components/sections/PageHero";
 import { QuoteForm } from "../components/forms/QuoteForm";
+import { CopyableEmail } from "../components/ui/CopyableEmail";
 import FacebookIcon from "../assets/icons/social/facebook.svg";
 import LinkedInIcon from "../assets/icons/social/linkedin.svg";
 import InstagramIcon from "../assets/icons/social/instagram.svg";
@@ -27,7 +28,7 @@ export function ContactPage(): JSX.Element {
           <dl className="mt-4 space-y-4 text-sm text-slate-300">
             <div>
               <dt className="font-semibold text-white">Hours</dt>
-              <dd>Mon-Fri: 8:00 AM - 5:00 PM</dd>
+              <dd>Mon-Fri: 9:00 AM - 5:00 PM</dd>
               <dd>Weekends: Closed</dd>
             </div>
             <div>
@@ -38,7 +39,9 @@ export function ContactPage(): JSX.Element {
             </div>
             <div>
               <dt className="font-semibold text-white">Direct Contact</dt>
-              <dd>contact@genr83d.com</dd>
+              <dd>
+                <CopyableEmail email="contact@genr83d.com" />
+              </dd>
               <dd>(876) 801-8972</dd>
             </div>
             <div>

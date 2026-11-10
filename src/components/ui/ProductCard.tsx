@@ -18,9 +18,12 @@ export function ProductCard({ product, onSelect }: ProductCardProps): JSX.Elemen
       <div className="relative overflow-hidden rounded-xl">
         <ProductImage
           src={product.image}
+          srcSet={product.imageSrcSet}
+          sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
           alt={product.name}
           category={product.category}
           frameClass="aspect-square"
+          fit={product.category === 'signs' ? 'contain' : 'cover'}
           className="transition duration-500 group-hover:scale-105"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
