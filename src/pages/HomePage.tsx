@@ -32,20 +32,20 @@ const whyItems = [
 
 const factoryTourPreview = [
   {
-    title: "Clickable Floor Map",
-    description: "Visitors can jump between production zones without waiting on the final 3D scene.",
+    title: "Explore the workshop",
+    description: "Walk around the production floor and look at the machinery from different angles.",
   },
   {
-    title: "Guided Storytelling",
-    description: "Each stop explains how projects move through the factory from planning to dispatch.",
+    title: "Choose your route",
+    description: "Jump to a tour stop or find your own way through the workshop.",
   },
   {
-    title: "3D Model Ready",
-    description: "The page is prepared for your artist's published model or external virtual tour embed.",
+    title: "Visit both floors",
+    description: "Explore the ground floor, then head to the mezzanine for a view across the space.",
   },
   {
-    title: "Mobile Friendly",
-    description: "The experience is built to work across phones, tablets, and desktop screens.",
+    title: "Look closer",
+    description: "Discover the materials, work surfaces, and details of our factory.",
   },
 ];
 
@@ -153,19 +153,18 @@ export function HomePage(): JSX.Element {
           <div>
             <p className="chip">Virtual Factory Tour</p>
             <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-4xl">
-              Let website visitors walk through your factory before they arrive.
+              Take a look around the GENR8-3D workshop.
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
-              Explore a guided factory map now, then connect the finished 3D
-              model when your artist is ready. It is a strong way to show your
-              workflow, machines, and production story online.
+              Step onto the production floor, look around the machinery, and
+              explore the mezzanine in an interactive tour of our workshop.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/factory-tour" className="primary-button">
                 Open Factory Tour
               </Link>
               <Link to="/contact" className="secondary-button">
-                Plan a Visitor Experience
+                Arrange a Visit
               </Link>
             </div>
           </div>
