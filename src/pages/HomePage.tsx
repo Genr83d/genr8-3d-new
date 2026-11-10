@@ -32,20 +32,20 @@ const whyItems = [
 
 const factoryTourPreview = [
   {
-    title: "Explore the workshop",
-    description: "Walk around the production floor and look at the machinery from different angles.",
+    title: "Look around in 360°",
+    description: "Stand on the production floor and turn to see the workshop in every direction.",
   },
   {
     title: "Choose your route",
-    description: "Jump to a tour stop or find your own way through the workshop.",
+    description: "Follow the floor markers from stop to stop, or jump straight to any part of the workshop.",
   },
   {
     title: "Visit both floors",
-    description: "Explore the ground floor, then head to the mezzanine for a view across the space.",
+    description: "Explore the ground floor, then head up to the mezzanine for a view across the space.",
   },
   {
-    title: "Look closer",
-    description: "Discover the materials, work surfaces, and details of our factory.",
+    title: "See the machines",
+    description: "Get close to the CNC router, lathe, laser cutters, and 3D printers.",
   },
 ];
 
@@ -157,7 +157,7 @@ export function HomePage(): JSX.Element {
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
               Step onto the production floor, look around the machinery, and
-              explore the mezzanine in an interactive tour of our workshop.
+              explore the mezzanine in a 360° tour of our workshop.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/factory-tour" className="primary-button">
