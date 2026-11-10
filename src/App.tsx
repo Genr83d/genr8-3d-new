@@ -12,6 +12,8 @@ const NotFoundPage = lazy(async () => ({ default: (await import("./pages/NotFoun
 const ServiceDetailPage = lazy(async () => ({ default: (await import("./pages/ServiceDetailPage")).ServiceDetailPage }));
 const ServicesPage = lazy(async () => ({ default: (await import("./pages/ServicesPage")).ServicesPage }));
 
+const FactoryTourPage = lazy(async () => ({ default: (await import("./pages/FactoryTourPage")).FactoryTourPage }));
+
 function LegacyRedirect({ to }: { to: string }): JSX.Element {
   const { search, hash } = useLocation();
   return <Navigate to={`${to}${search}${hash}`} replace />;
@@ -26,6 +28,7 @@ function App(): JSX.Element {
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path="/factory-tour" element={<FactoryTourPage />} />
           <Route path="/services/web-development-hosting" element={<LegacyRedirect to="/digital-solutions" />} />
           <Route path="/digital-solutions" element={<DigitalSolutionsPage />} />
           <Route path="/digital" element={<LegacyRedirect to="/digital-solutions" />} />

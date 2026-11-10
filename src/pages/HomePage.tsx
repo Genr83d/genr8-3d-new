@@ -30,6 +30,25 @@ const whyItems = [
   },
 ];
 
+const factoryTourPreview = [
+  {
+    title: "Look around in 360°",
+    description: "Stand on the production floor and turn to see the workshop in every direction.",
+  },
+  {
+    title: "Choose your route",
+    description: "Follow the floor markers from stop to stop, or jump straight to any part of the workshop.",
+  },
+  {
+    title: "Visit both floors",
+    description: "Explore the ground floor, then head up to the mezzanine for a view across the space.",
+  },
+  {
+    title: "See the machines",
+    description: "Get close to the CNC router, lathe, laser cutters, and 3D printers.",
+  },
+];
+
 export function HomePage(): JSX.Element {
   return (
     <>
@@ -126,6 +145,43 @@ export function HomePage(): JSX.Element {
           {testimonials.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
           ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="rounded-3xl border border-accentSoft/35 bg-gradient-to-br from-accent/30 via-black/75 to-support/20 p-8 shadow-card lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:gap-8 lg:p-10">
+          <div>
+            <p className="chip">Virtual Factory Tour</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-4xl">
+              Take a look around the GENR8-3D workshop.
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
+              Step onto the production floor, look around the machinery, and
+              explore the mezzanine in a 360° tour of our workshop.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/factory-tour" className="primary-button">
+                Open Factory Tour
+              </Link>
+              <Link to="/contact" className="secondary-button">
+                Arrange a Visit
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-0">
+            {factoryTourPreview.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-2xl border border-accentSoft/20 bg-black/35 p-5 backdrop-blur"
+              >
+                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
